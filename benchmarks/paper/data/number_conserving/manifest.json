@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "triangle_3x3_U2_0_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_0_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_0_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 0.0,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_0.25_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_0.25_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_0.25_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 0.25,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_0.5_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_0.5_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_0.5_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 0.5,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_0.75_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_0.75_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_0.75_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 0.75,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_1_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_1_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_1_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 1.0,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_1.25_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_1.25_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_1.25_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 1.25,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_1.5_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_1.5_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_1.5_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 1.5,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U2_2_mu-3.5_b4",
+      "input_dir": "inputs/triangle_3x3_U2_2_mu-3.5_b4",
+      "ed_params": "inputs/triangle_3x3_U2_2_mu-3.5_b4/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 2.0,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 1.0,
+        "min_completed_shells": 2,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "tail_tolerance": 0.0001
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.6_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.6_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.6_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.6,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.5_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.5_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.5_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.5,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.4_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.4_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.4_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.4,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.3_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.3_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.3_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.3,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.2_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.2_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.2_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.2,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_-0.1_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_-0.1_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_-0.1_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": -0.1,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    },
+    {
+      "id": "triangle_3x3_U1_0_mu-7_b1",
+      "input_dir": "inputs/triangle_3x3_U1_0_mu-7_b1",
+      "ed_params": "inputs/triangle_3x3_U1_0_mu-7_b1/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 1.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "analysis": {
+        "block_size": 10000,
+        "skip_samples": 0
+      },
+      "ed_policy": {
+        "max_density_total": 0.05,
+        "min_completed_shells": 6,
+        "statuses": [
+          "converged",
+          "low_density_cutoff_accepted",
+          "incomplete"
+        ],
+        "stop_when_reliable": true,
+        "tail_tolerance": 1e-05
+      }
+    }
+  ]
+}

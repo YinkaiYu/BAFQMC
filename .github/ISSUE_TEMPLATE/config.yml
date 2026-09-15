@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability privately
+    url: https://github.com/YinkaiYu/BAFQMC/security/advisories/new
+    about: Share a security report with the maintainers through GitHub private vulnerability reporting.

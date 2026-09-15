@@ -1,0 +1,45 @@
+# Generated calculations and build products
+/runs/
+/output/
+/.build/
+/benchmarks/paper/output/
+/benchmarks/paper/data/*/raw/
+/src/**/build/
+/src/**/data/
+/src/**/benchmarks/tmp/
+*.o
+*.mod
+*.smod
+
+# Curated examples keep their inputs; direct-run measurements stay local.
+/examples/**
+!/examples/**/
+!/examples/**/paramC_sets.txt
+!/examples/**/confin.txt
+!/examples/**/seeds.txt
+!/examples/**/params.json
+!/examples/**/README.md
+
+# Local environments, caches, and editor state
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.cache/
+.matplotlib/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.env
+.env.*
+
+# Local agent state; shared instructions live in AGENTS.md and docs/
+/.codex/
+/.claude/
+/.agents/*
+!/.agents/skills/
+!/.agents/skills/**
+/.opencode/
+/.playwright-cli/

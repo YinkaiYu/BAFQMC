@@ -1,0 +1,25 @@
+{
+  "description": "Fast I/O and analytic free-boson smoke; not the interacting publication campaign. ED is deliberately truncated and analytic free reference is used in analysis.",
+  "cases": [
+    {
+      "id": "triangle_3x3_free",
+      "input_dir": "../../../../examples/number_conserving/examples/triangle_3x3_free",
+      "ed_params": "../../../../examples/number_conserving/examples/triangle_3x3_free/params.json",
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 0.0,
+        "U2": 0.0,
+        "mu": -5.0,
+        "beta": 1.0,
+        "t": 1.0,
+        "max_total_particles": 2
+      },
+      "analysis": {
+        "block_size": 2,
+        "skip_samples": 0,
+        "atol": 1e-10
+      }
+    }
+  ]
+}

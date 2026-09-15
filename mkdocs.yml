@@ -1,0 +1,81 @@
+site_name: BAFQMC
+site_description: Bosonic auxiliary-field quantum Monte Carlo, from local positivity to global symmetry
+site_url: https://www.yykspace.com/BAFQMC/
+repo_url: https://github.com/YinkaiYu/BAFQMC
+repo_name: YinkaiYu/BAFQMC
+edit_uri: blob/main/
+docs_dir: .build/docs-source
+site_dir: .build/site
+theme:
+  name: material
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - scheme: default
+      primary: teal
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+plugins:
+  - search:
+      lang: [en, zh]
+markdown_extensions:
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - docs/assets/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+nav:
+  - Overview:
+      - BAFQMC: index.md
+      - 简体中文: README_zh-CN.md
+      - Algorithm: docs/algorithm.md
+  - Calculate:
+      - Get started: docs/getting-started.md
+      - Research workflows: docs/agent-workflows.md
+      - Number-conserving solver: src/number_conserving/README.md
+      - Paired solver: src/pairing/README.md
+  - Reproduce:
+      - Benchmarks and data: benchmarks/paper/README.md
+      - Resources: benchmarks/paper/RESOURCES.md
+      - Validation: benchmarks/paper/VALIDATION.md
+  - Develop:
+      - Agent instructions: AGENTS.md
+      - Development: docs/development.md
+      - Scientific testing: docs/testing.md
+      - Contributing: CONTRIBUTING.md
+      - Releases: docs/releases.md
+      - Changelog: CHANGELOG.md
+      - Community: CODE_OF_CONDUCT.md
+      - Security: SECURITY.md
+not_in_nav: |
+  /docs/solvers/*/*
+  /src/*/benchmarks/*
+  /src/common/*
+  /CLAUDE.md
+validation:
+  links:
+    not_found: warn
+    unrecognized_links: warn

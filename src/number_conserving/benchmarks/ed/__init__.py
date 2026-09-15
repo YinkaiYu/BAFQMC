@@ -1,0 +1,1 @@
+"""BAFQMC computational component."""

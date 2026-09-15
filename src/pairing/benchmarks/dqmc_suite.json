@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {
+      "name": "triangle_pairing_ed_smoke",
+      "input_dir": "../../examples/pairing/examples/triangle_pairing_ed_smoke",
+      "reference": "benchmarks/references/triangle_pairing_ed_smoke.json"
+    },
+    {
+      "name": "triangle_pairing_delta0_nopairing_3x2",
+      "input_dir": "../../examples/pairing/benchmarks/triangle_pairing_delta0_nopairing_3x2",
+      "reference": "benchmarks/references/triangle_pairing_delta0_nopairing.json"
+    }
+  ]
+}

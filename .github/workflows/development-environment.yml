@@ -1,0 +1,19 @@
+name: Development environment
+on:
+  push:
+    paths: ['.devcontainer/**', '.dockerignore', 'benchmarks/paper/requirements*.txt', 'scripts/doctor.py', '.github/workflows/development-environment.yml']
+  pull_request:
+    paths: ['.devcontainer/**', '.dockerignore', 'benchmarks/paper/requirements*.txt', 'scripts/doctor.py', '.github/workflows/development-environment.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the research environment
+        run: docker build -f .devcontainer/Dockerfile -t bafqmc-dev .
+      - name: Check compilers and scientific dependencies as the ordinary container user
+        run: docker run --rm -v "$PWD:/workspaces/BAFQMC:ro" bafqmc-dev python3 scripts/doctor.py

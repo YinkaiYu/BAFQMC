@@ -1,0 +1,13 @@
+# Linux scripts and scientific inputs must keep LF line endings on Windows clones.
+*.sh text eol=lf
+*.py text eol=lf
+*.f90 text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+Makefile text eol=lf
+*.mk text eol=lf
+benchmarks/paper/data/** text eol=lf
+
+# Preserve byte-level provenance of imported Fortran source snapshots.
+src/number_conserving/src/*.f90 whitespace=-trailing-space
+src/pairing/src/*.f90 whitespace=-trailing-space

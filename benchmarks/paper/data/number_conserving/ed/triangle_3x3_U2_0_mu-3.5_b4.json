@@ -1,0 +1,68 @@
+{
+  "completed_shells": 7,
+  "convergence_policy": {
+    "max_density_total": 1.0,
+    "min_completed_shells": 2,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "tail_tolerance": 0.0001
+  },
+  "last_shell_contribution": {
+    "S_DW_K": 7.712650067164649e-06,
+    "S_PSF_Gamma": 2.892217119292243e-06,
+    "S_SF_K": 2.1691788328912412e-05,
+    "density_total": 4.33838965301965e-05,
+    "doubleOcc": 5.784540862053269e-06,
+    "energy_density": -0.00013015072997347432,
+    "interaction_energy_density": 0.0,
+    "num_do": 0.00019522753438588455,
+    "num_up": 0.00019522753438588398,
+    "onsite_n2_do": 0.00029934926990284467,
+    "onsite_n2_up": 0.00029934926990284353,
+    "total_kinetic": -0.0011713565697612687
+  },
+  "observables": {
+    "S_DW_K": 0.008332164446447217,
+    "S_PSF_Gamma": 0.0006039605653687456,
+    "S_SF_K": 0.034776363142603926,
+    "density_total": 0.06955383492924552,
+    "doubleOcc": 0.0012079596636507294,
+    "energy_density": -0.20865817885562365,
+    "interaction_energy_density": 0.0,
+    "num_do": 0.3129922571816047,
+    "num_up": 0.31299225718160484,
+    "onsite_n2_do": 0.334735531127318,
+    "onsite_n2_up": 0.33473553112731813,
+    "total_kinetic": -1.8779236097006131
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 0.0,
+    "beta": 4.0,
+    "max_total_particles": 10,
+    "mu": -3.5,
+    "t": 1.0
+  },
+  "relative_last_shell": {
+    "S_DW_K": 0.0009256478453750723,
+    "S_PSF_Gamma": 0.004788751592624946,
+    "S_SF_K": 0.0006237509149522934,
+    "density_total": 0.0006237455716759441,
+    "doubleOcc": 0.004788687102821851,
+    "energy_density": 0.0006237509149522924,
+    "interaction_energy_density": 0.0,
+    "num_do": 0.0006237455716759454,
+    "num_up": 0.0006237455716759433,
+    "onsite_n2_do": 0.0008942859125074057,
+    "onsite_n2_up": 0.0008942859125074019,
+    "total_kinetic": 0.0006237509149522922
+  },
+  "schema_version": 1,
+  "status": "incomplete",
+  "timestamp_utc": "2026-06-03T17:21:42Z"
+}

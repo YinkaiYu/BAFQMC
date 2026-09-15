@@ -1,0 +1,20 @@
+{
+  "name": "BAFQMC: GNU Fortran, MPI, and ED",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/BAFQMC,type=bind",
+  "workspaceFolder": "/workspaces/BAFQMC",
+  "containerUser": "bafqmc",
+  "remoteUser": "bafqmc",
+  "updateRemoteUserUID": true,
+  "postCreateCommand": "python3 scripts/doctor.py",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/home/bafqmc/.venv/bin/python"
+      }
+    }
+  }
+}

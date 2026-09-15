@@ -1,0 +1,75 @@
+{
+  "completed_shells": 5,
+  "convergence_policy": {
+    "max_density_total": 1.0,
+    "min_completed_shells": 2,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "stop_when_reliable": true,
+    "tail_tolerance": 0.0001
+  },
+  "last_shell_contribution": {
+    "S_DW_K": 2.7969682999291593e-11,
+    "S_PSF_Gamma": 2.590871711961231e-11,
+    "S_SF_K": 6.319238525989392e-11,
+    "density_total": 1.3028913467539835e-10,
+    "doubleOcc": 3.600833181812535e-11,
+    "energy_density": -2.95970984923509e-10,
+    "interaction_energy_density": 8.225135519483883e-11,
+    "num_do": 5.863011060392919e-10,
+    "num_up": 5.863011060392933e-10,
+    "numsquare_do": 1.5284540193804493e-09,
+    "numsquare_up": 1.5284540193804566e-09,
+    "onsite_n2_do": 6.942060847399016e-10,
+    "onsite_n2_up": 6.942060847399043e-10,
+    "total_kinetic": -3.40400106106513e-09
+  },
+  "observables": {
+    "S_DW_K": 0.00012504072026434446,
+    "S_PSF_Gamma": 2.3467930780733524e-06,
+    "S_SF_K": 0.0005587000432186606,
+    "density_total": 0.0011178747201618002,
+    "doubleOcc": 3.2644539972724326e-06,
+    "energy_density": -0.00224045052686518,
+    "interaction_energy_density": 0.0011116497069529774,
+    "num_do": 0.005030436240728102,
+    "num_up": 0.005030436240728102,
+    "numsquare_do": 0.005046846461093869,
+    "numsquare_up": 0.005046846461093869,
+    "onsite_n2_do": 0.00503180376726385,
+    "onsite_n2_up": 0.00503180376726385,
+    "total_kinetic": -0.03016890210436341
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 1.0,
+    "beta": 4.0,
+    "max_total_particles": 10,
+    "mu": -3.5,
+    "t": 1.0
+  },
+  "relative_last_shell": {
+    "S_DW_K": 2.2368459602729262e-07,
+    "S_PSF_Gamma": 1.1040051788836279e-05,
+    "S_SF_K": 1.1310610411956255e-07,
+    "density_total": 1.165507478839314e-07,
+    "doubleOcc": 1.1030430157144684e-05,
+    "energy_density": 1.321033342957272e-07,
+    "interaction_energy_density": 7.399035386811652e-08,
+    "num_do": 1.1655074788393127e-07,
+    "num_up": 1.1655074788393153e-07,
+    "numsquare_do": 3.028532829685426e-07,
+    "numsquare_up": 3.0285328296854404e-07,
+    "onsite_n2_do": 1.3796366409522977e-07,
+    "onsite_n2_up": 1.379636640952303e-07,
+    "total_kinetic": 1.1283145304027487e-07
+  },
+  "schema_version": 1,
+  "status": "converged",
+  "timestamp_utc": "2026-06-04T10:58:37Z"
+}

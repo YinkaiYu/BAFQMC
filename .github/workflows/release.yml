@@ -1,0 +1,30 @@
+name: Source release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  validate:
+    uses: ./.github/workflows/reproduce-benchmarks.yml
+  release:
+    needs: validate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package the versioned source and publish checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][a-zA-Z0-9.-]+)?$ ]]
+          mkdir -p .build/release
+          name="bafqmc-${GITHUB_REF_NAME}"
+          git archive --format=tar --prefix="${name}/" HEAD | gzip -n > ".build/release/${name}.tar.gz"
+          (cd .build/release && sha256sum "${name}.tar.gz" > SHA256SUMS)
+          gh release create "$GITHUB_REF_NAME" ".build/release/${name}.tar.gz" .build/release/SHA256SUMS \
+            --verify-tag --title "BAFQMC ${GITHUB_REF_NAME}" --generate-notes

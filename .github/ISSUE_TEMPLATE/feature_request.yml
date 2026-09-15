@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a model extension, observable, algorithm improvement, or workflow enhancement.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Research or development need
+      description: What calculation or task would this feature enable?
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Describe the desired interface or physical capability. Include the operator or Hamiltonian for a physics extension.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Possible implementation or validation
+      description: Suggest a small example, exact limit, reference calculation, or related implementation if available.

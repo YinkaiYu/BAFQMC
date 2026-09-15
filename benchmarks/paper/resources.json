@@ -1,0 +1,46 @@
+{
+  "planning_summary": "Full 22-point production: budget 12-24 hours on a modern desktop, 16 GiB RAM (at least 8 GiB available), and 8 GiB free disk across scratch and results. The seven paired Monte Carlo chains dominate: about 9-13 hours. This is an estimate for one MPI rank and one numerical-library thread, not a measurement of the complete integrated campaign.",
+  "reference_cpu": "AMD Ryzen 5 9600X",
+  "reference_platform": "Linux/WSL2, Intel Fortran/MKL, Linux filesystem",
+  "mpi_ranks": 1,
+  "threads": 1,
+  "recommended_ram_gib": 16,
+  "recommended_free_disk_gib": 8,
+  "full_estimate_hours": [
+    12,
+    24
+  ],
+  "pairing_dqmc_calibration": {
+    "bins": 1000,
+    "warmup": 500,
+    "wall_seconds": 46.38,
+    "peak_rss_kib": 66444,
+    "historical_seven_case_wall_hours": 12.2
+  },
+  "pairing_ed_calibration": {
+    "basis_size": 7297,
+    "wall_seconds": 40.4,
+    "peak_rss_kib": 3158584
+  },
+  "number_ed_largest_archived_block": {
+    "particles": 7,
+    "dimension": 9075,
+    "four_complex_matrix_estimate_gib": 4.91
+  },
+  "number_dqmc_calibrations": [
+    {
+      "beta": 4,
+      "U2": 0.25,
+      "bins": 1000,
+      "wall_seconds": 5.47,
+      "peak_rss_kib": 62516
+    },
+    {
+      "beta": 1,
+      "U1": -0.6,
+      "bins": 1000,
+      "wall_seconds": 2.29,
+      "peak_rss_kib": 62516
+    }
+  ]
+}

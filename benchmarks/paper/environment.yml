@@ -1,0 +1,10 @@
+name: bafqmc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - numpy==2.3.4
+      - matplotlib==3.10.7
+      - quspin==1.0.1

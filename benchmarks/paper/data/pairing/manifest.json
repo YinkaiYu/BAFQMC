@@ -1,0 +1,72 @@
+{
+  "analysis_defaults": {
+    "block_size": 10000,
+    "min_ipr_total_density": 1e-08,
+    "skip_samples": 0
+  },
+  "campaign": "triangle_pairing_delta_3x3",
+  "deltas": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3
+  ],
+  "description": "Production-quality 3x3 pairing Delta sweep at mu=-5 for paper benchmark main figure; Nbin=100000 block_size=10000.",
+  "dqmc_defaults": {
+    "Nbin": 100000,
+    "Nsweep": 1,
+    "Nthermal": 0,
+    "Nwarm": 500,
+    "Nwrap": 10,
+    "block_size": 10000,
+    "dtau": 0.01,
+    "iniAmpl": 0.1,
+    "iniBias1": 0.0,
+    "iniBias2": 0.0,
+    "iniType": 2,
+    "is_tau": false,
+    "is_warm": true,
+    "seeds": [
+      64464988
+    ],
+    "shiftLoc": 1.0,
+    "shiftWarm1": 1.0,
+    "shiftWarm2": 1.0
+  },
+  "ed_defaults": {
+    "basis_cap": 200000,
+    "ncut": 4,
+    "nmax": 3
+  },
+  "lattice": {
+    "Lx": 3,
+    "Ly": 3
+  },
+  "observables": [
+    "density_total",
+    "energy_density",
+    "interaction_energy_density",
+    "pairing_energy_density",
+    "chemical_energy_density",
+    "grand_energy_density",
+    "onsite_n2_up",
+    "onsite_n2_do",
+    "IPR",
+    "S_SF_K",
+    "S_DW_K",
+    "S_PSF_Gamma"
+  ],
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 1.0,
+    "beta": 4.0,
+    "mu": -5.0,
+    "t": 1.0
+  },
+  "seed_policy": "Initial seeds are base_seed + case_index, expanded to per-MPI-rank seeds by the campaign writer. The paper used one rank. Archived inputs preserve the actual seeds.txt bytes."
+}

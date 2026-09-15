@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 0.0,
+    "mu": -5.0,
+    "beta": 1.0,
+    "t": 1.0,
+    "max_total_particles": 2
+  },
+  "convergence_policy": {
+    "min_completed_shells": 2,
+    "tail_tolerance": 0.001,
+    "max_density_total": 1.0,
+    "stop_when_reliable": true
+  }
+}

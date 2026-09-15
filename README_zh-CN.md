@@ -1,0 +1,88 @@
+<div align="center">
+
+# BAFQMC
+
+### 从局域正性到全局对称性
+
+**玻色辅助场量子蒙特卡洛**
+
+[English](README.md) · **简体中文**
+
+[![Benchmarks](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml/badge.svg)](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-417A69.svg)](LICENSE)
+[![arXiv: 2609.XXXXX](https://img.shields.io/badge/arXiv-2609.XXXXX-B31B1B.svg)](#paper)
+[![Fortran + Python](https://img.shields.io/badge/Fortran%20%2B%20Python-535B86.svg)](docs/development.md)
+[![Agent ready](https://img.shields.io/badge/Agent-ready-927043.svg)](AGENTS.md)
+
+[在线文档](https://www.yykspace.com/BAFQMC/) · [开始使用](docs/getting-started.md) · [算法与约定](docs/algorithm.md) · [复现结果](benchmarks/paper/README.md) · [Agent 指南](AGENTS.md)
+
+</div>
+
+世界线和随机级数展开方法围绕局域矩阵元正性构造无符号采样。
+**BAFQMC 通过 Hubbard–Stratonovich 解耦后的全局对称性，建立玻色体系蒙特卡洛权重的非负性。**
+反射正性（RP）与时间反演对称性（TRS）由此打开新的可计算区域：
+受这些对称性保护的阻挫玻色体系。
+
+<p align="center">
+  <img src="docs/assets/territory.svg" alt="按阻挫与 RP/TRS 分类的无符号问题区域：BAFQMC 将可计算范围从世界线和 SSE 方法覆盖的非阻挫区域，拓展至受对称性保护的阻挫区域。" width="760">
+</p>
+
+这个仓库提供这一构造的完整实现：三角晶格双组分玻色体系的有限温求解器，
+包含粒子数守恒与在位配对两种情形；精确对角化（ED）参考程序；以及完整的论文 benchmark 复现流程。
+**开展新的计算，扩展算法，继续构建。** 仓库采用 [MIT 协议](LICENSE) 开放。
+
+## 和你的 Agent 一起使用
+
+克隆仓库，在你习惯的编码 Agent 中打开它。
+[Agent 指令](AGENTS.md)和[任务指南](docs/agent-workflows.md)已经准备好代码地图、
+物理约定、运行命令和验证方法。你可以直接这样发起任务：
+
+> 阅读 AGENTS.md，在 Linux 或 WSL 中配置 BAFQMC，完成小规模 BAFQMC + ED
+> 安装检查，并告诉我结果在哪里。
+
+> 完整复现论文的所有 benchmark。使用原始参数和种子，将新结果保存在独立目录中，
+> 完成后给我看两张图。
+
+> 我想研究 U = 1、beta = 4、mu = -5 时，三角晶格模型随配对强度的变化。
+> 请准备独立的扫描任务，先用 ED 检查一个小规模算例，并在正式计算前说明资源需求。
+
+> 为我的研究添加一个可观测量。按照现有 Green 函数约定推导估计量，
+> 在 BAFQMC 和 ED 中实现，并在小体系上验证。
+
+告诉 Agent 你要研究的物理问题和可用计算资源，它可以沿着技术指南完成具体工作。
+
+## 完整复现论文
+
+完成[环境配置](docs/getting-started.md)后，运行：
+
+```bash
+python3 reproduce.py
+```
+
+这一条命令会编译求解器，为**全部 22 个 benchmark 点**重新运行 BAFQMC 和 ED，
+处理新产生的测量数据，并生成两张图。
+在现代桌面 CPU 上，请预留约 **12–24 小时**、**16 GiB 内存**和 **8 GiB 可用磁盘空间**。
+默认使用一个 MPI 进程、一个数值库线程，按顺序计算各参数点。
+[资源指南](benchmarks/paper/RESOURCES.md)给出了实测时间和中断后的续跑方法。
+
+```bash
+python3 reproduce.py --plan        # 查看计算范围和资源估计
+python3 reproduce.py --mode smoke  # 小规模 BAFQMC + ED 安装检查
+```
+
+仓库包含用于绘图的小型处理后数据，包括平均值和均值标准误。
+大型模拟输出由程序在本地生成，不进入 Git 跟踪。
+
+## 进一步探索
+
+- [开始使用](docs/getting-started.md)：安装、运行以及查看结果。
+- [算法与物理约定](docs/algorithm.md)：模型、对称性和可观测量。
+- [Agent 科研任务指南](docs/agent-workflows.md)：新计算与算法扩展。
+- [Benchmark 细节](benchmarks/paper/README.md)：参数、数据与复现模式。
+- [参与开发](CONTRIBUTING.md)：实现和验证你的贡献。
+
+<a id="paper"></a>
+
+## 论文
+
+arXiv：**2609.XXXXX**（待更新编号）。

@@ -1,0 +1,27 @@
+name: Research question
+description: Discuss model setup, algorithm conventions, observables, or a research calculation.
+title: "[Research] "
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question and physical goal
+      description: State the question and what you want to calculate or understand.
+    validations:
+      required: true
+  - type: textarea
+    id: model
+    attributes:
+      label: Model and conventions
+      description: Where relevant, give the Hamiltonian, geometry, couplings, temperature, pairing phase, and observable definition.
+  - type: textarea
+    id: context
+    attributes:
+      label: Existing calculation or reading
+      description: Link the relevant documentation or include a small input and processed results. Give sampling, blocking, and ED cutoffs when discussing a numerical comparison.
+  - type: textarea
+    id: resources
+    attributes:
+      label: Computing resources
+      description: For a planned calculation, mention available CPUs, RAM, and time budget.

@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a build, execution, analysis, or numerical implementation problem.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include a small reproducer and relevant output. Keep large raw chains local.
+        For security vulnerabilities, use the private reporting link in the issue chooser.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: What calculation or operation failed, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction commands and inputs
+      description: Include the exact command, a small manifest or input example, and the affected case or stage.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Version and environment
+      description: Include the Git commit, Linux/WSL version, and output of `python3 scripts/doctor.py` if available.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Relevant logs or processed results
+      description: Include the error and nearby log lines, or means/SEM and reference values for a numerical issue. Remove credentials and private paths.
+      render: text

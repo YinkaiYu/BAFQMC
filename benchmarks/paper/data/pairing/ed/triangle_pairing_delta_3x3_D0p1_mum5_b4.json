@@ -1,0 +1,250 @@
+{
+  "case": "triangle_pairing_delta_3x3_D0p1_mum5_b4",
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "t": 1.0,
+    "U1": 0.0,
+    "U2": 1.0,
+    "mu": -5.0,
+    "Delta": 0.1,
+    "beta": 4.0
+  },
+  "cutoffs": {
+    "nmax": 3,
+    "ncut": 4,
+    "basis_cap": 200000
+  },
+  "basis_size": 7297,
+  "diagonalization_method": "dense_H_eigh",
+  "energy_shift": -0.010864577807857476,
+  "free_energy": -0.010870777082565638,
+  "observables": {
+    "num_up": {
+      "value": 0.0015386856387494506,
+      "normalization": "total"
+    },
+    "num_do": {
+      "value": 0.0015386856387494504,
+      "normalization": "total"
+    },
+    "total_NE": {
+      "value": 0.003077371277498901,
+      "normalization": "total"
+    },
+    "total_density": {
+      "value": 0.00034193014194432235,
+      "normalization": "per_site"
+    },
+    "density_total": {
+      "value": 0.00034193014194432235,
+      "normalization": "per_site"
+    },
+    "kinetic_total": {
+      "value": -0.004896415690007317,
+      "normalization": "total"
+    },
+    "doubleOcc": {
+      "value": 0.00014582498306000018,
+      "normalization": "per_site"
+    },
+    "local_numsquare": {
+      "value": 0.00034204619112873993,
+      "normalization": "per_site"
+    },
+    "numsquare_up": {
+      "value": 0.001541510907269077,
+      "normalization": "total"
+    },
+    "numsquare_do": {
+      "value": 0.001541510907269077,
+      "normalization": "total"
+    },
+    "pair_equal": {
+      "value": -0.02414916206998036,
+      "normalization": "per_site"
+    },
+    "onsite_n2_up": {
+      "value": 0.0015392078600793293,
+      "normalization": "total"
+    },
+    "onsite_n2_do": {
+      "value": 0.00153920786007933,
+      "normalization": "total"
+    },
+    "interaction_energy_total": {
+      "value": 0.00045356602507865603,
+      "normalization": "total"
+    },
+    "interaction_energy_density": {
+      "value": 5.0396225008739556e-05,
+      "normalization": "per_site"
+    },
+    "pairing_total": {
+      "value": -0.021734245862982324,
+      "normalization": "total"
+    },
+    "pairing_energy_density": {
+      "value": -0.002414916206998036,
+      "normalization": "per_site"
+    },
+    "chemical_energy_total": {
+      "value": 0.015386856387494506,
+      "normalization": "total"
+    },
+    "chemical_energy_density": {
+      "value": 0.0017096507097216118,
+      "normalization": "per_site"
+    },
+    "energy_total": {
+      "value": -0.026177095527910983,
+      "normalization": "total"
+    },
+    "energy_density": {
+      "value": -0.002908566169767887,
+      "normalization": "per_site"
+    },
+    "grand_energy_total": {
+      "value": -0.010790239140416477,
+      "normalization": "total"
+    },
+    "grand_energy_density": {
+      "value": -0.0011989154600462752,
+      "normalization": "per_site"
+    },
+    "S_SF_K": {
+      "value": 9.662085812329044e-05,
+      "normalization": "per_site_squared"
+    },
+    "S_DW_K": {
+      "value": 6.9738244410733e-05,
+      "normalization": "per_site_squared"
+    },
+    "S_PSF_Gamma": {
+      "value": 0.0001458015026909405,
+      "normalization": "per_site_squared"
+    },
+    "same_flavor_pair": {
+      "value": 5.802459220878884e-08,
+      "normalization": "per_site"
+    }
+  },
+  "cutoff_diagnostics": {
+    "max_total_particles_in_basis": 4,
+    "total_cutoff_boundary_weight": 1.3879554823249351e-06,
+    "local_nmax_boundary_weight": 3.78486512244721e-15,
+    "dense_eigh_memory_estimate_gib": 3.1737213730812073,
+    "dense_eigh_memory_cap_gib": 12.0,
+    "dense_eigh_memory_model": "4 complex128 dense matrices"
+  },
+  "bond_list": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      6
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      4,
+      7
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      3
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      6,
+      0
+    ],
+    [
+      6,
+      2
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      7,
+      1
+    ],
+    [
+      7,
+      0
+    ],
+    [
+      8,
+      6
+    ],
+    [
+      8,
+      2
+    ],
+    [
+      8,
+      1
+    ]
+  ]
+}

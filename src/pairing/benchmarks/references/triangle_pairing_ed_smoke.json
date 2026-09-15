@@ -1,0 +1,38 @@
+{
+  "case": "triangle_pairing_ed_smoke",
+  "reference_kind": "ed_json",
+  "ed_json": "benchmarks/dqmc_references/triangle_pairing_ed_smoke.json",
+  "parameters": {"Lx": 2, "Ly": 2, "Nsite": 4, "Delta": 0.2},
+  "observables": {
+    "total_NE": {
+      "expected_from": "observables.total_NE.value",
+      "atol": 0.20,
+      "rtol": 0.0,
+      "dqmc": {"operation": "sum_mean", "files": ["num_up", "num_do"], "min_samples": 2, "statistics": {"block_size": 1, "stderr_tolerance": 5.0}}
+    },
+    "kinetic_total": {
+      "expected_from": "observables.kinetic_total.value",
+      "atol": 0.30,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean_times_nsite", "files": ["kinetic"], "min_samples": 2, "statistics": {"block_size": 1, "stderr_tolerance": 5.0}}
+    },
+    "doubleOcc": {
+      "expected_from": "observables.doubleOcc.value",
+      "atol": 0.10,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean", "files": ["doubleOcc"], "min_samples": 2, "statistics": {"block_size": 1, "stderr_tolerance": 5.0}}
+    },
+    "local_numsquare": {
+      "expected_from": "observables.local_numsquare.value",
+      "atol": 0.10,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean", "files": ["local_numsquare"], "min_samples": 2, "statistics": {"block_size": 1, "stderr_tolerance": 5.0}}
+    },
+    "pair_equal": {
+      "expected_from": "observables.pair_equal.value",
+      "atol": 0.10,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean", "files": ["pair_equal"], "min_samples": 2, "statistics": {"block_size": 1, "stderr_tolerance": 5.0}}
+    }
+  }
+}

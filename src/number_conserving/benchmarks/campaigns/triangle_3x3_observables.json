@@ -1,0 +1,100 @@
+{
+  "analysis_defaults": {
+    "atol": 0.0,
+    "min_ipr_number": 1e-08,
+    "rtol": 0.0,
+    "stderr_tolerance": 3.0
+  },
+  "campaign": "triangle_3x3_observables",
+  "description": "3x3 triangular-lattice BAFQMC vs ED observable benchmark",
+  "dqmc_defaults": {
+    "Nbin": 100000,
+    "Nsweep": 1,
+    "Nthermal": 0,
+    "Nwarm": 500,
+    "Nwrap": 10,
+    "block_size": 10000,
+    "dtau": 0.01,
+    "iniAmpl": 0.1,
+    "iniBias1": 0.0,
+    "iniBias2": 0.0,
+    "iniType": 2,
+    "is_tau": false,
+    "is_warm": true,
+    "mpi_np": 1,
+    "seeds": [
+      64464988
+    ],
+    "shiftLoc": 1.5,
+    "shiftWarm1": 1.0,
+    "shiftWarm2": 1.0
+  },
+  "ed_policy": {
+    "max_density_total": 1.0,
+    "max_total_particles": 6,
+    "min_completed_shells": 2,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "tail_tolerance": 0.001
+  },
+  "hpc": {
+    "host": "cluster.example",
+    "job_prefix": "bafqmc/",
+    "queues": [
+      "compute",
+      "large-memory"
+    ],
+    "ssh": "ssh cluster.example",
+    "work_dir": "/path/to/campaign"
+  },
+  "lattice": {
+    "Lx": 3,
+    "Ly": 3
+  },
+  "observables": [
+    "density_total",
+    "energy_density",
+    "doubleOcc",
+    "IPR",
+    "S_SF_K",
+    "S_PSF_Gamma",
+    "S_DW_K"
+  ],
+  "stability_notes": {
+    "negative_u1": "Negative U1 is a finite-window/cutoff comparison only; accepted points use status low_density_cutoff_accepted.",
+    "u1_zero": "For 3x3 triangular U1=0 runs, use mu < -3."
+  },
+  "sweeps": [
+    {
+      "U1": 0.0,
+      "U2": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "beta": 4.0,
+      "mu": -3.5,
+      "name": "U2_sweep",
+      "vary": "U2"
+    },
+    {
+      "U1": [
+        0.0,
+        -0.05,
+        -0.1,
+        -0.15,
+        -0.2
+      ],
+      "U2": 1.0,
+      "beta": 1.0,
+      "mu": -5.0,
+      "name": "U1_sweep",
+      "vary": "U1"
+    }
+  ]
+}

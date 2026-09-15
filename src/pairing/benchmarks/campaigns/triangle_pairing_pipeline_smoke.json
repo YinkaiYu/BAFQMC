@@ -1,0 +1,65 @@
+{
+  "campaign": "triangle_pairing_delta_3x3",
+  "description": "Small pipeline check; reduced ED cutoff and statistics, not paper data",
+  "lattice": {
+    "Lx": 3,
+    "Ly": 3
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 0.0,
+    "beta": 1.0,
+    "mu": -5.0,
+    "t": 1.0
+  },
+  "deltas": [
+    0.1
+  ],
+  "observables": [
+    "density_total",
+    "energy_density",
+    "interaction_energy_density",
+    "pairing_energy_density",
+    "chemical_energy_density",
+    "grand_energy_density",
+    "onsite_n2_up",
+    "onsite_n2_do",
+    "IPR",
+    "S_SF_K",
+    "S_DW_K",
+    "S_PSF_Gamma"
+  ],
+  "dqmc_defaults": {
+    "dtau": 0.05,
+    "Nwrap": 10,
+    "Nbin": 8,
+    "Nsweep": 1,
+    "shiftLoc": 1.0,
+    "is_tau": false,
+    "Nthermal": 0,
+    "is_warm": false,
+    "Nwarm": 0,
+    "shiftWarm1": 1.0,
+    "shiftWarm2": 1.0,
+    "iniType": 2,
+    "iniAmpl": 0.1,
+    "iniBias1": 0.0,
+    "iniBias2": 0.0,
+    "block_size": 2,
+    "seeds": [
+      13579113
+    ]
+  },
+  "ed_defaults": {
+    "nmax": 1,
+    "ncut": 2,
+    "basis_cap": 1000
+  },
+  "analysis_defaults": {
+    "block_size": 2,
+    "skip_samples": 0,
+    "min_ipr_total_density": 1e-08
+  }
+}

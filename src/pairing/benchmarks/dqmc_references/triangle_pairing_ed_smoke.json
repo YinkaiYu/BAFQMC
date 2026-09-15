@@ -1,0 +1,119 @@
+{
+  "case": "triangle_pairing_2x2_smoke",
+  "parameters": {
+    "Lx": 2,
+    "Ly": 2,
+    "t": 1.0,
+    "U1": -0.1,
+    "U2": 1.0,
+    "mu": -5.0,
+    "Delta": 0.2,
+    "beta": 1.0
+  },
+  "cutoffs": {
+    "nmax": 2,
+    "ncut": 6,
+    "basis_cap": 2000
+  },
+  "basis_size": 1711,
+  "diagonalization_method": "dense_H_eigh",
+  "energy_shift": -0.022322993403295473,
+  "free_energy": -0.1490731990502405,
+  "observables": {
+    "num_up": {
+      "value": 0.06930378841471423,
+      "normalization": "total"
+    },
+    "num_do": {
+      "value": 0.06930378841471385,
+      "normalization": "total"
+    },
+    "total_NE": {
+      "value": 0.1386075768294281,
+      "normalization": "total"
+    },
+    "total_density": {
+      "value": 0.03465189420735702,
+      "normalization": "per_site"
+    },
+    "kinetic_total": {
+      "value": -0.27424136147017725,
+      "normalization": "total"
+    },
+    "doubleOcc": {
+      "value": 0.0021247547970353296,
+      "normalization": "per_site"
+    },
+    "local_numsquare": {
+      "value": 0.03519605335417181,
+      "normalization": "per_site"
+    },
+    "numsquare_up": {
+      "value": 0.0737016400757865,
+      "normalization": "total"
+    },
+    "numsquare_do": {
+      "value": 0.07370164007578615,
+      "normalization": "total"
+    },
+    "pair_equal": {
+      "value": -0.058298370527300025,
+      "normalization": "per_site"
+    }
+  },
+  "cutoff_diagnostics": {
+    "max_total_particles_in_basis": 6,
+    "total_cutoff_boundary_weight": 7.05079703361556e-07,
+    "local_nmax_boundary_weight": 0.0010583942243102818
+  },
+  "bond_list": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      0
+    ]
+  ]
+}

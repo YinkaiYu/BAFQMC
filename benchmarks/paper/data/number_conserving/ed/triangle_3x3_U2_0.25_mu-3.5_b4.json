@@ -1,0 +1,75 @@
+{
+  "completed_shells": 7,
+  "convergence_policy": {
+    "max_density_total": 1.0,
+    "min_completed_shells": 2,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "stop_when_reliable": true,
+    "tail_tolerance": 0.0001
+  },
+  "last_shell_contribution": {
+    "S_DW_K": 1.1405203922765733e-08,
+    "S_PSF_Gamma": 8.717610761051436e-09,
+    "S_SF_K": 2.814481318602123e-08,
+    "density_total": 5.647524225540997e-08,
+    "doubleOcc": 1.4308422907874404e-08,
+    "energy_density": -1.5687654701849156e-07,
+    "interaction_energy_density": 1.193913857391148e-08,
+    "num_do": 2.541385901493451e-07,
+    "num_up": 2.541385901493447e-07,
+    "numsquare_do": 9.51611232547978e-07,
+    "numsquare_up": 9.516112325479756e-07,
+    "onsite_n2_do": 3.4368030050127685e-07,
+    "onsite_n2_up": 3.4368030050127563e-07,
+    "total_kinetic": -1.5193411703316274e-06
+  },
+  "observables": {
+    "S_DW_K": 0.0026348946816658583,
+    "S_PSF_Gamma": 0.00012340937088853874,
+    "S_SF_K": 0.011558587773593074,
+    "density_total": 0.02312133673254186,
+    "doubleOcc": 0.0002216405791909153,
+    "energy_density": -0.06359455087739854,
+    "interaction_energy_density": 0.005755969396448969,
+    "num_do": 0.10404601529643832,
+    "num_up": 0.10404601529643834,
+    "numsquare_do": 0.11637681370310804,
+    "numsquare_up": 0.11637681370310804,
+    "onsite_n2_do": 0.10560221434879967,
+    "onsite_n2_up": 0.10560221434879967,
+    "total_kinetic": -0.6241546824646276
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 0.0,
+    "U2": 0.25,
+    "beta": 4.0,
+    "max_total_particles": 10,
+    "mu": -3.5,
+    "t": 1.0
+  },
+  "relative_last_shell": {
+    "S_DW_K": 4.328523641618581e-06,
+    "S_PSF_Gamma": 7.06397796073771e-05,
+    "S_SF_K": 2.434969888823382e-06,
+    "density_total": 2.442559567757367e-06,
+    "doubleOcc": 6.455687383648961e-05,
+    "energy_density": 2.4668237270977468e-06,
+    "interaction_energy_density": 2.07421856364926e-06,
+    "num_do": 2.44255956775737e-06,
+    "num_up": 2.442559567757366e-06,
+    "numsquare_do": 8.176983045571763e-06,
+    "numsquare_up": 8.176983045571741e-06,
+    "onsite_n2_do": 3.2544800563188503e-06,
+    "onsite_n2_up": 3.254480056318839e-06,
+    "total_kinetic": 2.43423819930684e-06
+  },
+  "schema_version": 1,
+  "status": "converged",
+  "timestamp_utc": "2026-06-04T13:36:59Z"
+}

@@ -1,0 +1,185 @@
+{
+  "case": "triangle_pairing_delta0_nopairing",
+  "reference_kind": "nopairing_dqmc_json",
+  "source_reference_repo": "code_bosonDQMC (upstream repository)",
+  "source_reference_commit": "a0c1b4414da7899f3ded4cc360201a5a34ff812c",
+  "reference_fixture_source": "committed no-pairing DQMC benchmark output",
+  "reference_run_dir": "benchmarks/fixtures/nopairing_triangle_3x2_beta1_real_outputs",
+  "dqmc_live_input_dir": "../../examples/pairing/benchmarks/triangle_pairing_delta0_nopairing_3x2",
+  "parameters": {
+    "Lx": 3,
+    "Ly": 2,
+    "Nsite": 6,
+    "Delta": 0.0
+  },
+  "observables": {
+    "total_NE": {
+      "reference_dqmc": {
+        "operation": "sum_mean",
+        "files": [
+          "num_up",
+          "num_do"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "sum_mean",
+        "files": [
+          "num_up",
+          "num_do"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "kinetic_total": {
+      "reference_dqmc": {
+        "operation": "mean_times_nsite",
+        "files": [
+          "kinetic"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "mean_times_nsite",
+        "files": [
+          "kinetic"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "doubleOcc": {
+      "reference_dqmc": {
+        "operation": "mean",
+        "files": [
+          "doubleOcc"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "mean",
+        "files": [
+          "doubleOcc"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "squareOcc": {
+      "reference_dqmc": {
+        "operation": "mean",
+        "files": [
+          "squareOcc"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "mean",
+        "files": [
+          "squareOcc"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "numsquare_up": {
+      "reference_dqmc": {
+        "operation": "mean",
+        "files": [
+          "numsquare_up"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "mean",
+        "files": [
+          "numsquare_up"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "numsquare_do": {
+      "reference_dqmc": {
+        "operation": "mean",
+        "files": [
+          "numsquare_do"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "dqmc": {
+        "operation": "mean",
+        "files": [
+          "numsquare_do"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20
+        }
+      },
+      "atol": 0.0,
+      "rtol": 0.0,
+      "stderr_tolerance": 5.0
+    },
+    "pair_equal_zero": {
+      "value": 0.0,
+      "atol": 0.05,
+      "rtol": 0.0,
+      "dqmc": {
+        "operation": "mean",
+        "files": [
+          "pair_equal"
+        ],
+        "min_samples": 200,
+        "statistics": {
+          "block_size": 20,
+          "stderr_tolerance": 5.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+# Add to the plotting environment for independent fresh ED calculations.
+quspin==1.0.1

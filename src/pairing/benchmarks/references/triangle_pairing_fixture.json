@@ -1,0 +1,39 @@
+{
+  "case": "triangle_pairing_fixture",
+  "reference_kind": "ed_json",
+  "ed_json": "benchmarks/dqmc_references/triangle_pairing_fixture.json",
+  "dqmc_fixture": "benchmarks/fixtures/triangle_pairing_fixture_outputs",
+  "parameters": {"Lx": 2, "Ly": 2, "Nsite": 4, "Delta": 0.2},
+  "observables": {
+    "total_NE": {
+      "expected_from": "observables.total_NE.value",
+      "atol": 1e-12,
+      "rtol": 0.0,
+      "dqmc": {"operation": "sum_mean", "files": ["num_up", "num_do"], "min_samples": 2}
+    },
+    "kinetic_total": {
+      "expected_from": "observables.kinetic_total.value",
+      "atol": 1e-12,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean_times_nsite", "files": ["kinetic"], "min_samples": 2}
+    },
+    "kinetic_total_lq_alias": {
+      "expected_from": "observables.kinetic_total.value",
+      "atol": 1e-12,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean_times_lq", "files": ["kinetic"], "min_samples": 2}
+    },
+    "local_numsquare": {
+      "expected_from": "observables.local_numsquare.value",
+      "atol": 1e-12,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean", "files": ["local_numsquare"], "min_samples": 2}
+    },
+    "pair_equal": {
+      "expected_from": "observables.pair_equal.value",
+      "atol": 1e-12,
+      "rtol": 0.0,
+      "dqmc": {"operation": "mean", "files": ["pair_equal"], "min_samples": 2}
+    }
+  }
+}

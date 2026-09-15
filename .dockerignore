@@ -1,0 +1,41 @@
+# Generated calculations and compiled output; retain all curated inputs.
+/runs/
+/output/
+/.build/
+/benchmarks/paper/output/
+/benchmarks/paper/data/*/raw/
+/src/**/build/
+/src/**/data/
+/src/**/benchmarks/tmp/
+**/*.o
+**/*.mod
+**/*.smod
+
+# Only curated example inputs belong in the container build context.
+/examples/**
+!/examples/**/
+!/examples/**/paramC_sets.txt
+!/examples/**/confin.txt
+!/examples/**/seeds.txt
+!/examples/**/params.json
+!/examples/**/README.md
+
+# Local environments, caches, and checkout metadata.
+**/.git/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+**/.mypy_cache/
+**/.cache/
+**/.matplotlib/
+**/.DS_Store
+**/Thumbs.db
+**/*.swp
+**/.env
+**/.env.*
+/.codex/
+/.claude/
+/.opencode/
+/.playwright-cli/

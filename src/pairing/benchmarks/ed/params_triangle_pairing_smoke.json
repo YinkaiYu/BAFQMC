@@ -1,0 +1,14 @@
+{
+  "case": "triangle_pairing_2x2_smoke",
+  "Lx": 2,
+  "Ly": 2,
+  "t": 1.0,
+  "U1": -0.1,
+  "U2": 1.0,
+  "mu": -5.0,
+  "Delta": 0.2,
+  "beta": 1.0,
+  "nmax": 2,
+  "ncut": 6,
+  "basis_cap": 2000
+}

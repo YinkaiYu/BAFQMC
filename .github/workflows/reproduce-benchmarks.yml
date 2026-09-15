@@ -1,0 +1,51 @@
+name: Reproduce benchmarks
+on:
+  push:
+    paths: ['src/**', 'benchmarks/paper/**', 'tests/**', 'examples/**', 'scripts/**', 'reproduce.py', 'Makefile', '.github/workflows/reproduce-benchmarks.yml']
+  pull_request:
+    paths: ['src/**', 'benchmarks/paper/**', 'tests/**', 'examples/**', 'scripts/**', 'reproduce.py', 'Makefile', '.github/workflows/reproduce-benchmarks.yml']
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  compact-data-and-solvers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMBA_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install GNU Fortran, MPI, and numerical libraries
+        run: sudo apt-get update && sudo apt-get install -y gfortran libopenmpi-dev openmpi-bin liblapack-dev libblas-dev
+      - name: Install Python dependencies
+        run: python -m pip install -r benchmarks/paper/requirements.txt -r benchmarks/paper/requirements-ed.txt
+      - name: Check the installed environment
+        run: python scripts/doctor.py --json
+      - name: Verify data, conventions, and solver unit tests
+        run: make check PYTHON=python
+      - name: Reproduce paper figures
+        run: python reproduce.py --mode plot
+      - name: Check solvers against independent physics references
+        run: make physics PYTHON=python
+      - name: Run both small BAFQMC and ED pipelines
+        run: python reproduce.py --mode smoke --output benchmarks/paper/output/ci-smoke
+      - name: Check production continuation with small real calculations
+        env:
+          BAFQMC_RUN_MPI_TESTS: '1'
+        run: python -m unittest discover -s tests/reproduction -p test_production.py -v
+      - name: Save reproduced benchmark figures and tables
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-figures-and-tables
+          path: |
+            benchmarks/paper/output/figures/
+            benchmarks/paper/output/observables.csv
+            benchmarks/paper/output/records.json
+          retention-days: 14
