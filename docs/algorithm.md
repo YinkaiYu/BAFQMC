@@ -30,7 +30,7 @@ The ensemble is grand canonical, at inverse temperature $`\beta`$:
 ```math
 \hat N=\sum_i(\hat n_{b,i}+\hat n_{c,i}),\qquad
 \hat H_\mu=\hat H-\mu\hat N,\qquad
-Z=\operatorname{Tr}e^{-\beta\hat H_\mu}.
+Z=\mathrm{Tr}e^{-\beta\hat H_\mu}.
 ```
 
 The number-conserving solver uses $`\Delta=0`$. The paired solver accepts real

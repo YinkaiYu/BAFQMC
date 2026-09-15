@@ -53,7 +53,7 @@ benchmark Hamiltonian is
 
 Here $`\hat n_{b,i}=\hat b_i^+\hat b_i`$ and
 $`\hat n_{c,i}=\hat c_i^+\hat c_i`$. Simulations use the grand-canonical
-ensemble $`Z=\operatorname{Tr}e^{-\beta(\hat H-\mu\hat N)}`$, with
+ensemble $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$, with
 $`\hat N=\sum_i(\hat n_{b,i}+\hat n_{c,i})`$.
 **Positive $`t=1`$ gives frustrated hopping.** The number-conserving solver
 sets $`\Delta=0`$; the Nambu solver supports real onsite pairing.

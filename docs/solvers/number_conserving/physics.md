@@ -34,7 +34,7 @@ benchmark figure. The Supplemental Material retains the two-channel
 Hamiltonian above and scans seven $`U_1`$ values at $`U_2=1`$. The Monte Carlo trace is
 
 ```math
-Z=\operatorname{Tr}e^{-\beta\hat H_\mu},\qquad
+Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
 \hat H_\mu=\hat H-\mu(\hat N_b+\hat N_c),\qquad
 \hat N_b=\sum_i\hat n_{b,i},\quad \hat N_c=\sum_i\hat n_{c,i}.
 ```
@@ -260,11 +260,11 @@ The inverse participation ratio is computed from the site-resolved total
 density distribution, not from same-flavor second moments:
 
 ```math
-\operatorname{IPR}_\rho=\frac{\sum_i\rho_i^2}{(\sum_i\rho_i)^2},\qquad
+\mathrm{IPR}_\rho=\frac{\sum_i\rho_i^2}{(\sum_i\rho_i)^2},\qquad
 \rho_i=\langle n_{b,i}+n_{c,i}\rangle.
 ```
 
-For a non-negative density profile, $`\operatorname{IPR}_\rho`$ lies between $`1/N_s`$ and $`1`$.
+For a non-negative density profile, $`\mathrm{IPR}_\rho`$ lies between $`1/N_s`$ and $`1`$.
 On a uniform $`3\times3`$ profile it is $`1/9`$; if the density is localized on one
 site it is $`1`$. If the blocked mean total density is too small, the IPR is
 marked unreliable rather than plotted as a trusted comparison.

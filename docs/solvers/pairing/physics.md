@@ -24,7 +24,7 @@ where $`\hat n_{b,i}=\hat b_i^+\hat b_i`$, $`\hat n_{c,i}=\hat c_i^+\hat c_i`$,
 $`t>0`$, and $`U\ge0`$. The trace is grand canonical:
 
 ```math
-Z=\operatorname{Tr}e^{-\beta\hat H_\mu},\qquad
+Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
 \hat H_\mu=\hat H-\mu(\hat N_b+\hat N_c),\qquad
 \hat N_b=\sum_i\hat n_{b,i},\quad \hat N_c=\sum_i\hat n_{c,i}.
 ```

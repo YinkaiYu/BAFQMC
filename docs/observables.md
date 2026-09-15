@@ -48,7 +48,7 @@ contains only onsite terms. These files store totals, whereas `doubleOcc`,
 The exact auxiliary-field estimator retained under the name `squareOcc` is
 
 ```math
-Q_\phi=\frac1{N_s}\sum_i\operatorname{Re}\left[
+Q_\phi=\frac1{N_s}\sum_i\mathrm{Re}\left[
 \langle\hat n_{b,i}\rangle_\phi^2+
 \langle\hat n_{c,i}\rangle_\phi^2\right].
 ```
@@ -63,7 +63,7 @@ The density-profile IPR is a postprocessed quantity, with no separate solver
 output file:
 
 ```math
-\operatorname{IPR}_\rho=
+\mathrm{IPR}_\rho=
 \frac{\sum_i\rho_i^2}{\left(\sum_i\rho_i\right)^2}.
 ```
 
@@ -230,7 +230,7 @@ of its mean. For $`B`$ block means $`\bar x_j`$,
 
 ```math
 \bar x=\frac1B\sum_{j=1}^B\bar x_j,\qquad
-\operatorname{SEM}(\bar x)=
+\mathrm{SEM}(\bar x)=
 \sqrt{\frac{\sum_{j=1}^B(\bar x_j-\bar x)^2}{B(B-1)}}.
 ```
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — 2026-09-15
+
+- Use GitHub-supported LaTeX for traces, real parts, IPR, and standard errors;
+  verify every equation on GitHub as well as the documentation website.
+
 ## 0.1.1 — 2026-09-15
 
 - State the paper Hamiltonian, triangular lattice, supported parameters, and

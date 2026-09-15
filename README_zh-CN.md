@@ -49,7 +49,7 @@
 
 这里 $`\hat n_{b,i}=\hat b_i^+\hat b_i`$、
 $`\hat n_{c,i}=\hat c_i^+\hat c_i`$。
-模拟采用巨正则系综 $`Z=\operatorname{Tr}e^{-\beta(\hat H-\mu\hat N)}`$，
+模拟采用巨正则系综 $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$，
 其中 $`\hat N=\sum_i(\hat n_{b,i}+\hat n_{c,i})`$。
 **正跃迁 $`t=1`$ 对应阻挫情形。** 粒子数守恒求解器取 $`\Delta=0`$；
 Nambu 求解器支持实数在位配对。
