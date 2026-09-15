@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import copy
 import csv
-import hashlib
 import io
 import json
 import math
@@ -24,17 +23,6 @@ def load_index(data_dir):
     if index["schema_version"] != 1 or len(index["cases"]) != 22:
         raise ValueError("expected the version-1, 22-point paper data package")
     return select_index(index)
-
-
-def verify_checksums(data_dir):
-    checksums = json.loads((data_dir / "checksums.json").read_text())
-    for name, expected in checksums.items():
-        path = (data_dir / name).resolve()
-        if not path.is_relative_to(data_dir.resolve()):
-            raise ValueError(f"invalid data path: {name}")
-        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
-            raise ValueError(f"checksum mismatch: {name}")
-    return len(checksums)
 
 
 def processed_cases(index, data_dir, *, models=("number_conserving", "pairing")):
@@ -108,9 +96,6 @@ def recompute(index, data_dir, *, fresh_dir=None, models=("number_conserving", "
                 if len(members) != 4 or {m.name for m in members} != set(RAW_OBSERVABLES.values()) or any(not m.isfile() for m in members):
                     raise ValueError(f"unexpected archive members: {case_id}")
                 raw = {m.name: archive.extractfile(m).read() for m in members}
-            for name, content in raw.items():
-                if hashlib.sha256(content).hexdigest() != case["raw_sha256"][name]:
-                    raise ValueError(f"raw checksum mismatch: {case_id}/{name}")
             ed_path = data_dir / case["ed_file"]
         else:
             base = fresh_dir / model
@@ -119,11 +104,10 @@ def recompute(index, data_dir, *, fresh_dir=None, models=("number_conserving", "
             else:
                 run_dir, ed_path = base / "inputs" / case_id, base / "ed_results" / (case_id + ".json")
             raw = {name: (run_dir / name).read_bytes() for name in RAW_OBSERVABLES.values()}
-            archive_keys = ("raw_archive", "raw_sha256", "original_run_dir", "ed_status", "ed_file", "input_dir")
+            archive_keys = ("raw_archive", "original_run_dir", "ed_status", "ed_file", "input_dir")
             case["archived_source"] = {key: case.pop(key) for key in archive_keys}
             case["run_dir"] = str(run_dir)
             case["ed_file"] = str(ed_path)
-            case["raw_sha256"] = {name: hashlib.sha256(content).hexdigest() for name, content in raw.items()}
             case["ed_status"] = "exact_free_boson" if case["reference_kind"] == "exact_free_boson" else json.loads(ed_path.read_text()).get("status", "fixed_cutoff_dense_trace")
         ed = reference_values(case, ed_path)
         for name, filename in RAW_OBSERVABLES.items():

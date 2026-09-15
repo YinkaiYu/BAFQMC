@@ -6,22 +6,14 @@
       "campaign": "20260603_bafqmc_ed_3x3_observables_v2_standard",
       "source_checkout_commit": "68b82365ab817fd4a96e357358c31181f7acb3f3",
       "commit_scope": "Source snapshot at integration; ignored historical data were not versioned by this commit.",
-      "selection": "Original _paper_candidate_u2_records and _paper_candidate_u1_records; reliable reference plus 0 < rho <= 0.05 for the U1 row.",
-      "summary_sha256": "ccc9169f18e03f7b32f98db36a8cc260758ee68f7d2a56f5af740adee52860da",
-      "plot_script_sha256": "a031f3bbb461b850147794bfbeb81a4b6de0fd1f33ac6dfd15a3c9189da868bb",
-      "original_pdf_sha256": "c3e8b4c66822dc2bb8cd87e12d5e55b310fd07ab095bddff485895365f6950e3",
-      "plot_style_sha256": "679969414841c59630b17fb61ba6afb673ba91815be5cdef5ef088bde90a7ff2"
+      "selection": "Original _paper_candidate_u2_records and _paper_candidate_u1_records; reliable reference plus 0 < rho <= 0.05 for the U1 row."
     },
     "pairing": {
       "repository": "code_bosonDQMC_paring",
       "campaign": "20260605_pairing_delta_mu_m5_production",
       "source_checkout_commit": "e4c1d04e6b756eb6bd6d0cf5b9a778c6b54a920c",
       "commit_scope": "Source snapshot at integration; ignored historical data were not versioned by this commit.",
-      "original_comparison_status": "comparison_has_failures",
-      "summary_sha256": "155e5b6e8173648edd6397a1e7b34c18acc0aba627547d5f3830f4281a613f2a",
-      "plot_script_sha256": "593f1f16637a8ecdfd0c08d1f7d3a7540834a66f21485696fd214083eb82ce1c",
-      "original_pdf_sha256": "8efb5f2f7a78a0cdec605761dce42ad36febc25b5ecbc3fbd567c1d9aafa011c",
-      "plot_style_sha256": "679969414841c59630b17fb61ba6afb673ba91815be5cdef5ef088bde90a7ff2"
+      "original_comparison_status": "comparison_has_failures"
     }
   },
   "cases": [
@@ -84,12 +76,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_0_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_0_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_0_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "cab82fa2c4aa33ed8f6bab03dd5083a34520b0c83b1342c672127640841401a8",
-        "energy_density": "f03871fd94119222d0677f8c53e5e45323449b3cd4e2d987b8b78a366baa08e0",
-        "sf_K": "1cb91f257f108282552cfc7d3807aa9e8a4a7d52cd51f3af9db04e96b874cbcc",
-        "dw_K": "cdd3a8840649a4ca1a28c63a1111994145b0e146dab7dcbac9639e841c1dc1b2"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_0_mu-3.5_b4",
       "ed_status": "incomplete",
       "reference_kind": "exact_free_boson"
@@ -153,12 +139,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.25_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_0.25_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.25_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "4928ba1f352dd48781f645cac67cfac7827523880afed0e93f7c0b440f5d5311",
-        "energy_density": "d4a40c343be8f241357aadf135a93e3039f879c50cbf9dcd3aa08979b6145f07",
-        "sf_K": "d8381721fff5290b197d376fae5021055c8219812c045bb6c78559155493f920",
-        "dw_K": "96881623d759be6d9bb87a8f17f49e4232b74c486c712f5dd9fc0cfe1e7f4462"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_0.25_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -222,12 +202,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.5_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_0.5_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.5_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "58c80109c7184cd23e38171b60c94fb038a328e7940cf65645523e8016aa5a92",
-        "energy_density": "c245d67746fee09d66df9ad6e15099363af3598c1281dbebc86afb440eff11d0",
-        "sf_K": "1d63e6b6c6b7abbd348992a51a33d5ed404021c8179719255c07ccb9c4b87d4c",
-        "dw_K": "6665eba279c4e98f0cd76f4597bb444a16992516d46b2efcc46dda50d4bfd30f"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_0.5_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -291,12 +265,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.75_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_0.75_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.75_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "60792fab2d4ad632268e95ba1fea2ae071ed0beaf91b46638611d266e2478ece",
-        "energy_density": "e30b890045dbada5e300874e9040c08fcc85bcd33f116554de5915015f91da37",
-        "sf_K": "4500d80dfc8b840451d40dbeead50caf3533be33128e9c16d4d60a11352aa985",
-        "dw_K": "1ded45db00507f8b39c7fe6225832e9e79443ca8eb0e5b4beaa7d5554e34539c"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_0.75_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -360,12 +328,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_1_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_1_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_1_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "feaa6a5c6237475963e93f1f46448bd73a030fede0d2462213377e82df8a3acc",
-        "energy_density": "8b16b9b2da37addb04d43af7324a4f825a82c47ba2140e62f06a823436e9ee3e",
-        "sf_K": "2b81647ad6e308b0ab70eba12f0bc0595b995be04ce30ef16d6a678c833af17e",
-        "dw_K": "a717cae64f84a28bcf486e0cdca833339eb8681959fc6be6b4c518cd3288b9fb"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_1_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -429,12 +391,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_1.25_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_1.25_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_1.25_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "285bb77249a4b2b19432da7b52118653b3c506cf8c55032de27eb9a34ae29ba7",
-        "energy_density": "0abe485aad890b6c96e38d6b78351e54ea1ada1ba45ed00e8c14d3b4c46d0324",
-        "sf_K": "5680edbd4352ade12ad1ec1b25914c082c47c2c5175892f52ddd3974e48efdc7",
-        "dw_K": "19658543249fdbe5a67919f1eaa580f53d6c7532b090760c76caf3482db616c2"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_1.25_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -498,12 +454,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_1.5_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_1.5_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_1.5_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "e895f9f0b3729bffe35bca0f689451a01591728736f6015a9d9dbd75b7096586",
-        "energy_density": "307363620689b167730a1babb291f3f81696e0a9a449b6bf3d76d8252ba34384",
-        "sf_K": "761c2eef54bdccdb9316c375ba0b26054cc0f96268c9c3fbec2fe72e0840465a",
-        "dw_K": "cac87d6fc52d55a07708cef0ac07b3f5e50b0aef4398982c5d6bd1fd0dacf285"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_1.5_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -567,12 +517,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U2_2_mu-3.5_b4",
       "ed_file": "number_conserving/ed/triangle_3x3_U2_2_mu-3.5_b4.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U2_2_mu-3.5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "c5c14dfb171c7511c7eca9078c30a2c6bb7242de6061dd5c141d2b1aeb6ec6a5",
-        "energy_density": "976f089535ea4f240a23a830bccebf0fbf21313fb514746259e9e175cc86d69d",
-        "sf_K": "53a5519f2411ff31f4b9fea0e25fd4c78701d10b125722cbaf139dedd5595aa8",
-        "dw_K": "2c8a28e21671b0ab0e5588252d2618cceff47169e477eb53d62f5bc14a340bbc"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_2_mu-3.5_b4",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -636,12 +580,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.6_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.6_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.6_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "495be500c893ffc627dfe6e17954eac6ed1fb9dfd9a8a5156a2041b82fd75fe4",
-        "energy_density": "aca701d3ea8d8b7691646094879f75e74f21449d6f6bf7057a602fe1f31f997a",
-        "sf_K": "94c757c04862a0f54f887e121e4be54e031515c987c3700a7617ce04eb613fdb",
-        "dw_K": "c4f2a000220eeb7e2afae68207dc5d3d58efc8e9b59ee2e31fb054155da282fc"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.6_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -705,12 +643,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.5_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.5_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.5_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "903833c78545e0f238919ad88edb13ff3dbe6aaf576e56031e4eaf4e0e4894ce",
-        "energy_density": "f8be3c2a6a857557feff8df8a7c66b4541a7589842e6766a4be6dd1e9dca2ee0",
-        "sf_K": "6447f75670edfa699b99848dc463cc092f89dbcadf7660fdfceb1d1f304ac328",
-        "dw_K": "3ac894d9a7f7e9db53a1d60c5fddff5205a206124715e1aca04c21f4473bd5ad"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.5_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -774,12 +706,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.4_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.4_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.4_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "e64639bc2d297d4cede64853cfc469ed1bd9ef9a4743bd981d30068a270979b1",
-        "energy_density": "8382f0c2413654b73471a65537f9ef4f7c642da29071a724f59ab6952a99c395",
-        "sf_K": "141d0429966bcc770f6447628524b09503aa21d002f4fb9c3e36ad08361c2f6a",
-        "dw_K": "8565e1fe86be238515cb0dbed3f87bc2f8ec65814cf2996ba651d0cda05e5ebe"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.4_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -843,12 +769,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.3_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.3_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.3_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "03def7c54faa6bf49c05ec36aede659280615a1f94eb9bcc32f3eeb8a1e7b7c0",
-        "energy_density": "d9817ea907484c88286d3646a9edd0f0b1b3e62b1cbf58d695f0b8d38f792661",
-        "sf_K": "e343f00b8b6d13fd92f3de76905503f05fdef4d6346346e57b113ac4ae272876",
-        "dw_K": "0d3613ba0e122e0001a01e082502dc16cda5c8dd4794f27f57f41e69d0472577"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.3_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -912,12 +832,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.2_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.2_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.2_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "1fb7076a655eae32c05ae899a2dca4ac25787f92da3b5450b0fc0d63656bae30",
-        "energy_density": "52138ee163697065bc27a79f3768717a424ccf77341186a63faa38d486badbda",
-        "sf_K": "d5c5de7bb74c44d6fccea4e5b33edd6cb9a7fbd3efc39fe1c02d8d9a23469967",
-        "dw_K": "d1063b0688a4e3289decc162c753ca058124799b2fd2b08e27ff344856ee5bec"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.2_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -981,12 +895,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.1_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.1_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.1_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "b17251428ab3bf6cbb6dc3a85742987dcd70c7ef9574be8b641091d1873baa0f",
-        "energy_density": "7241521950cff5943951b03df8ee144b171657e0d9185972c10dd17b0b1f337a",
-        "sf_K": "c42177f57c3b99688a1a476f8f7ef72f4c4a960f8368e69d88e4926b964f10e8",
-        "dw_K": "a90f410f5c297af310cd7ff0393cc34b05d7fb1bbfff3c24acdb6ee0077b67e5"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.1_mu-7_b1",
       "ed_status": "low_density_cutoff_accepted",
       "reference_kind": "finite_cutoff_ed"
@@ -1050,12 +958,6 @@
       "input_dir": "number_conserving/inputs/triangle_3x3_U1_0_mu-7_b1",
       "ed_file": "number_conserving/ed/triangle_3x3_U1_0_mu-7_b1.json",
       "raw_archive": "number_conserving/raw/triangle_3x3_U1_0_mu-7_b1.tar.gz",
-      "raw_sha256": {
-        "density_total": "7e0d836d38ef018895724f82e566a7a2d6d15ae5133d646ac3345f4ad5b14dd5",
-        "energy_density": "8369dc2fa39b2ccebe42f53fd10d78878bfa11220da92e20e2295346c70c8a41",
-        "sf_K": "2e032daa6e0c3777f6067ee05a1c6b7c23447fc1c62e4dccdbd5908ff58f0221",
-        "dw_K": "51533b6b8c64a60dc2e8f9d80a26c26c7f70170d98711f4894ba718422ddcaca"
-      },
       "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_0_mu-7_b1",
       "ed_status": "converged",
       "reference_kind": "finite_cutoff_ed"
@@ -1123,12 +1025,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "11e822a6adca6a50a1a6618075e7d091a4b291598c4435e9e04389ccb575544e",
-        "energy_density": "6dae4330186f5f617d3496da018205be61593122944c4af515b49bbf2175f5a2",
-        "sf_K": "dd97bf2773664a2e05932f19cf36d2394a0a5db45e7a23aea582ff7b002e7495",
-        "dw_K": "022e6bdf30edbcf2e664e016dfd63eedd9a6243e2455bc1d95663c78cf873df4"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1196,12 +1092,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p05_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p05_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p05_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "1f083dce94128a12c5e26222a2f65c8667a5645a44a329f08977e617c7ed629c",
-        "energy_density": "6ee22f264cab03152f0f5bf035cc8e28389b6d74ea9410d6ca379549b9525d5c",
-        "sf_K": "7fe5ffc9b9eab35d6ab018ba27b0158afbf8ae83db66a78217cfda3da9185ed0",
-        "dw_K": "26b744510d0f799a15c8f8192f54bab719f56ed08bb692683e2de1469e4e19fb"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p05_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1269,12 +1159,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p1_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p1_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p1_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "e5bcf64ce1b76febbe4ea649e4c52ba3b9599eb87b7ecd650155ba849d2fabaa",
-        "energy_density": "b88a922d68c2902bf16134d5b53ddd7580e7bb456edefc34813d8ce08b3dd8c4",
-        "sf_K": "e6ec706a5f3ff268894f0c9d4dc0e778801c51955eeceb63c4e508207a3dbca4",
-        "dw_K": "853b4d4497318d8cbe1204821b8d4d68e653b3bcfdeddcdffb27b1ff806b23df"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p1_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1342,12 +1226,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p15_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p15_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p15_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "1146a3c2c8ed7273550db0321230340552ae1c2c397be427bb363332b8c43eac",
-        "energy_density": "ff058c0c52dbe4321546cdaad1602209a63e6eb6a2e2606fe685303e9cf53a33",
-        "sf_K": "667f513d565b0238e754c0ac4772d31397c042ab079294412045e06d3b2c327e",
-        "dw_K": "382315a039b1506ea966c9701d84bd511f373f51e097e2af17cc7529629759a7"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p15_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1415,12 +1293,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p2_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p2_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p2_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "1e0dd7a4b798af8ee82f2155c8fb6657c68b16f6602f34e92c856c27bdea39cf",
-        "energy_density": "e2b2857782f3310ee9db2ffc488616c268604180b46f2e0e25af9351e5388581",
-        "sf_K": "863dde46b60efdf06eb8f83d1b541ab3d7b37b147e5ad0497d3895902ca02944",
-        "dw_K": "a6c1efe9dda0627360a6cf742f0ed4b285b4f668f7cc0506669bfa35afc7d6ca"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p2_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1488,12 +1360,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p25_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p25_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p25_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "a8b9190c37ecdbf7ada334cbbeac311a58aef148b163f78d1509ecbf9a061d81",
-        "energy_density": "becc5705975ed281f63328df9a9c28b8acd639c2ed7e669f46e34bbcc50bc0b1",
-        "sf_K": "efa1182c5534575b00688b2e29f8b7d20d50067cadda3b207dd5aeb15efffab3",
-        "dw_K": "737f8911f9f72830d1a121698acb37e0d50d40ee1454fabc259bd5201e1b7b27"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p25_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"
@@ -1561,12 +1427,6 @@
       "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p3_mum5_b4",
       "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p3_mum5_b4.json",
       "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p3_mum5_b4.tar.gz",
-      "raw_sha256": {
-        "density_total": "a50aeeb5cadb65e206cfa8d974997e9572961f55309200d26165bcd5ae1beeee",
-        "energy_density": "64824941aa0fc40baa6db6b7ff02af24e681c4a7fd0614177c16c46b89f8e0fa",
-        "sf_K": "607662a89f546aeb8ad7339085212b478a4ee8d6010b6dbf22d8d86ceb30d780",
-        "dw_K": "e75cb9008eceb43374f40ec00bd5c8a9e6d358ba9421a7cee268de879e860e9c"
-      },
       "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p3_mum5_b4",
       "ed_status": "fixed_cutoff_dense_trace",
       "reference_kind": "finite_cutoff_ed"

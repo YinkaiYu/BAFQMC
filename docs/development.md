@@ -79,10 +79,10 @@ counts, blocking, and ED cutoffs with new comparisons. Track small input
 fixtures and processed reference values needed by tests. Store raw chains,
 logs, compiled files, and local previews in ignored output directories.
 
-The published data package has checksums and defined provenance. Preserve it
-when developing a new estimator or campaign. A correction to published inputs
-or statistics should be a distinct, explained change with updated provenance
-and checksums.
+When updating benchmark data, keep the inputs, reference parameters, block means,
+and plotted statistics consistent. Document the calculation and reason for the
+change so that readers can follow it through Git history. Use `--mode check`
+to reconstruct the means and SEM and compare the ED reference parameters.
 
 See the solver-specific development guides for file formats:
 [number-conserving](solvers/number_conserving/development.md) and

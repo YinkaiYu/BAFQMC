@@ -36,7 +36,7 @@ step, sampling statistics, and ED occupation cutoffs with the previous
 release. Run the corresponding small-system identities and live regression
 calculations described in [the development guide](development.md). Keep
 published benchmark inputs and processed data intact unless making an explicit,
-documented correction with updated provenance and checksums.
+documented update to the model, input settings, or reference calculation.
 
 The default `python3 reproduce.py` command computes all 22 production points.
 Its budget is approximately **12–24 hours, 16 GiB RAM, and 8 GiB free disk**

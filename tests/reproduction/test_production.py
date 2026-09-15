@@ -48,7 +48,7 @@ def prepare_smoke_data(data):
             "model": model, "id": case_id, "parameters": params,
             "reference_kind": kind, "samples": 8, "block_size": 2,
             "skip_samples": 0, "observables": {}, "row": 0, "x": params.get("Delta", 0),
-            "raw_archive": "smoke_has_no_archived_chain", "raw_sha256": {},
+            "raw_archive": "smoke_has_no_archived_chain",
             "original_run_dir": "smoke", "ed_status": "not_run",
             "ed_file": "smoke", "input_dir": "smoke",
         })

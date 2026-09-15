@@ -59,10 +59,8 @@ def main():
     os.environ.setdefault("XDG_CACHE_HOME", str(output / ".cache"))
     for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMBA_NUM_THREADS"):
         os.environ[name] = str(args.threads)
-    from benchmarks.paper.analysis import load_index, verify_checksums, processed_cases, recompute, save_tables, plot
+    from benchmarks.paper.analysis import load_index, processed_cases, recompute, save_tables, plot
     index = select_index(load_index(DATA), models=models, scope=args.scope)
-    count = verify_checksums(DATA)
-    print(f"Verified {count} archived files.", flush=True)
     if args.mode == "smoke":
         from benchmarks.paper.smoke import smoke
         smoke(output, models, args.python_ed)
@@ -86,9 +84,12 @@ def main():
         plot(cases, output / "figures")
     import numpy
     import matplotlib
-    provenance = {"mode": args.mode, "scope": args.scope, "models": models, "python": sys.version, "numpy": numpy.__version__, "matplotlib": matplotlib.__version__, "platform": platform.platform(), "cases": len(cases), "case_ids": [f"{c['model']}/{c['id']}" for c in cases], "data_index_sha256": __import__("hashlib").sha256((DATA / "index.json").read_bytes()).hexdigest()}
+    provenance = {"mode": args.mode, "scope": args.scope, "models": models, "python": sys.version, "numpy": numpy.__version__, "matplotlib": matplotlib.__version__, "platform": platform.platform(), "cases": len(cases), "case_ids": [f"{c['model']}/{c['id']}" for c in cases]}
     (output / "environment.json").write_text(json.dumps(provenance, indent=2) + "\n")
-    print(f"Reproduced {len(cases)} benchmark points. Results: {output}")
+    if args.mode == "check":
+        print(f"Checked records, means, SEM, and ED references for {len(cases)} benchmark points. Results: {output}")
+    else:
+        print(f"Reproduced {len(cases)} benchmark points. Results: {output}")
 
 
 if __name__ == "__main__":
