@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Publish 19 Chinese documentation pages with localized navigation and search,
+  shared math/link handling, and bilingual maintenance instructions.
+- Correct translated physics terminology, source links, and the homepage image;
+  retain the paper equations and copyable agent requests.
+
 ## 0.1.2 — 2026-09-15
 
 - Use GitHub-supported LaTeX for traces, real parts, IPR, and standard errors;

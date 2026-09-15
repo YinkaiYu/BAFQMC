@@ -140,6 +140,6 @@ interfaces; see [the numerical support guide](../../src/common/README.md).
 
 These identifiers describe source provenance; all source files, campaign inputs,
 processed data, and reference implementations required for reproduction are
-included here. The original summary, plotting-script, style, and figure hashes
-are recorded in `data/index.json`. Production generates fresh raw measurements
+included here. Selected cases, physical parameters, and provenance are recorded in
+`data/index.json`. Production generates fresh raw measurements
 directly from the included inputs.

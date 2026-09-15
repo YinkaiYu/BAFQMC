@@ -51,7 +51,7 @@ Commit the completed changes and inspect `git status --short`. Tag the exact
 validated commit with the new version, for example:
 
 ```bash
-release_tag=v0.1.1
+release_tag=v0.1.3
 git tag -a "$release_tag" -m "BAFQMC ${release_tag}"
 git push origin main
 git push origin "$release_tag"

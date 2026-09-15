@@ -32,6 +32,14 @@ theme:
     - content.code.copy
     - search.suggest
     - search.highlight
+extra:
+  alternate:
+    - name: English
+      link: /BAFQMC/
+      lang: en
+    - name: 简体中文
+      link: /BAFQMC/zh/
+      lang: zh
 plugins:
   - search:
       lang: [en, zh]
@@ -50,7 +58,6 @@ extra_javascript:
 nav:
   - Overview:
       - BAFQMC: index.md
-      - 简体中文: README_zh-CN.md
       - Algorithm: docs/algorithm.md
       - Physical outputs: docs/observables.md
   - Calculate:

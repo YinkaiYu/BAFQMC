@@ -42,6 +42,10 @@ follow these Markdown instructions; no particular agent service is required.
   valid point and its uncertainty; a deviation larger than three standard
   errors is not a reason to reject a reproduction or suppress a result.
 
+For documentation changes, update the corresponding Chinese pages in `docs/zh/`
+and build both languages with `python3 scripts/build_docs.py`. Verify formulas,
+links, search, and copy controls in a browser; see [the documentation workflow](docs/development.md#bilingual-documentation).
+
 ## Platform and environment
 
 Linux is the supported computational environment; Windows users run through

@@ -87,3 +87,24 @@ to reconstruct the means and SEM and compare the ED reference parameters.
 See the solver-specific development guides for file formats:
 [number-conserving](solvers/number_conserving/development.md) and
 [pairing](solvers/pairing/development.md).
+
+## Bilingual documentation
+
+English pages are built from the root README, `docs/`, and solver guides;
+Chinese pages live in `docs/zh/`. Keep corresponding physical definitions,
+commands, and resource estimates aligned when editing either language. Both
+configurations are built and deployed together, with Chinese at `/BAFQMC/zh/`.
+Use repository-relative Markdown links and images; the builder resolves them
+for the website while keeping them usable on GitHub.
+
+```bash
+python3 -m pip install -r docs/requirements.txt
+python3 scripts/build_docs.py
+mkdir -p .build/preview
+ln -sfn ../site .build/preview/BAFQMC
+python3 -m http.server 8000 --directory .build/preview
+```
+
+Open `http://localhost:8000/BAFQMC/` or `http://localhost:8000/BAFQMC/zh/`.
+Check formulas, language links, Chinese search, and code-copy buttons in a
+browser. A successful strict build also checks local Markdown links.
