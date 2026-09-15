@@ -52,6 +52,7 @@ nav:
       - BAFQMC: index.md
       - 简体中文: README_zh-CN.md
       - Algorithm: docs/algorithm.md
+      - Physical outputs: docs/observables.md
   - Calculate:
       - Get started: docs/getting-started.md
       - Research workflows: docs/agent-workflows.md
@@ -64,6 +65,7 @@ nav:
   - Develop:
       - Agent instructions: AGENTS.md
       - Development: docs/development.md
+      - New physical models: docs/model-development.md
       - Scientific testing: docs/testing.md
       - Contributing: CONTRIBUTING.md
       - Releases: docs/releases.md

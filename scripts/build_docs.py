@@ -45,6 +45,11 @@ def main():
     for path in markdown:
         target = destination[path.resolve()]
         content = path.read_text().replace('<div align="center">', '<div align="center" markdown="1">')
+        # GitHub's math fences and protected inline syntax keep TeX punctuation
+        # intact. Arithmatex consumes the equivalent dollar-delimited source.
+        content = re.sub(r"(?m)^```math[ \t]*\n([\s\S]*?)^```[ \t]*$", lambda m: "$$\n" + m.group(1) + "$$", content)
+        content = re.sub(r"\$`([^`]+)`\$", lambda m: "$" + m.group(1) + "$", content)
+
         content = content.replace('<p align="center">', '<p align="center" markdown="1">')
         content = re.sub(r'<img src="([^"]+)" alt="([^"]+)" width="([^"]+)">', r'![\2](\1){ width="\3" }', content)
         content = re.sub(r"(\]\()([^\s)]+)(\))", lambda match: rewrite_link(match, path, target), content)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "BAFQMC Model Development"
+  short_description: "Implement and verify a new bosonic Hamiltonian"
+  default_prompt: "Use $bafqmc-new-model to implement my Hamiltonian with matching BAFQMC, ED, observables, and independent physical checks."

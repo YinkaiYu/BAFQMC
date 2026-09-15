@@ -12,6 +12,7 @@ Task-specific instructions are available in `.agents/skills/`:
 | Task | Skill |
 | --- | --- |
 | Reproduce the paper's data and figures | [bafqmc-reproduce](.agents/skills/bafqmc-reproduce/SKILL.md) |
+| Implement a different lattice or Hamiltonian | [bafqmc-new-model](.agents/skills/bafqmc-new-model/SKILL.md) |
 | Prepare and run a new research campaign | [bafqmc-new-calculation](.agents/skills/bafqmc-new-calculation/SKILL.md) |
 | Add and verify a physical observable | [bafqmc-add-observable](.agents/skills/bafqmc-add-observable/SKILL.md) |
 
@@ -33,6 +34,10 @@ follow these Markdown instructions; no particular agent service is required.
 - Report what actually ran, its parameters, and the output paths. A smoke run
   is an installation check; a full reproduction runs all selected production
   points with their original statistics and reference settings.
+- Use the paper's notation in reader-facing formulas: main coupling `U`,
+  creation operators `b^+,c^+`, and the paper's pairing sign. Explain code-variable
+  and phase mappings explicitly. Use fenced `math` blocks and protected inline math (`$` + backticks)
+  for GitHub-rendered LaTeX; put copyable agent requests in separate fenced `text` blocks.
 - Use plain scientific language. Numerical comparisons should retain every
   valid point and its uncertainty; a deviation larger than three standard
   errors is not a reason to reject a reproduction or suppress a result.
@@ -67,7 +72,7 @@ does this automatically. An alternative ED environment can be supplied with
 | `benchmarks/paper/analysis.py` | Means, blocking, references, and output tables |
 | `benchmarks/paper/manuscript.py` | Main/supplement selection and figure notation |
 | `benchmarks/paper/plot_manuscript.py` | Main two-row figure and supplemental figure |
-| `benchmarks/paper/data/` | Published inputs, compact processed data, and checksums |
+| `benchmarks/paper/data/` | Paper inputs and compact processed benchmark data |
 | `src/number_conserving/src/` | Number-conserving Fortran solver |
 | `src/pairing/src/` | Full Nambu Fortran solver with onsite pairing |
 | `src/common/` | Shared BLAS/LAPACK adapter, random generator, compiler setup |
@@ -77,11 +82,22 @@ does this automatically. An alternative ED environment can be supplied with
 | `examples/<solver>/` | Curated example and regression input directories |
 | `tests/` | Reproduction, number-conserving, and paired test suites |
 | `docs/agent-workflows.md` | Concrete task recipes for research and development |
+| `docs/model-development.md` | New-model derivations, source map, and independent verification |
+| `docs/observables.md` | Physical operator definitions, output names, and normalizations |
 
 The active solvers implement a periodic triangular lattice with one site per
 unit cell. The hopping is `RT=1` in each `src/calc_basic.f90`; a `t` field in a
 JSON file is not a general runtime hopping control. New lattices or hopping
 models require coordinated changes to the solver, ED, and observables.
+
+Implementing those new models is a supported agent workflow. Route changes to
+the graph, hopping/pairing matrices, flavor structure, or interaction operators
+through [the model-development guide](docs/model-development.md) and the
+`bafqmc-new-model` skill. Use `bafqmc-new-calculation` for a scan once the
+requested Hamiltonian is implemented. A user who asks for a new physical model
+has authorized the corresponding implementation work; continue through a
+runnable example and relevant verification, resolving only missing physical
+choices that materially determine the calculation.
 
 ## Physical contracts
 
@@ -102,9 +118,11 @@ guide before changing a kernel or estimator.
   reversed order includes the bosonic identity term. The pairing solver uses
   the full `(b,c,b^+,c^+)` Nambu basis. Preserve its block ordering and
   determinant-square-root convention.
-- `Ns=Lx*Ly`, total density is `N/Ns`, and the paper's structure factors are
+- For the current one-site-per-cell model, `Ns=Lx*Ly`; total density is `N/Ns`, and the paper's structure factors are
   normalized by `Ns^2`. The triangular K point is `(4*pi/3,0)`; the existing
   K estimators require commensurate sizes, with both lengths multiples of 3.
+  A multisublattice model has `Ns=nsub*Lx*Ly` and requires physical intracell
+  positions, bond indices, Fourier form factors, and corresponding normalization.
 - For the `U1=0` main model, `mu < -3*t - abs(Delta)` is the sufficient
   convergence condition used by the benchmarks. The attractive `U1<0` scan
   uses a separate finite-occupation reference. Preserve this distinction.
@@ -115,6 +133,17 @@ guide before changing a kernel or estimator.
 - Numerical failures, missing files, nonfinite measurements, and inconsistent
   parameter mappings must be fixed. Statistical residuals are retained as
   diagnostics, without a mandatory sigma threshold for paper reproduction.
+
+For a new interaction, derive its HS channels, normal-ordering shifts and
+scalar weights. Establish TRS/RP or conjugate-sector conditions for each
+decoupled field configuration, and analyze the physical thermal-trace domain
+separately. Preserve the NC conjugate-sector shortcut only when the new
+factors obey it. The local updates currently assume a diagonal rank-one site
+change (NC) or diagonal four-sector site change (paired); different HS support
+needs a corresponding update derivation. New paired models must establish
+their Nambu scalar and determinant-square-root branch. Check the new physics
+with independent finite-Fock references, dense fixed-field products and
+nonzero proposal ratios where relevant, alongside the existing examples.
 
 ## Computation and checks
 
@@ -165,9 +194,10 @@ Continuation restarts an interrupted stage from its initial inputs.
 
 ## Data and changes
 
-- Treat `benchmarks/paper/data/` as the immutable published dataset. An explicit
-  correction needs a documented reason, provenance, and updated checksums;
-  never edit stored means to fit a new run.
+- Develop new models with named examples and campaign outputs so the original
+  and new calculations remain easy to run. Update inputs and processed data
+  intentionally when the task calls for it; record changed physical definitions,
+  calculation settings, and the reason for revised results in normal documentation.
 - Keep large raw chains, executables, logs, scratch, and figure previews out
   of Git. Use ignored `runs/`, `benchmarks/paper/output/`, or solver `build/`
   directories. Small curated inputs, means, SEM, block means, and ED scalar

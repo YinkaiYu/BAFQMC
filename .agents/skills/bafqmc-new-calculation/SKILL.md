@@ -1,6 +1,6 @@
 ---
 name: bafqmc-new-calculation
-description: Prepare and run a new triangular-lattice BAFQMC point or parameter scan, with consistent solver and ED inputs and a stated computation budget.
+description: Prepare and run a BAFQMC point or parameter scan for an already implemented model, with consistent solver and ED inputs and a stated computation budget. Route different lattices, hopping, pairing or interaction operators requiring source changes to bafqmc-new-model first.
 ---
 
 # Start a research calculation
@@ -12,12 +12,24 @@ Commands run from the repository root in Linux or WSL.
 Establish the Hamiltonian, lattice size, temperature, observables, requested
 precision, and available resources from the user's task. Make routine setup
 choices independently; resolve missing physical assumptions before computing
-a different model. A new geometry or hopping pattern requires an implementation
-change: the current solvers use periodic triangular hopping with `RT=1` in
-`src/calc_basic.f90`, so changing a JSON `t` value alone is insufficient.
+a different model. If the request changes the lattice, hopping/pairing
+matrices, flavor structure, or interaction operators, use
+[bafqmc-new-model](../bafqmc-new-model/SKILL.md) and
+[the extension guide](../../../docs/model-development.md) to implement it,
+then return here for the requested scan. Continue the authorized model work;
+do not reduce an implementation request to a scan of the existing Hamiltonian.
+The current solvers use periodic triangular hopping with `RT=1` assigned in
+each `src/<solver>/src/calc_basic.f90`, so a JSON `t` edit alone does not
+change the executable's hopping.
 
-Use `src/number_conserving/` for zero pairing, or `src/pairing/`
-for onsite pairing. The main-text coupling maps to `U1=0, U2=U`.
+For a model already added to this checkout, start from its documented example,
+input schema, solver and ED entry points. Keep its geometry and operator
+definitions when making the requested scan. The templates below describe the
+two distributed triangular-lattice models; adapt them to the implemented
+model's interface instead of replacing that model with the template.
+
+For the distributed models, use `src/number_conserving/` for zero pairing, or
+`src/pairing/` for onsite pairing. The main-text coupling maps to `U1=0, U2=U`.
 `U1` and `U2` always denote the total-density and relative-density channels.
 The pairing solver's operator phase is documented in its physics guide;
 account for it when reporting an anomalous pair amplitude.
@@ -57,6 +69,8 @@ numerical-library thread for initial calibration. The executables append to
 fixed filenames, so independent chains need fresh output directories.
 
 Deliver the prepared inputs, executable commands, output paths, and processed
-means/SEM with reference settings and measured cost. Keep original paper
-inputs intact. Curated small inputs and summaries can become tracked examples;
+means/SEM with reference settings and measured cost. Use named examples and
+outputs to keep calculations distinct; update existing inputs or processed
+data intentionally when requested and document the reason. Curated small
+inputs and summaries can become tracked examples;
 large raw measurements remain local and regenerable.

@@ -2,11 +2,12 @@
 
 Read [AGENTS.md](../AGENTS.md) first. Commands here run from the repository
 root in Linux or WSL. The repository provides working triangular-lattice
-solvers and editable campaign inputs; new geometries require implementation
-work rather than a generic lattice-selection flag.
+solvers and editable campaign inputs, together with a source-level workflow
+for implementing different physical models.
 
 The portable task skills in `.agents/skills/` route these workflows:
 [reproduce benchmarks](../.agents/skills/bafqmc-reproduce/SKILL.md),
+[implement a new model](../.agents/skills/bafqmc-new-model/SKILL.md),
 [run a new calculation](../.agents/skills/bafqmc-new-calculation/SKILL.md), and
 [add an observable](../.agents/skills/bafqmc-add-observable/SKILL.md).
 
@@ -24,6 +25,46 @@ With separate analysis and ED environments:
 python3 scripts/doctor.py --python-ed /path/to/quspin/python
 python3 reproduce.py --mode smoke --python-ed /path/to/quspin/python
 ```
+
+## Implement a different lattice or Hamiltonian
+
+Use [bafqmc-new-model](../.agents/skills/bafqmc-new-model/SKILL.md) when the
+requested graph, hopping, pairing, flavor structure, or interaction requires
+source changes. [The model-development guide](model-development.md) maps the
+derivation to the actual Fortran and ED symbols and gives a worked anisotropic
+triangular-lattice blueprint. These requests can be copied directly to an agent:
+
+```text
+Read AGENTS.md and use bafqmc-new-model. Implement real anisotropic triangular
+hopping with independent t1, t2, t3 and the current two onsite interactions.
+Retain the isotropic model as an example. Derive the symmetry and trace
+conditions, update solver inputs, ED and energy estimators, and verify the new
+model using an independent free spectrum, fixed-field products and a small
+interacting calculation. Provide runnable commands and measured cost.
+```
+
+```text
+Use bafqmc-new-model to implement the two-flavor relative-density interaction
+U (n_b - n_c)^2 on a kagome lattice with equal positive real nearest-neighbor
+hopping for both flavors and no pairing. Define the three sublattices and
+physical site count explicitly. Establish the decoupled sign protection,
+implement matching BAFQMC and finite-Fock ED, and deliver a small validated
+example with documented observables and computing resources.
+```
+
+The user can replace these model definitions with their own. Specify the
+physical Hamiltonian, geometry and boundary conditions, target observables,
+and available resources; the agent supplies the implementation plan and
+works through the code and verification. A generic `lattice` JSON flag is
+not currently available. Adding a model includes implementing the new input
+representation and the kernels that consume it.
+
+For multiple sublattices, separate physical sites from cells and Nambu sectors.
+For new HS interactions, derive both the field factors and update support.
+For pairing, keep the scalar weight, branch and physical contractions
+consistent with the selected Nambu convention. Existing paper tests should
+remain runnable, and new independent tests must exercise the new model.
+Once implemented, ordinary scans use the following calculation recipes.
 
 ## Reproduce the full paper
 
@@ -159,6 +200,6 @@ chain. The low-level executables append measurements to fixed filenames.
    Track compact fixtures where useful, keeping large raw output local.
 
 Use [the development guide](development.md) for exact check commands.
-For a new physical model, coordinate the Hamiltonian, HS factorization,
-symmetry conditions, geometry, ED construction, and estimators before extending
-the production workflow.
+For changes to the Hamiltonian itself, continue with
+[the new-model workflow](model-development.md), including the HS construction,
+symmetry conditions, geometry, ED construction, and model-specific tests.

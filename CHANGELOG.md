@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.1 — 2026-09-15
+
+- State the paper Hamiltonian, triangular lattice, supported parameters, and
+  code-to-paper conventions in both READMEs and the algorithm guide.
+- Document all active physical outputs, operator definitions, normalization,
+  pair phase, and measurement availability with GitHub-rendered LaTeX.
+- Add a model-development guide and agent skill for coordinated lattice,
+  hopping, interaction, solver, ED, and observable extensions.
+- Make README agent requests individually copyable.
+- Remove archived-data checksum manifests and byte-level validation gates;
+  retain numerical data checks and calculation continuation consistency.
+
 ## 0.1.0 — 2026-09-15
 
 Initial public release of BAFQMC under the MIT license.
