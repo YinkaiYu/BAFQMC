@@ -25,7 +25,7 @@ Reflection positivity (RP) and time-reversal symmetry (TRS) open a new
 computable region: frustrated bosonic models protected by these symmetries.
 
 <p align="center">
-  <img src="docs/assets/territory.svg" alt="Sign-problem-free territory classified by frustration and RP/TRS: BAFQMC reaches the frustrated, symmetry-protected region beyond the unfrustrated region of worldline and SSE methods." width="760">
+  <img src="docs/assets/territory.svg" alt="Schematic of sign-problem-free bosonic quantum Monte Carlo: BAFQMC covers the frustrated region satisfying TRS/RP criteria, while WLQMC/SSE covers the unfrustrated region; the upper-left frustrated symmetric sector is the new sign-free regime." width="760">
 </p>
 
 This repository puts the construction to work: finite-temperature solvers for

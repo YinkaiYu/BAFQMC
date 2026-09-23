@@ -24,7 +24,7 @@
 受这些对称性保护的阻挫玻色体系。
 
 <p align="center">
-  <img src="docs/assets/territory.svg" alt="按阻挫与 RP/TRS 分类的无符号问题区域：BAFQMC 将可计算范围从世界线和 SSE 方法覆盖的非阻挫区域，拓展至受对称性保护的阻挫区域。" width="760">
+  <img src="docs/assets/territory.svg" alt="无符号玻色量子蒙特卡洛示意图：BAFQMC 覆盖满足 TRS/RP 判据的阻挫区域，WLQMC/SSE 覆盖非阻挫区域；左上方的阻挫且对称区域是新的无符号区域。" width="760">
 </p>
 
 这个仓库提供这一构造的完整实现：三角晶格双组分玻色体系的有限温求解器，
