@@ -89,7 +89,7 @@ Each case has `paramC_sets.txt`, `confin.txt`, `seeds.txt`, and ED
 The portable `run_paper.py` interface also accepts custom case manifests;
 see [the solver guide](../README.md) for its schema and stage commands.
 
-The relative-density interaction is `U1`; the main-text scan uses
+The relative-density interaction is `U1`; the relative-density scan uses
 `U1=U` with `U2=0`. Both interaction channels remain available for new
 calculations. For triangular hopping `t=1`, the single-particle minimum
 is -3, so the noninteracting grand-canonical reference requires `mu < -3`.

@@ -4,7 +4,7 @@ param(
     [string]$Mode = 'full',
     [ValidateSet('both', 'number_conserving', 'pairing')]
     [string]$Model = 'both',
-    [ValidateSet('all', 'main', 'supplement')]
+    [ValidateSet('all', 'combined', 'total_density')]
     [string]$Scope = 'all',
     [string]$Output = '',
     [string]$PythonED = 'python3',

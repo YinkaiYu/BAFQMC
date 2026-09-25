@@ -1,37 +1,36 @@
 # Benchmark 复现
 
 默认的 `python3 reproduce.py` 会重新运行全部 22 个 BAFQMC/参考计算，
-处理新的测量数据，并绘制随附研究的主图和补充材料 benchmark 图。
+处理新的测量数据，并绘制论文 benchmark 图。
 请参阅 [RESOURCES.md](./benchmarks-paper-resources.md)，了解 12–24 小时的生产预算、
 内存、临时存储以及续跑命令。可选的 `--mode plot` 可用已存储的小型数据集重新绘图。
-两条路径均绘制合并后的主图 benchmark 和补充材料中单独的吸引密度 benchmark。
+两条路径均绘制合并的相对密度/配对 benchmark 和单独的吸引总密度 benchmark。
 
 ## 数据与参考约定
 
 | 图/行 | 变化参数 | 固定参数 | 参考 |
 |---|---|---|---|
-| 主图 Fig. 2(a–d) | U1 = 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 2 | U2 = 0, mu = -3.5, beta = 4 | 粒子壳层 ED；U1 = 0 时的解析自由玻色子参考值 |
-| 主图 Fig. 2(e–h) | Delta = 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 | U1 = 1, U2 = 0, mu = -5, beta = 4 | 稠密 ED，nmax = 3，ncut = 4 |
-| 补充材料 Fig. S1(a–d) | U2 = 0, -0.05, -0.1, -0.15, -0.2 | U1 = 1, mu = -7, beta = 1 | U2 < 0 时的低密度有限占据窗口参考值 |
+| 相对密度图 (a–d) | U1 = 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 2 | U2 = 0, mu = -3.5, beta = 4 | 粒子壳层 ED；U1 = 0 时的解析自由玻色子参考值 |
+| 配对图 (e–h) | Delta = 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 | U1 = 1, U2 = 0, mu = -5, beta = 4 | 稠密 ED，nmax = 3，ncut = 4 |
+| 总密度图 (a–d) | U2 = 0, -0.05, -0.1, -0.15, -0.2 | U1 = 1, mu = -7, beta = 1 | U2 < 0 时的低密度有限占据窗口参考值 |
 
-存储的输入和数据键保留 `U1` 和 `U2`。主图文字中的 `U` 代指 `U1`；
-补充材料模型保留两个相互作用系数。处理后的表格和图像元数据明确记录了这一命名约定。
+每个 benchmark 输入都给出 `U1` 和 `U2`；处理后的表格也保留这两个参数。
 
-`--scope main` 选取主图中的 15 个点，`--scope supplement` 选取 7 个吸引密度点。
+`--scope combined` 选取相对密度和配对图中的 15 个点，`--scope total_density` 选取 7 个总密度点。
 默认的 `--scope all` 包含全部。范围选择和求解器选择相互独立：
 
 | 选择 | 点数 | 扫描 |
 |---|---|---|
-| `--scope main` | 15 | U1 和 Delta |
-| `--scope main --model number_conserving` | 8 | U1 |
-| `--scope main --model pairing` | 7 | Delta |
-| `--scope supplement` | 7 | U2 |
+| `--scope combined` | 15 | U1 和 Delta |
+| `--scope combined --model number_conserving` | 8 | U1 |
+| `--scope combined --model pairing` | 7 | Delta |
+| `--scope total_density` | 7 | U2 |
 | `--model number_conserving` | 15 | U1 和 U2 |
 
-主图模型在每个绘图点均满足 `mu < -3*t - abs(Delta)`。
-论文补充材料"辅助场域内的收敛性"子节已证明，其二次型传播和幺正相对密度 HS 因子
-在整个辅助场域内给出有限的迹。该结论适用于 `U2=0` 的排斥模型；
-补充材料扫描使用独立的双通道模型及其指定的有限占据参考值。
+`U2=0` 的绘图点均满足 `mu < -3*t - abs(Delta)`。
+论文的收敛性子节已证明，其二次型传播和幺正相对密度 HS 因子
+在整个辅助场域内给出有限的迹。该结论适用于 `U2=0` 的点；
+`U2<0` 的点使用其指定的有限占据参考值。
 
 配对求解器写出实数配对项时系数为正，而手稿写作 `-Delta (b^+ c^+ + b c)`。
 相位约定 `c_code = -c_paper` 在同一正扫描值下将两者联系起来。
@@ -52,7 +51,7 @@
 
 负 U2 补充参考值使用低密度占据窗口：6 个已完成的粒子壳层，
 配置最大值为 8。这是由 ED 记录中 `low_density_cutoff_accepted` 编码的有限窗口对比。
-主图相互作用扫描中的 U1 = 0 参考值由解析玻色分布直接计算；
+相对密度扫描中的 U1 = 0 参考值由解析玻色分布直接计算；
 该点直接使用解析自由玻色子参考，不启动截断 ED。
 所有其他参考值从已跟踪的 ED 结果中读取。
 
@@ -80,16 +79,16 @@ plot_style.py                    共享图像样式
 `--mode raw` 在可选的本地原始链存在时从中重建统计量。
 
 当前输出为 `figures/benchmark_combined.pdf`（两行）和
-`figures/benchmark_attractive.pdf`（一行），旁边附有 PNG 预览。
+`figures/benchmark_total_density.pdf`（一行），旁边附有 PNG 预览。
 只绘制所选范围和求解器覆盖的图像和行。
-单独的主图行写作 `figures/benchmark_combined_number_conserving.pdf` 或
+单独的组合图行写作 `figures/benchmark_combined_number_conserving.pdf` 或
 `figures/benchmark_combined_pairing.pdf`，分别保留面板标签（a–d）或（e–h）。
 布局模块作为可复用的绘图辅助工具保留。
 
 生成的表格包含 `benchmark`、`section`、`figure`、`figure_row` 和 `panels`
 用于定位当前手稿中的每个点。`scan_parameter` 同时是输入键和绘图符号。
 JSON 记录在 `manuscript` 字段下汇总这些内容。
-算例 ID 使用当前 `U1`/`U2` notation；
+算例 ID 使用 `U1`/`U2` 数值；
 `row` 标识 benchmark 家族，`figure_row` 标识当前图像排列。
 
 ## 重新运行计算

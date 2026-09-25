@@ -74,8 +74,8 @@ does this automatically. An alternative ED environment can be supplied with
 | `reproduce.py` | Complete paper workflow; defaults to fresh full computation |
 | `benchmarks/paper/production.py` | Stage execution, provenance, and continuation |
 | `benchmarks/paper/analysis.py` | Means, blocking, references, and output tables |
-| `benchmarks/paper/manuscript.py` | Main/supplement selection and figure notation |
-| `benchmarks/paper/plot_manuscript.py` | Main two-row figure and supplemental figure |
+| `benchmarks/paper/manuscript.py` | Benchmark-group selection and figure notation |
+| `benchmarks/paper/plot_manuscript.py` | Combined benchmark grid and total-density figure |
 | `benchmarks/paper/data/` | Paper inputs and compact processed benchmark data |
 | `src/number_conserving/src/` | Number-conserving Fortran solver |
 | `src/pairing/src/` | Full Nambu Fortran solver with onsite pairing |
@@ -109,7 +109,7 @@ Read [docs/algorithm.md](docs/algorithm.md) and the relevant solver physics
 guide before changing a kernel or estimator.
 
 - `U1` multiplies `(n_b-n_c)^2` and is non-negative; `U2` multiplies
-  `(n_b+n_c)^2` and is non-positive. The main-text scan uses `U1=U` and `U2=0`; the supplemental scan fixes `U1=1` and varies attractive `U2`.
+  `(n_b+n_c)^2` and is non-positive. The benchmark set includes a relative-density scan with `U2=0`, a pairing scan with `U1=1,U2=0`, and a total-density scan with `U1=1` and attractive `U2`.
 - Positive `t=1` is the frustrated triangular hopping convention. The trace
   uses `H - mu*N`; `energy_density` contains physical energy per site,
   excluding `-mu*N`. The paper plots `-E = -Lx*Ly*energy_density`.
@@ -126,9 +126,9 @@ guide before changing a kernel or estimator.
   K estimators require commensurate sizes, with both lengths multiples of 3.
   A multisublattice model has `Ns=nsub*Lx*Ly` and requires physical intracell
   positions, bond indices, Fourier form factors, and corresponding normalization.
-- For the `U2=0` main model, `mu < -3*t - abs(Delta)` is the sufficient
-  convergence condition used by the benchmarks. The attractive `U2<0` scan
-  uses a separate finite-occupation reference. Preserve this distinction.
+- For benchmark points with `U2=0`, `mu < -3*t - abs(Delta)` is the sufficient
+  convergence condition used by the benchmarks. Attractive `U2<0` points use
+  the finite-occupation reference recorded for those inputs.
 - Published error bars are **standard errors of the mean (SEM)** from ten
   blocks of 10000 measurement bins, not the standard deviation of individual
   measurements. Keep blocking, warmup, seeds, Trotter step, and ED cutoffs
@@ -186,11 +186,11 @@ The default command is a **full** production calculation:
 python3 reproduce.py --output benchmarks/paper/output/paper-run
 ```
 
-It runs all 22 points (main 15 + supplement 7), approximately 12–24 hours on
+It runs all 22 points (8 relative-density + 7 pairing + 7 total-density), approximately 12–24 hours on
 the reference desktop, with 16 GiB RAM and 8 GiB free disk recommended. Read
 [benchmarks/paper/RESOURCES.md](benchmarks/paper/RESOURCES.md). Use the full run
 when the user requests reproduction; routine documentation checks do not
-require production sampling. `--scope main`, `--scope supplement`, and
+require production sampling. The `--scope` selectors and
 `--model` select subsets. Continue with the same selection, output directory,
 and environment plus `--resume`; completed stages are verified before reuse.
 Continuation restarts an interrupted stage from its initial inputs.

@@ -2,8 +2,8 @@
 
 `python3 reproduce.py` runs the complete 22-point BAFQMC/reference calculation
 with the paper's parameters, then generates the processed data and figures.
-The main-text figure comprises eight number-conserving U points and seven
-paired Delta points; the Supplemental Material adds seven U2 points.
+The benchmark campaign comprises eight relative-density U1 points, seven
+paired Delta points, and seven total-density U2 points.
 The default is one MPI rank, one numerical-library thread, and sequential cases.
 Plan for **12–24 hours, 16 GiB RAM with at least 8 GiB available, and 8 GiB of
 free disk** on a recent desktop. The time is a planning range assembled from
@@ -14,7 +14,7 @@ Use `python3 reproduce.py --plan` to display this budget without starting a job.
 The same estimate is printed before a production run. `--threads N` changes
 the numerical-library thread count; the one-thread timing range should not be
 divided by N because the stages scale differently.
-Use `--scope main` or `--scope supplement` to select the corresponding figure,
+Use `--scope combined` or `--scope total_density` to select the corresponding figure,
 and add `--model` to restrict the solver. The full campaign budget above includes
 all three scans.
 
@@ -28,10 +28,10 @@ SciPy 1.17.1, and Numba 0.65.1.
 |---|---|---|
 | Paired BAFQMC, Delta=0.2, beta=4 and Delta tau=0.01, 500 warmup iterations, 1000 bins | 46.38 s elapsed | 65 MiB |
 | Paired ED, Delta=0.2, nmax=3, ncut=4, full 7297-state trace | 40.40 s elapsed | 3.01 GiB |
-| Main-text number-conserving BAFQMC, U1=0.25, beta=4, 500 warmup iterations, 1000 bins | 5.47 s elapsed | 61 MiB |
+| Relative-density BAFQMC, U1=0.25, beta=4, 500 warmup iterations, 1000 bins | 5.47 s elapsed | 61 MiB |
 | Number-conserving BAFQMC, U1=1, U2=-0.6, beta=1, 500 warmup iterations, 1000 bins | 2.29 s elapsed | 61 MiB |
 | Original seven paired 100000-bin production chains | 12.20 h summed case elapsed time | Not recorded |
-| Supplemental attractive total-density ED, six completed shells | 243.5–289.3 s per point | Not recorded |
+| Attractive total-density ED, six completed shells | 243.5–289.3 s per point | Not recorded |
 
 Multiplying the paired 1000-bin calibration by 100 gives a conservative
 single-point estimate of 1.29 h because it also multiplies warmup overhead.
@@ -40,7 +40,7 @@ Seven such points give about 9 h. Together with the complete runs,
 The seven dense paired ED calculations add approximately **5–10 minutes**.
 The two number-conserving calibrations give an approximately **1.3–1.7 hour**
 budget for its 15 BAFQMC points. Number-conserving ED has varying block sizes;
-the main-text U1=0.25, seven-shell point dominates that reference stage.
+the relative-density U1=0.25, seven-shell point dominates that reference stage.
 The largest number-conserving ED point completed after about 67.5 minutes. Allow roughly
 **3–5 hours for the complete number-conserving part**, including its ED stage.
 The recalculated paired ED point reproduced the four stored reference values

@@ -11,7 +11,7 @@ The supplied implementations treat number-conserving bosons and onsite pairing.
 
 We use the paper's operators and signs: two boson flavors $`\hat b_i`$ and
 $`\hat c_i`$, with $`\hat n_{b,i}=\hat b_i^+\hat b_i`$ and
-$`\hat n_{c,i}=\hat c_i^+\hat c_i`$. The main benchmark Hamiltonian is
+$`\hat n_{c,i}=\hat c_i^+\hat c_i`$. The implemented Hamiltonian is
 
 ```math
 \begin{aligned}
@@ -19,13 +19,16 @@ $`\hat n_{c,i}=\hat c_i^+\hat c_i`$. The main benchmark Hamiltonian is
 \hat H_t={}&t\sum_{\langle ij\rangle}
 \left(\hat b_i^+\hat b_j+\hat b_j^+\hat b_i
 +\hat c_i^+\hat c_j+\hat c_j^+\hat c_i\right),\\
-\hat H_U={}&U\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,\\
+\hat H_U={}&\sum_i\left[U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right],\\
 \hat H_\Delta={}&-\sum_i\left(\Delta\,\hat b_i^+\hat c_i^+
 +\Delta^*\,\hat b_i\hat c_i\right).
 \end{aligned}
 ```
 
-The ensemble is grand canonical, at inverse temperature $`\beta`$:
+Here $`U_1\geq0`$ is the repulsive relative-density coupling and
+$`U_2\leq0`$ is the attractive total-density coupling. The ensemble is grand
+canonical, at inverse temperature $`\beta`$:
 
 ```math
 \hat N=\sum_i(\hat n_{b,i}+\hat n_{c,i}),\qquad
@@ -40,21 +43,12 @@ $`\hat c_{\mathrm{code}}=-\hat c_{\mathrm{paper}}`$, so the code's pair term
 has a plus sign at the same input $`\Delta`$. This is the same physical model.
 The implementation's Nambu order is $`(b,c,b^+,c^+)`$ in that code basis.
 
-Both solvers also implement the two density channels used in the Supplemental
-Material, replacing $`\hat H_U`$ by
+The interaction can also be written as
 
 ```math
-\begin{aligned}
-\hat H_U={}&\sum_i\left[
-U_1(\hat n_{b,i}-\hat n_{c,i})^2
-+U_2(\hat n_{b,i}+\hat n_{c,i})^2\right]\\
-={}&\sum_i\left[(U_1+U_2)(\hat n_{b,i}^2+\hat n_{c,i}^2)
+\hat H_U=\sum_i\left[(U_1+U_2)(\hat n_{b,i}^2+\hat n_{c,i}^2)
 +2(U_2-U_1)\hat n_{b,i}\hat n_{c,i}\right].
-\end{aligned}
 ```
-
-The main model sets $`U_1=U`$, $`U_2=0`$. The continuous-HS implementation uses
-$`U_1\geq0`$ and $`U_2\leq0`$.
 
 The squared densities include their linear number terms. When translating
 from a model written with $`n(n-1)`$, carry the resulting chemical-potential
@@ -155,10 +149,10 @@ normal-ordering scalar factors and the determinant-square-root
 weight. Local field updates, stabilized propagation, and Wick estimators
 are implemented in Fortran; Python handles ED, campaigns, and analysis.
 
-For the main model $`U_2=0`$, the sufficient condition
-$`\mu<-3t-|\Delta|`$ gives a finite trace throughout the auxiliary-field domain;
-all main benchmark points satisfy it. The attractive $`U_2<0`$ supplemental
-benchmark uses its separately specified finite-occupation comparison.
+For the $`U_2=0`$ benchmark points, the sufficient condition
+$`\mu<-3t-|\Delta|`$ gives a finite trace throughout the auxiliary-field domain.
+The $`U_2<0`$ points use the finite-occupation comparison specified by their
+data records.
 For a new Hamiltonian, establish the trace domain and the appropriate HS
 symmetry together with its implementation, as explained in the
 [model-development guide](model-development.md).
@@ -167,9 +161,9 @@ symmetry together with its implementation, as explained in the
 
 | Scan | Hamiltonian parameters | Geometry and ensemble |
 | --- | --- | --- |
-| Main interaction scan | $`U_1=U`$, $`U_2=0`$, $`\Delta=0`$ | $`3\times3`$, $`t=1`$, $`\beta=4`$, $`\mu=-3.5`$ |
-| Main pairing scan | $`U_1=1`$, $`U_2=0`$, variable $`\Delta`$ | $`3\times3`$, $`t=1`$, $`\beta=4`$, $`\mu=-5`$ |
-| Supplemental density-channel scan | $`U_1=1`$, variable $`U_2\leq0`$, $`\Delta=0`$ | $`3\times3`$, $`t=1`$, $`\beta=1`$, $`\mu=-7`$ |
+| Relative-density scan | $`U_1=U`$, $`U_2=0`$, $`\Delta=0`$ | $`3\times3`$, $`t=1`$, $`\beta=4`$, $`\mu=-3.5`$ |
+| Pairing scan | $`U_1=1`$, $`U_2=0`$, variable $`\Delta`$ | $`3\times3`$, $`t=1`$, $`\beta=4`$, $`\mu=-5`$ |
+| Total-density scan | $`U_1=1`$, variable $`U_2\leq0`$, $`\Delta=0`$ | $`3\times3`$, $`t=1`$, $`\beta=1`$, $`\mu=-7`$ |
 
 The paper writes the pair term with a minus sign. Its operators and the
 implementation's operators are related by
@@ -178,7 +172,7 @@ $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$. Density, energy, and both benchmark
 structure factors are invariant under this phase change; the anomalous pair
 amplitude changes sign.
 
-For $`\hat n_i=\hat n_{b,i}+\hat n_{c,i}`$, the main benchmark observables are
+For $`\hat n_i=\hat n_{b,i}+\hat n_{c,i}`$, the benchmark observables are
 
 ```math
 \begin{aligned}

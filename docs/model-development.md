@@ -70,9 +70,9 @@ terms. For example, $`n^2=n(n-1)+n`$, so replacing one by the other also changes
 the chemical-potential contribution. Keep physical energy and grand-canonical
 energy separately defined throughout the implementation. For the paper's convention, use $`b,c`$ for the two flavors and write
 $`H_{\mathrm{int}}=U_1(n_b-n_c)^2+U_2(n_b+n_c)^2`$, with
-$`U_1\geq0`$ and $`U_2\leq0`$. The main benchmark is $`U_1=U`$, $`U_2=0`$;
-the paired benchmark uses $`U_1=1`$, $`U_2=0`$, and the supplemental scan
-fixes $`U_1=1`$ while varying $`U_2<0`$.
+$`U_1\geq0`$ and $`U_2\leq0`$. The distributed examples use $`U_2=0`$
+for the relative-density scan and $`U_1=1`$ while varying $`U_2<0`$ for the
+total-density scan; both channels are part of the implemented model.
 
 ## Derive the decoupling and its sign protection
 

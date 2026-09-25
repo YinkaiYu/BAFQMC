@@ -1,12 +1,11 @@
 # Benchmark reproduction
 
 The default `python3 reproduce.py` reruns all 22 BAFQMC/reference calculations,
-processes the new measurements, and draws the main-text and supplemental
-benchmark figures of the accompanying study.
+processes the new measurements, and draws the paper benchmark figures.
 See [RESOURCES.md](RESOURCES.md) for the 12–24 hour production budget, memory,
 scratch storage, and continuation commands. The optional `--mode plot` redraws
-the small stored dataset. Both paths draw the combined main-text benchmark and
-the separate attractive total-density benchmark in the Supplemental Material.
+the small stored dataset. Both paths draw the combined relative-density and
+the separate attractive total-density benchmark.
 
 ## Data and reference conventions
 
@@ -14,31 +13,31 @@ the separate attractive total-density benchmark in the Supplemental Material.
 |---|---|---|---|
 | Main Fig. 2(a–d) | U1 = 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 2 | U2 = 0, mu = -3.5, beta = 4 | Particle-shell ED; analytic free-boson reference at U1 = 0 |
 | Main Fig. 2(e–h) | Delta = 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 | U1 = 1, U2 = 0, mu = -5, beta = 4 | Dense ED with nmax = 3 and ncut = 4 |
-| Supplemental Fig. S1(a–d) | U2 = -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0 | U1 = 1, mu = -7, beta = 1 | Low-density finite-occupation-window reference for U2 < 0 |
+| Total-density figure (a–d) | U2 = -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0 | U1 = 1, mu = -7, beta = 1 | Low-density finite-occupation-window reference for U2 < 0 |
 
 All inputs, ED records, processed tables, and plot metadata use the manuscript
 notation directly: `U1` is the repulsive relative-density coefficient and `U2`
 is the attractive total-density coefficient.
 
 
-`--scope main` selects the 15 points in the main-text figure, and
-`--scope supplement` selects the seven attractive-density points. The default
+`--scope combined` selects the 15 relative-density and pairing points, and
+`--scope total_density` selects the seven total-density points. The default
 `--scope all` includes both. Scope and solver selection are independent:
 
 | Selection | Points | Scan |
 |---|---|---|
-| `--scope main` | 15 | U1 and Delta |
-| `--scope main --model number_conserving` | 8 | U1 |
-| `--scope main --model pairing` | 7 | Delta |
-| `--scope supplement` | 7 | U2 |
+| `--scope combined` | 15 | U1 and Delta |
+| `--scope combined --model number_conserving` | 8 | U1 |
+| `--scope combined --model pairing` | 7 | Delta |
+| `--scope total_density` | 7 | U2 |
 | `--model number_conserving` | 15 | U1 and U2 |
 
-The main-text model satisfies `mu < -3*t - abs(Delta)` at every plotted point.
-As proved in the study's supplemental subsection "Convergence throughout the auxiliary-field
+The `U2=0` benchmark points satisfy `mu < -3*t - abs(Delta)` at every plotted point.
+As proved in the study's convergence subsection "Convergence throughout the auxiliary-field
 domain", its quadratic propagation and unitary relative-density HS factors
 give a finite trace throughout the auxiliary-field domain. This result applies
-to the main scan with `U2=0`; the supplemental scan uses the separate
-two-channel model and its stated finite-occupation references.
+to the `U2=0` scan; the `U2<0` scan uses the finite-occupation references
+encoded in its data records.
 
 The pairing implementation writes the real pair term with a positive input
 coefficient, whereas the manuscript writes it as `-Delta (b^+ c^+ + b c)`.
@@ -61,10 +60,10 @@ use their real parts and show the physical total energy as -E = -9 e, with the
 energy standard error multiplied by 9. The chemical-potential term is excluded
 from E. No statistical acceptance criterion removes points during reproduction.
 
-The supplemental attractive-U2 reference uses the low-density occupation
+The attractive-U2 reference uses the low-density occupation
 window: six completed particle shells, with a configured maximum of eight.
 This is the finite-window comparison encoded by `low_density_cutoff_accepted`
-in the ED records. The U1 = 0 reference in the main-text interaction scan is
+in the ED records. The U1 = 0 reference in the relative-density interaction scan is
 computed analytically; all other reference values are read from the stored ED
 results.
 
@@ -79,7 +78,7 @@ data/<model>/inputs/<case>/      exact initial input files and ED parameters
 data/<model>/ed/<case>.json      compact ED reference results
 data/<model>/raw/<case>.tar.gz   optional local raw chains, ignored by Git
 analysis.py                     raw-data statistics, references, tables, plot dispatch
-plot_manuscript.py               main U1/Delta grid and supplemental U2 scan
+plot_manuscript.py               relative-density/pairing grid and total-density scan
 plot_number.py                  2 x 4 number-conserving layout
 plot_pairing.py                 1 x 4 paired layout
 plot_style.py                   shared figure style
@@ -95,9 +94,9 @@ figures. `--mode raw` reconstructs the statistics from optional local raw
 chains when they are present locally.
 
 The current outputs are `figures/benchmark_combined.pdf` (two rows) and
-`figures/benchmark_attractive.pdf` (one row), with PNG previews alongside them.
+`figures/benchmark_total_density.pdf` (one row), with PNG previews alongside them.
 Only the figures and rows covered by the selected scope and solver are drawn.
-An individual main-text row is written as
+An individual combined-figure row is written as
 `figures/benchmark_combined_number_conserving.pdf` or
 `figures/benchmark_combined_pairing.pdf`, preserving panel labels (a–d) or
 (e–h), respectively.

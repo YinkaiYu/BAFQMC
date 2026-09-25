@@ -14,7 +14,7 @@
     0.25,
     0.3
   ],
-  "description": "Production-quality 3x3 pairing Delta sweep at mu=-5 for paper benchmark main figure; Nbin=100000 block_size=10000.",
+  "description": "Production-quality 3x3 pairing Delta sweep at mu=-5; Nbin=100000 block_size=10000.",
   "dqmc_defaults": {
     "Nbin": 100000,
     "Nsweep": 1,

@@ -10,25 +10,25 @@ import copy
 
 
 MODELS = ("number_conserving", "pairing")
-SCOPES = ("all", "main", "supplement")
+SCOPES = ("all", "combined", "total_density")
 BENCHMARKS = {
     ("number_conserving", 0): {
-        "benchmark": "repulsive_u", "section": "main",
+        "benchmark": "relative_density_u1", "section": "combined",
         "figure": "benchmark_combined", "figure_label": "fig:benchmark",
         "figure_row": 0, "panels": "a-d",
         "scan_parameter": "U1",
         "fixed_parameters": {"U2": 0.0},
     },
     ("pairing", 0): {
-        "benchmark": "pairing_delta", "section": "main",
+        "benchmark": "pairing_delta", "section": "combined",
         "figure": "benchmark_combined", "figure_label": "fig:benchmark",
         "figure_row": 1, "panels": "e-h",
         "scan_parameter": "Delta",
         "fixed_parameters": {"U1": 1.0, "U2": 0.0},
     },
     ("number_conserving", 1): {
-        "benchmark": "attractive_u2", "section": "supplement",
-        "figure": "benchmark_attractive", "figure_label": "fig:benchmark_attractive",
+        "benchmark": "total_density_u2", "section": "total_density",
+        "figure": "benchmark_total_density", "figure_label": "fig:benchmark_total_density",
         "figure_row": 0, "panels": "a-d",
         "scan_parameter": "U2",
         "fixed_parameters": {"U1": 1.0},
@@ -53,7 +53,7 @@ def describe_case(case):
 
 
 def select_index(index, *, models=MODELS, scope="all"):
-    """Select paper/SM cases without modifying manifests or seed ordering."""
+    """Select benchmark groups without modifying manifests or seed ordering."""
     if scope not in SCOPES:
         raise ValueError(f"unknown benchmark scope: {scope}")
     selected = []
@@ -72,7 +72,7 @@ def select_index(index, *, models=MODELS, scope="all"):
 
 
 def output_stem(cases, figure):
-    """Name individual main-text rows explicitly when one solver is selected."""
+    """Name individual combined-figure rows when one solver is selected."""
     models = {c["model"] for c in cases if c["manuscript"]["figure"] == figure}
     if figure == "benchmark_combined" and len(models) == 1:
         return figure + "_" + next(iter(models))

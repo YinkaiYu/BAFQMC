@@ -7,7 +7,7 @@ This solver implements finite-temperature grand-canonical DQMC for a two-flavor 
 
 ## Hamiltonian
 
-The paper's main-text model has the physical Hamiltonian
+The paired solver uses the physical Hamiltonian
 
 ```math
 \begin{aligned}
@@ -16,12 +16,13 @@ The paper's main-text model has the physical Hamiltonian
 +\hat c_i^+\hat c_j+\hat c_j^+\hat c_i\right)\\
 &-\sum_i\left(\Delta\,\hat b_i^+\hat c_i^+
 +\Delta^*\,\hat b_i\hat c_i\right)
-+U\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
++\sum_i\left[U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right],
 \end{aligned}
 ```
 
 where $`\hat n_{b,i}=\hat b_i^+\hat b_i`$, $`\hat n_{c,i}=\hat c_i^+\hat c_i`$,
-$`t>0`$, and $`U\ge0`$. The trace is grand canonical:
+$`t>0`$, $`U_1\ge0`$, and $`U_2\le0`$. The trace is grand canonical:
 
 ```math
 Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
@@ -29,20 +30,12 @@ Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
 \hat N_b=\sum_i\hat n_{b,i},\quad \hat N_c=\sum_i\hat n_{c,i}.
 ```
 
-The code retains the two paper-labeled density-interaction channels,
-
-```math
-\hat H_U=\sum_i\left[
- U_1(\hat n_{b,i}-\hat n_{c,i})^2
-+U_2(\hat n_{b,i}+\hat n_{c,i})^2\right].
-```
-
-The main-text benchmark sets $`U_1=U`$ and $`U_2=0`$. The paired scan has $`U=1`$,
+The paired benchmark sets $`U_1=1`$ and $`U_2=0`$,
 $`\mu=-5`$, $`\beta=4`$, and $`\Delta=0,0.05,\ldots,0.30`$; its four observables
 form panels (e–h) of the combined benchmark figure. The code reads $`U_1`$,
 $`U_2`$, $`\mu`$, and a real $`\Delta`$ from `paramC_sets.txt`; $`t`$ is `RT=1` in
 `src/calc_basic.f90`. Both BAFQMC and ED use these same input coefficients.
-The interaction is equivalently
+For arbitrary allowed channels, the interaction is equivalently
 
 ```math
 (U_1+U_2)(\hat n_{b,i}^2+\hat n_{c,i}^2)

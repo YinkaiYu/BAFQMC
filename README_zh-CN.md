@@ -34,7 +34,7 @@
 ## 可以模拟什么？
 
 现有求解器计算**周期边界三角晶格上双组分玻色体系**的有限温性质。
-沿用论文的 notation，主 benchmark 的哈密顿量为
+哈密顿量采用论文中的记号：
 
 ```math
 \begin{aligned}
@@ -42,11 +42,13 @@
 \left(\hat b_i^+\hat b_j+\hat b_j^+\hat b_i
 +\hat c_i^+\hat c_j+\hat c_j^+\hat c_i\right)\\
 &-\sum_i\left(\Delta\,\hat b_i^+\hat c_i^+
-+\Delta^*\,\hat b_i\hat c_i\right)
-+U\sum_i\left(\hat n_{b,i}-\hat n_{c,i}\right)^2.
++\Delta^*\,\hat b_i\hat c_i\right)\\
++\sum_i\left[U_1\left(\hat n_{b,i}-\hat n_{c,i}\right)^2
++U_2\left(\hat n_{b,i}+\hat n_{c,i}\right)^2\right].
 \end{aligned}
 ```
 
+其中 $`U_1\geq0`$ 是排斥的相对密度耦合，$`U_2\leq0`$ 是吸引的总密度耦合。
 这里 $`\hat n_{b,i}=\hat b_i^+\hat b_i`$、
 $`\hat n_{c,i}=\hat c_i^+\hat c_i`$。
 模拟采用巨正则系综 $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$，
@@ -65,17 +67,7 @@ Nambu 求解器支持实数在位配对。
 三个方向，包含反向跃迁与周期镜像。Benchmark 使用 $`3\times3`$ 晶格，
 测量 $`\rho`$、$`-E`$、$`S_{\mathrm{SF}}(K)`$ 和 $`S_{\mathrm{DW}}(K)`$。
 
-代码还实现了补充材料使用的两个密度相互作用通道：
-
-```math
-\hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}-\hat n_{c,i})^2
-+U_2(\hat n_{b,i}+\hat n_{c,i})^2\right],
-\qquad U_1\geq0,\quad U_2\leq0.
-```
-
-论文主模型对应 $`U_1=U`$、$`U_2=0`$；补充材料固定 $`U_1=1`$ 并扫描
-吸引性的 $`U_2\le0`$。代码、输入、ED 数据和图表全部直接使用这套 notation。
+两个通道可以独立设置：取 $`U_2=0`$ 得到只含相对密度通道的情形；固定 $`U_1=1`$ 并改变吸引性的 $`U_2\le0`$ 可研究总密度通道。
 输入的配对强度就是论文中的实数 $`\Delta`$；代码采用等价的算符相位
 $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$。[模型、晶格与参数指南](docs/algorithm.md)
 说明统计系综和参考计算。
@@ -85,27 +77,26 @@ $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$。[模型、晶格与参数指南](doc
 
 ## 和你的 Agent 一起使用
 
-克隆仓库，在你习惯的编码 Agent 中打开它。
-[Agent 指令](AGENTS.md)和[任务指南](docs/agent-workflows.md)已经准备好代码地图、
-物理约定、运行命令和验证方法。你可以直接这样发起任务：
+如果使用 coding agent，可以直接发出下面这类 request。[Agent 指令](AGENTS.md)
+和[任务指南](docs/agent-workflows.md)提供代码地图、物理约定、运行命令和验证方法：
 
 ```text
-阅读 AGENTS.md，在 Linux 或 WSL 中配置 BAFQMC，完成小规模 BAFQMC + ED
-安装检查，并告诉我结果在哪里。
+获取 https://github.com/YinkaiYu/BAFQMC，阅读 AGENTS.md，检查 Linux 或 WSL 依赖，
+编译两个求解器，运行小规模安装测试，并报告安装路径和每项检查结果。
 ```
 
 ```text
-完整复现论文的所有 benchmark。使用原始参数和种子，将新结果保存在独立目录中，
-完成后给我看两张图。
+获取 https://github.com/YinkaiYu/BAFQMC，使用论文参数和种子完整复现所有 benchmark，
+将新结果保存在独立目录中，完成后给我看两张图。
 ```
 
 ```text
-我想研究 U = 1、beta = 4、mu = -5 时，三角晶格模型随配对强度的变化。
+我想研究 U1 = 1、U2 = 0、beta = 4、mu = -5 时，三角晶格模型随配对强度的变化。
 请准备独立的扫描任务，先用 ED 检查一个小规模算例，并在正式计算前说明资源需求。
 ```
 
 ```text
-将论文主模型推广到最近邻 kagome 晶格，取 t = 1、U = 1、Delta = 0、
+将当前双通道模型推广到最近邻 kagome 晶格，取 t = 1、U1 = 1、U2 = 0、Delta = 0、
 beta = 4、mu = -5。请阅读新模型开发技能，推导 HS 对称性，实现晶格、
 对应的 ED 和观测量，先完成小体系验证，并在正式计算前说明资源需求。
 ```

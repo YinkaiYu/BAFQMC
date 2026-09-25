@@ -62,7 +62,8 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run
 
 The second command builds and runs BAFQMC, computes the ED references, then
 creates tables and figures from the new measurements. It includes all 22
-points: the 15 main benchmark points and seven supplemental points. Each
+points: eight relative-density points, seven pairing points, and seven
+total-density points. Each
 production point uses 100000 measurement bins and the input settings listed in the paper manifest.
 For the reference desktop, budget **12–24 hours**, **16 GiB RAM** with about
 8 GiB available to the calculation, and **8 GiB free disk**. See
@@ -76,8 +77,8 @@ progress.json                        completed stages and timing
 observables.csv                      means, SEM, and ED values
 block_means.csv                       blocked measurements
 records.json                         results with parameters and comparison values
-figures/benchmark_combined.pdf        main benchmark
-figures/benchmark_attractive.pdf      supplemental benchmark
+figures/benchmark_combined.pdf        relative-density and pairing benchmarks
+figures/benchmark_total_density.pdf   total-density benchmark
 environment.json                     environment and selected-case metadata
 ```
 
@@ -94,9 +95,9 @@ the manifest inputs. The root runner manages scratch automatically; use
 To compute a selected part of the paper:
 
 ```bash
-python3 reproduce.py --scope main
-python3 reproduce.py --scope supplement
-python3 reproduce.py --scope main --model pairing
+python3 reproduce.py --scope combined
+python3 reproduce.py --scope total_density
+python3 reproduce.py --scope combined --model pairing
 ```
 
 The standalone `python3 reproduce.py` command always computes the full

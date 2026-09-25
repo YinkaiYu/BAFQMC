@@ -16,8 +16,8 @@ lattice. In the paper convention,
 \end{aligned}
 ```
 
-The main benchmark uses $`U_1=U`$, $`U_2=0`$. The Supplemental Material fixes
-$`U_1=1`$ and scans attractive $`U_2`$. The code reads these values directly
+The benchmark inputs use both channels directly. Some parameter sets take
+$`U_2=0`$ and others fix $`U_1=1`$ while varying attractive $`U_2`$. The code reads these values directly
 from the first line of `paramC_sets.txt`; ED and BAFQMC use the same ordering.
 The reported energy $`E=\langle\hat H\rangle`$ excludes the chemical-potential
 term in $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$.
@@ -103,7 +103,7 @@ Pole diagnostics are configuration diagnostics. They do not change the density, 
 | `Ltrot` | `Ltrot` in `CalcBasic`, read from `paramC_sets.txt` |
 | `t` | `RT` in `CalcBasic`, currently set to `1.d0` in `Params_set` |
 | `U1`, `U2` | `U1`, `U2` in `CalcBasic`, read from `paramC_sets.txt` |
-| main-text `U` | `U1` with `U2=0` |
+| relative-density coefficient | `U1` (with `U2=0` in the relative-density scan) |
 | `mu` | `mu` in `CalcBasic`, read from `paramC_sets.txt` |
 | auxiliary field flavor index | `ns = 1` for `U1`, `ns = 2` for `U2` |
 | auxiliary fields | `Conf%phi_list(ns, ii, nt)` in `src/fields.f90` |

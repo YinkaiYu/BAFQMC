@@ -7,7 +7,7 @@ MODEL ?= both
 
 help:
 	@echo 'Targets: doctor plan reproduce build check physics numerics smoke docs'
-	@echo 'reproduce runs all 22 benchmark points (12-24 hours); SCOPE=main or supplement selects a subset.'
+	@echo 'reproduce runs all 22 benchmark points (12-24 hours); SCOPE=combined or total_density selects a group.'
 	@echo 'Set PYTHON and PYTHON_ED for separate analysis and QuSpin environments.'
 
 doctor:

@@ -58,7 +58,7 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run
 ```
 
 第二条命令完成编译和运行 BAFQMC、计算 ED 参考值，然后从新测量数据
-生成表格和图像。共涵盖 22 个参数点：主图 15 个和补充材料 7 个。
+生成表格和图像。共涵盖 22 个参数点：8 个相对密度点、7 个配对点和 7 个总密度点。
 每个生产点使用 100000 个测量 bin 以及原始输入设置。
 在参考桌面 CPU 上，请预留 **12–24 小时**、**16 GiB 内存**（约 8 GiB 可供计算使用）
 以及 **8 GiB 可用磁盘空间**。详见[实测资源估计](./benchmarks-paper-resources.md)。
@@ -71,8 +71,8 @@ progress.json                        已完成阶段及耗时
 observables.csv                      均值、SEM 和 ED 参考值
 block_means.csv                      分块测量数据
 records.json                         含参数和来源的结果记录
-figures/benchmark_combined.pdf       主 benchmark 图
-figures/benchmark_attractive.pdf     补充材料 benchmark 图
+figures/benchmark_combined.pdf       相对密度和配对 benchmark 图
+figures/benchmark_total_density.pdf  总密度 benchmark 图
 environment.json                     环境与所选算例的元数据
 ```
 
@@ -89,9 +89,9 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run --resume
 若只复现论文的某一部分：
 
 ```bash
-python3 reproduce.py --scope main
-python3 reproduce.py --scope supplement
-python3 reproduce.py --scope main --model pairing
+python3 reproduce.py --scope combined
+python3 reproduce.py --scope total_density
+python3 reproduce.py --scope combined --model pairing
 ```
 
 不带参数的 `python3 reproduce.py` 默认计算完整的全部算例。

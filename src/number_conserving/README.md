@@ -6,9 +6,9 @@ the QuSpin ED implementations, regression cases, and campaign
 analysis tools. See [the physics guide](../../docs/solvers/number_conserving/physics.md) for the Hamiltonian,
 Hubbard–Stratonovich fields, Green functions, estimators, and cutoff conditions.
 
-The solver produces the main-text benchmark's interaction scan with `U1=U`
-and `U2=0`, and the supplemental attractive-density scan with varying `U2`
-at `U1=1`. Both have `Delta=0`. The input names `U1` and `U2` identify the
+The solver produces the relative-density scan with `U1=U` and `U2=0`, and the
+total-density scan with varying `U2` at `U1=1`. Both have `Delta=0`. The input
+names `U1` and `U2` identify the
 relative-density and total-density channels throughout the implementation.
 
 ## Build and run
@@ -57,9 +57,9 @@ python src/number_conserving/run_paper.py \
   --manifest /path/to/manifest.json --output /path/to/new/results --mode analyze
 ```
 
-From the repository root, `python3 reproduce.py --scope main --model number_conserving`
-reproduces the eight main-text U points, and `python3 reproduce.py --scope supplement`
-reproduces the seven supplemental U2 points. Their physical and sampling
+From the repository root, `python3 reproduce.py --scope combined --model number_conserving`
+reproduces the eight relative-density U1 points, and `python3 reproduce.py --scope total_density`
+reproduces the seven total-density U2 points. Their physical and sampling
 parameters are listed in [the reproduction guide](../../benchmarks/paper/README.md).
 
 Use a QuSpin-enabled interpreter for ED, or pass `--python /path/to/python`.

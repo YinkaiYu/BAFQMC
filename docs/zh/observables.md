@@ -85,7 +85,8 @@ U_2\sum_i(\hat n_{b,i}+\hat n_{c,i})^2,
 ```
 
 配对求解器接受实数 $`\Delta`$；粒子数守恒求解器取 $`\Delta=0`$。
-论文主模型取 $`U_1=U`$，$`U_2=0`$。
+实现直接使用 $`U_1`$ 和 $`U_2`$ 两个相互作用系数；每个 benchmark 输入文件
+为对应扫描明确给出它们的取值。
 $`\hat H_t`$ 中每条最近邻键只计一次，显式写出两个跃迁方向。
 定义 $`e_t=\langle\hat H_t\rangle/N_s`$，
 $`e_U=\langle\hat H_U\rangle/N_s`$，

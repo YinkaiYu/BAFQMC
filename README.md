@@ -37,8 +37,8 @@ Everything here is available under [MIT](LICENSE).
 ## What can I simulate?
 
 The supplied solvers calculate finite-temperature properties of **two boson
-flavors on a periodic triangular lattice**. In the paper's notation, the main
-benchmark Hamiltonian is
+flavors on a periodic triangular lattice**. In the paper's notation, the
+implemented Hamiltonian is
 
 ```math
 \begin{aligned}
@@ -46,12 +46,15 @@ benchmark Hamiltonian is
 \left(\hat b_i^+\hat b_j+\hat b_j^+\hat b_i
 +\hat c_i^+\hat c_j+\hat c_j^+\hat c_i\right)\\
 &-\sum_i\left(\Delta\,\hat b_i^+\hat c_i^+
-+\Delta^*\,\hat b_i\hat c_i\right)
-+U\sum_i\left(\hat n_{b,i}-\hat n_{c,i}\right)^2.
++\Delta^*\,\hat b_i\hat c_i\right)\\
+&+\sum_i\left[U_1\left(\hat n_{b,i}-\hat n_{c,i}\right)^2
++U_2\left(\hat n_{b,i}+\hat n_{c,i}\right)^2\right].
 \end{aligned}
 ```
 
-Here $`\hat n_{b,i}=\hat b_i^+\hat b_i`$ and
+Here $`U_1\geq0`$ is the repulsive relative-density coupling and
+$`U_2\leq0`$ is the attractive total-density coupling. Here
+$`\hat n_{b,i}=\hat b_i^+\hat b_i`$ and
 $`\hat n_{c,i}=\hat c_i^+\hat c_i`$. Simulations use the grand-canonical
 ensemble $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$, with
 $`\hat N=\sum_i(\hat n_{b,i}+\hat n_{c,i})`$.
@@ -70,23 +73,9 @@ $`\mathbf a_2-\mathbf a_1`$, including their reverse directions and periodic
 images. The benchmarks use $`3\times3`$ clusters and measure $`\rho`$, $`-E`$,
 $`S_{\mathrm{SF}}(K)`$, and $`S_{\mathrm{DW}}(K)`$.
 
-The code also implements the two density-interaction channels used in the
-Supplemental Material:
-
-```math
-\hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}-\hat n_{c,i})^2+U_2(\hat n_{b,i}+\hat n_{c,i})^2
-\right],
-\qquad U_1\geq0,\quad U_2\leq0.
-```
-
-This is the paper convention: $U_1$ is the repulsive relative-density
-coupling and $U_2$ is the attractive total-density coupling. The main benchmark
-uses $(U_1,U_2)=(U,0)$; the Supplemental Material scans $U_2$ at fixed
-$U_1=1$. The Fortran and ED kernels use this same ordering directly: `U1` is the
-relative-density channel and `U2` is the total-density channel. Input files,
-campaigns, stored benchmark data, and figures therefore use one notation
-throughout.
+You can set the two channels independently: $`U_2=0`$ gives the
+relative-density-only case, while fixing $`U_1=1`$ and varying $`U_2`$ probes
+the total-density channel.
 
 The [model, lattice, and parameter guide](docs/algorithm.md) explains the
 ensemble, HS fields, and reference calculations.
@@ -97,30 +86,38 @@ interactions, and pairing, with matching ED and physics tests.
 
 ## Work with your agent
 
-Clone this repository and open it in your preferred coding agent. The
+If you use a coding agent, give it a request such as one of the following. The
 [agent instructions](AGENTS.md) and [task recipes](docs/agent-workflows.md)
-provide the implementation map, physical conventions, commands, and checks.
-Start with a request such as:
+provide the implementation map and verification steps.
 
 ```text
-Read AGENTS.md, set up BAFQMC in Linux or WSL, and run the small BAFQMC + ED
-installation check. Tell me where the results are.
+Get https://github.com/YinkaiYu/BAFQMC, read AGENTS.md, check the Linux or WSL
+prerequisites, build both solvers, and run the small installation tests. Report
+the setup path and every check result.
 ```
 
 ```text
-Reproduce all paper benchmarks. Use the published parameters and seeds,
-save the new results in a dedicated directory, and show me the final figures.
+Reproduce every paper benchmark from the default BAFQMC command. Read
+AGENTS.md, keep
+large raw chains outside Git, retain the processed benchmark data, and report
+the resource budget, output paths, and final comparison tables and figures.
 ```
 
 ```text
-I want to study the triangular-lattice model at U = 1, beta = 4 and mu = -5
-while varying the pairing strength. Prepare a separate campaign, check one
+Get https://github.com/YinkaiYu/BAFQMC and reproduce all paper benchmarks with
+the published parameters and seeds. Save new results in a dedicated directory
+and show me the final figures.
+```
+
+```text
+I want to study the triangular-lattice model at U1 = 1, U2 = 0, beta = 4 and
+mu = -5 while varying the pairing strength. Prepare a separate campaign, check one
 small case with ED, and explain the computing budget before production.
 ```
 
 ```text
-Extend the paper's main model to a nearest-neighbor kagome lattice at
-t = 1, U = 1, Delta = 0, beta = 4, mu = -5. Read the new-model skill, derive
+Extend the implemented two-channel model to a nearest-neighbor kagome lattice at
+t = 1, U1 = 1, U2 = 0, Delta = 0, beta = 4, mu = -5. Read the new-model skill, derive
 the HS symmetry, implement the geometry and matching ED and observables,
 and validate a small case. Report the computing budget before production.
 ```

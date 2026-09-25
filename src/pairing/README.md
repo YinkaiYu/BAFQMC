@@ -8,12 +8,11 @@ Commands below run from `src/pairing/` in Linux or WSL. See the repository
 [installation guide](../../docs/getting-started.md) for environment setup and the
 root README for the combined paper reproduction command.
 
-This solver produces panels (e–h) of the combined main-text benchmark: seven
-Delta points at `U1=1`, `U2=0`, `mu=-5`, and `beta=4`. Inputs use the manuscript
+This solver produces the seven-point pairing benchmark at
+`U1=1`, `U2=0`, `mu=-5`, and `beta=4`. Inputs use the manuscript
 convention: `U1` multiplies the repulsive relative-density square and `U2`
-multiplies the attractive total-density square. Thus the main scan uses
-`U1=U` and `U2=0`; the supplemental two-channel scan keeps `U1=1` and
-varies non-positive `U2`.
+multiplies the attractive total-density square. The paired benchmark uses
+`U1=1` and `U2=0`; the same implementation also supports non-positive `U2`.
 The solver's positive real pair coefficient is related to the manuscript's
 negative pair term by `c_code=-c_paper`. All four plotted observables are
 unchanged by this phase convention; the anomalous amplitude `pair_equal`
@@ -61,7 +60,7 @@ python run_paper.py --manifest ../../benchmarks/paper/data/pairing/manifest.json
 The production campaign has seven pairing values and 100000 measurement bins
 per value. These are production calculations; use the repository smoke command
 for a quick installation check. From the repository root,
-`python3 reproduce.py --scope main --model pairing` runs this scan and produces
+`python3 reproduce.py --scope combined --model pairing` runs this scan and produces
 `benchmark_combined_pairing.pdf` with the manuscript's panel labels (e–h).
 The default seed policy initializes each case from `base_seed + case_index` and generates
 its per-rank seed list. Use `--seed` to start independent chains and `--np` to

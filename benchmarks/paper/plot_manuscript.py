@@ -1,4 +1,4 @@
-"""Main-text U1/Delta benchmark and the supplemental U2 scan.
+"""Relative-density/pairing benchmark and total-density U2 scan.
 
 All points and error bars come from the stored or freshly processed records.
 All records and labels use the paper convention: repulsive relative-density U1 and attractive total-density U2.
@@ -33,14 +33,14 @@ def plot_figures(cases: list[dict], output: Path) -> None:
         records.append(record)
 
     rows = []
-    for benchmark in ("repulsive_u", "pairing_delta", "attractive_u2"):
+    for benchmark in ("relative_density_u1", "pairing_delta", "total_density_u2"):
         row = [c for c in records if c["manuscript"]["benchmark"] == benchmark]
         if row:
             rows.append((row[0]["manuscript"], row))
-    main_rows = [(description, row) for description, row in rows if description["section"] == "main"]
-    _draw(plt, output, main_rows, output_stem(records, "benchmark_combined"))
+    combined_rows = [(description, row) for description, row in rows if description["section"] == "combined"]
+    _draw(plt, output, combined_rows, output_stem(records, "benchmark_combined"))
     for description, row in rows:
-        if description["section"] == "supplement":
+        if description["section"] == "total_density":
             _draw(plt, output, [(description, row)], description["figure"])
 
 

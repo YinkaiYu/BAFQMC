@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce BAFQMC and ED data for the main-text and supplemental benchmarks."""
+"""Reproduce the relative-density, pairing, and total-density benchmarks."""
 from __future__ import annotations
 import argparse
 import json
@@ -19,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("archived", "plot", "check", "raw", "full", "dqmc", "ed", "analyze", "smoke"), default="full", help="full (default): rerun BAFQMC and ED; plot: draw the stored processed data; smoke: small installation check")
     parser.add_argument("--model", choices=("both", *MODELS), default="both")
-    parser.add_argument("--scope", choices=("all", "main", "supplement"), default="all", help="all (default): main-text U1/Delta scans and supplemental U2 scan; intersects --model")
+    parser.add_argument("--scope", choices=("all", "combined", "total_density"), default="all", help="all (default): relative-density, pairing, and total-density scans; intersects --model")
     parser.add_argument("--output", type=Path, help="results directory; default: benchmarks/paper/output/full-TIMESTAMP for production")
     parser.add_argument("--python-ed", default=sys.executable, help="Python interpreter containing QuSpin for fresh ED")
     parser.add_argument("--threads", type=int, default=1, help="threads per numerical-library process (default 1); cases run sequentially, one MPI rank")

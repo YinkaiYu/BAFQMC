@@ -2,7 +2,7 @@
 
 `src/number_conserving/` 包含用于论文中双组分三角晶格 Bose-Hubbard 哈密顿量的 Fortran 有限温度 BAFQMC 求解器、QuSpin ED 实现、回归测试用例以及计算分析工具。哈密顿量、Hubbard–Stratonovich 场、Green 函数、估计量及截断条件详见 [物理指南](https://github.com/YinkaiYu/BAFQMC/blob/main/docs/solvers/number_conserving/physics.md)。
 
-该求解器产生正文 benchmark 中 `U1=U`、`U2=0` 的相互作用扫描结果，以及补充材料中在 `U1=1` 下改变 `U2` 的吸引密度扫描结果，两者均有 `Delta=0`。输入名称 `U1` 和 `U2` 在整个实现中分别标识相对密度和总密度通道。
+该求解器产生 `Delta=0` 时的相对密度和总密度扫描结果：前者取 `U2=0`，后者固定 `U1=1` 改变吸引的 `U2`。输入名称 `U1` 和 `U2` 在整个实现中分别标识相对密度和总密度通道。
 
 ## 编译与运行
 
@@ -38,7 +38,7 @@ python src/number_conserving/run_paper.py \
   --manifest /path/to/manifest.json --output /path/to/new/results --mode analyze
 ```
 
-在仓库根目录执行 `python3 reproduce.py --scope main --model number_conserving` 可复现正文的八个 U1 数据点，执行 `python3 reproduce.py --scope supplement` 可复现补充材料的七个 U2 数据点。其物理参数和采样参数列于[复现指南](./benchmarks-paper-readme.md)。
+在仓库根目录执行 `python3 reproduce.py --scope combined --model number_conserving` 可复现八个 U1 数据点，执行 `python3 reproduce.py --scope total_density` 可复现七个 U2 数据点。其物理参数和采样参数列于[复现指南](./benchmarks-paper-readme.md)。
 
 使用支持 QuSpin 的解释器运行 ED，或传入 `--python /path/to/python`。使用 `--case ID`（可重复）选择用例，使用 `--dry-run` 预览命令。Manifest 中的路径均相对于 manifest 文件：
 

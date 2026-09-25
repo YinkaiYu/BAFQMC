@@ -1,6 +1,6 @@
 # 配对 BAFQMC 与精确对角化
 
-本求解器对含格点配对的双组分三角晶格 Bose–Hubbard 模型进行采样。其完整四扇区 Nambu Green 矩阵和行列式平方根实现了论文中所用的配对构造；Fortran 核心直接使用论文 notation。
+本求解器对含格点配对的双组分三角晶格 Bose–Hubbard 模型进行采样。其完整四扇区 Nambu Green 矩阵和行列式平方根实现配对构造；输入参数和输出观测量采用 $`U_1`$、$`U_2`$、$`\Delta`$ 的统一定义。
 
 以下命令在 Linux 或 WSL 中从 `src/pairing/` 目录运行。环境配置详见仓库[安装指南](./getting-started.md)，完整论文复现命令见根目录 README。
 
@@ -34,7 +34,7 @@ python run_paper.py --manifest ../../benchmarks/paper/data/pairing/manifest.json
 python run_paper.py --manifest ../../benchmarks/paper/data/pairing/manifest.json --output build/paper --mode analyze
 ```
 
-生产计算包含七个配对值，每个值 100000 个测量 bin。这些是生产级计算；快速安装检查请使用仓库 smoke 命令。在仓库根目录执行 `python3 reproduce.py --scope main --model pairing` 可运行此扫描并生成带有论文面板标签（e–h）的 `benchmark_combined_pairing.pdf`。默认种子策略：从 `base_seed + case_index` 初始化每个用例并生成其每进程种子列表。使用 `--seed` 启动独立链，使用 `--np` 设置 MPI 进程数。结果随编译器、数值库和进程数而变化。使用 `--dry-run` 在不写入文件的情况下检查参数和每用例种子。重复使用 `--case CASE_NAME` 执行选定用例；初始化始终使用完整 manifest，为单独调度的用例保留种子位置。在 WSL 中，请选择 Linux 文件系统上的输出目录而非 `/mnt/c`：求解器会追加写入大量小的可观测量记录。
+生产计算包含七个配对值，每个值 100000 个测量 bin。这些是生产级计算；快速安装检查请使用仓库 smoke 命令。在仓库根目录执行 `python3 reproduce.py --scope combined --model pairing` 可运行此扫描并生成带有论文面板标签（e–h）的 `benchmark_combined_pairing.pdf`。默认种子策略：从 `base_seed + case_index` 初始化每个用例并生成其每进程种子列表。使用 `--seed` 启动独立链，使用 `--np` 设置 MPI 进程数。结果随编译器、数值库和进程数而变化。使用 `--dry-run` 在不写入文件的情况下检查参数和每用例种子。重复使用 `--case CASE_NAME` 执行选定用例；初始化始终使用完整 manifest，为单独调度的用例保留种子位置。在 WSL 中，请选择 Linux 文件系统上的输出目录而非 `/mnt/c`：求解器会追加写入大量小的可观测量记录。
 
 在 AMD Ryzen 5 9600X（WSL2 环境、Intel Fortran/MKL、一个 MPI 进程、一个数值库线程）上的标定结果：在论文物理参数（含 500 次热化迭代）下，1000 个 bin 耗时 46.38 秒，峰值 RSS 为 65 MiB。线性外推得全部七个 100000-bin 运行约需九小时。完整生产链的累计用例耗时为 12.2 小时。在类似机器上，配对 BAFQMC 计算约需 9–13 小时，具体取决于系统负载和存储速度。其完整可观测量输出约占 683 MiB。
 

@@ -91,7 +91,8 @@ U_2\sum_i(\hat n_{b,i}+\hat n_{c,i})^2,
 ```
 
 The paired executable accepts real $`\Delta`$; the number-conserving solver
-has $`\Delta=0`$. The paper's main model sets $`U_1=U`$ and $`U_2=0`$.
+has $`\Delta=0`$. The implemented model uses the two coefficients $`U_1`$ and
+$`U_2`$ directly, with values specified by each benchmark input file.
 Each nearest-neighbor bond in $`\hat H_t`$ is counted once, with both hopping
 directions shown explicitly. Define $`e_t=\langle\hat H_t\rangle/N_s`$,
 $`e_U=\langle\hat H_U\rangle/N_s`$, and $`e_\Delta=\langle\hat H_\Delta\rangle/N_s`$.
