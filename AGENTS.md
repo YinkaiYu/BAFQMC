@@ -34,10 +34,11 @@ follow these Markdown instructions; no particular agent service is required.
 - Report what actually ran, its parameters, and the output paths. A smoke run
   is an installation check; a full reproduction runs all selected production
   points with their defined statistics and reference settings.
-- Use the paper's notation in reader-facing formulas: main coupling `U`,
-  creation operators `b^+,c^+`, and the paper's pairing sign. Explain code-variable
-  and phase mappings explicitly. Use fenced `math` blocks and protected inline math (`$` + backticks)
-  for GitHub-rendered LaTeX; put copyable agent requests in separate fenced `text` blocks.
+- Use the paper's notation in formulas: relative-density coupling `U1`,
+  total-density coupling `U2`, creation operators `b^+,c^+`, and the paper's
+  pairing sign. Explain code-variable and phase mappings explicitly. Use fenced
+  `math` blocks and protected inline math (`$` + backticks) for GitHub-rendered
+  LaTeX; put copyable agent requests in separate fenced `text` blocks.
 - Use plain scientific language. Numerical comparisons should retain every
   valid point and its uncertainty; a deviation larger than three standard
   errors is not a reason to reject a reproduction or suppress a result.
