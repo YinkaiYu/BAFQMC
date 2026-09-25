@@ -70,7 +70,7 @@ For changes to HS updates or interacting propagation, also run the relevant
 when needed. The Gaussian `Nwrap` comparison covers quadratic propagation;
 interacting stability and severe conditioning require a test at those parameters.
 Record sampling uncertainty and convergence settings with stochastic comparisons.
-Paper reproduction retains every valid result without a universal sigma gate.
+Paper reproduction retains every valid result together with its uncertainty.
 
 ## Keep results reusable
 

@@ -40,8 +40,7 @@ follow these Markdown instructions; no particular agent service is required.
   `math` blocks and protected inline math (`$` + backticks) for GitHub-rendered
   LaTeX; put copyable agent requests in separate fenced `text` blocks.
 - Use plain scientific language. Numerical comparisons should retain every
-  valid point and its uncertainty; a deviation larger than three standard
-  errors is not a reason to reject a reproduction or suppress a result.
+  valid point and its uncertainty.
 
 For documentation changes, update the corresponding Chinese pages in `docs/zh/`
 and build both languages with `python3 scripts/build_docs.py`. Verify formulas,
@@ -135,8 +134,8 @@ guide before changing a kernel or estimator.
   measurements. Keep blocking, warmup, seeds, Trotter step, and ED cutoffs
   explicit when defining a new campaign.
 - Numerical failures, missing files, nonfinite measurements, and inconsistent
-  parameter mappings must be fixed. Statistical residuals are retained as
-  diagnostics, without a mandatory sigma threshold for paper reproduction.
+  parameter mappings must be fixed. Retain statistical residuals as diagnostics
+  alongside the measured uncertainties.
 
 For a new interaction, derive its HS channels, normal-ordering shifts and
 scalar weights. Establish TRS/RP or conjugate-sector conditions for each

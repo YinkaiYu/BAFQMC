@@ -70,7 +70,7 @@ python3 reproduce.py --mode smoke --output /tmp/bafqmc-development-smoke
 高斯 `Nwrap` 对比覆盖二次型传播；有相互作用稳定性和严重病态的低温情形
 需要在相应参数下进行专项测试。
 对于随机对比，需同时记录采样误差和收敛参数。
-论文复现保留所有有效结果，不设置统一的 sigma 阈值。
+论文复现保留所有有效结果及其不确定度。
 
 ## 保持结果可复用
 

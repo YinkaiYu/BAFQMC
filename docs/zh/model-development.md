@@ -180,7 +180,7 @@ t_1\cos(\mathbf k\cdot\mathbf a_1)
 
 对于显式非均匀场，独立地构成有序短时矩阵及其完整乘积。比较 Green 函数、包含标量在内的完整权重以及提议更新比率。测试多个场构型和稳定化间隔。将 [test_fixed_field_solver.py](https://github.com/YinkaiYu/BAFQMC/blob/main/tests/physics/test_fixed_field_solver.py) 扩展到新的几何/通道；其当前覆盖检验相互作用 HS 传播，但不测试非零 Metropolis 提议。更新公式的更改还需要针对确定性非零提议的新/旧稠密比率和更新后的 Green 矩阵。
 
-使用 [test_gaussian_solvers.py](https://github.com/YinkaiYu/BAFQMC/blob/main/tests/physics/test_gaussian_solvers.py) 中的解析自由或 Bogoliubov 极限，然后运行一个实际包含新项的相互作用计算。不设通用统计 sigma 门槛地报告均值、SEM 和参考差异。明确测试新模型：通过旧的三角 benchmark 只证明那些情形保持一致。
+使用 [test_gaussian_solvers.py](https://github.com/YinkaiYu/BAFQMC/blob/main/tests/physics/test_gaussian_solvers.py) 中的解析自由或 Bogoliubov 极限，然后运行一个实际包含新项的相互作用计算。报告均值、SEM 和参考差异。明确测试新模型：通过旧的三角 benchmark 只证明那些情形保持一致。
 
 在已添加的模型测试旁边运行现有检验：
 

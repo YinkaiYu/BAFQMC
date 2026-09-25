@@ -376,8 +376,7 @@ matrices for deterministic nonzero proposals.
 Use analytic free or Bogoliubov limits as in
 [test_gaussian_solvers.py](../tests/physics/test_gaussian_solvers.py), then
 perform an interacting run that actually exercises the new terms. Report
-means, SEM, and reference differences without a universal statistical sigma
-gate. Test the new model explicitly: passing the old triangular benchmarks
+means, SEM, and reference differences. Test the new model explicitly: passing the old triangular benchmarks
 only establishes that those cases remain consistent.
 
 Run the existing checks alongside the added model tests:

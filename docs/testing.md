@@ -88,8 +88,8 @@ cases to cover a changed interaction, geometry, or low-temperature regime.
 
 Report means, block-based SEM, reference values, and residuals together with
 sampling and cutoff settings. The paper reproduction retains all valid data
-and uses no universal sigma threshold. Use deterministic identities for exact
-contracts and the actual uncertainties when interpreting sampled comparisons.
+and reports the uncertainty with each comparison. Use deterministic identities
+for exact contracts and the actual uncertainties when interpreting sampled comparisons.
 
 ## Workflow changes and new tests
 
