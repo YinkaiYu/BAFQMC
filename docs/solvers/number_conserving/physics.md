@@ -6,79 +6,39 @@ Implementation paths and commands in this guide are relative to
 ## Model
 
 The code simulates the two-flavor Bose-Hubbard model on a periodic triangular
-lattice. In the paper's creation-operator notation, its physical Hamiltonian is
+lattice. In the paper convention,
 
 ```math
 \begin{aligned}
-\hat H={}&t\sum_{\langle ij\rangle}
-\left(\hat b_i^+\hat b_j+\hat b_j^+\hat b_i
-+\hat c_i^+\hat c_j+\hat c_j^+\hat c_i\right)\\
-&+U_1\sum_i(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
+\hat H_U={}&U_1\sum_i(\hat n_{b,i}-\hat n_{c,i})^2
++U_2\sum_i(\hat n_{b,i}+\hat n_{c,i})^2,\\
+& U_1\ge0,\qquad U_2\le0.
 \end{aligned}
 ```
 
-where $`\hat n_{b,i}=\hat b_i^+\hat b_i`$, $`\hat n_{c,i}=\hat c_i^+\hat c_i`$, and $`N_s=L_xL_y`$ for the
-single orbital per cell. The code names this site count `Lq`.
-
-The current convention is:
-
-- $`t=1>0`$
-- $`U_1\le0`$
-- $`U_2\ge0`$
-- flavors `b` and `c` are also called `up` and `down`
-
-The main-text benchmark sets $`U_1=0`$ and calls the relative-density coupling
-$`U=U_2`$. Its eight interaction-scan points form panels (a–d) of the combined
-benchmark figure. The Supplemental Material retains the two-channel
-Hamiltonian above and scans seven $`U_1`$ values at $`U_2=1`$. The Monte Carlo trace is
-
-```math
-Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
-\hat H_\mu=\hat H-\mu(\hat N_b+\hat N_c),\qquad
-\hat N_b=\sum_i\hat n_{b,i},\quad \hat N_c=\sum_i\hat n_{c,i}.
-```
-
-The reported physical energy $`E=\langle\hat H\rangle`$ excludes the chemical-potential term.
-Operator hats are omitted in the implementation derivations below for
-readability. The [observable reference](../../observables.md) lists every
-active physical output and its normalization.
-
-For the main-text model, $`\mu<-3t`$ ensures a finite trace for every
-auxiliary-field configuration. The relative-density HS factors below are
-unitary, and the quadratic propagator damps high occupations. The SM proves
-the resulting uniform trace bound, together with its paired extension
-$`\mu<-3t-|\Delta|`$. This proof concerns $`U_1=0`$; the supplemental
-attractive-density scan uses its stated finite-occupation references.
+The main benchmark uses $`U_1=U`$, $`U_2=0`$. The Supplemental Material fixes
+$`U_1=1`$ and scans attractive $`U_2`$. The code reads these values directly
+from the first line of `paramC_sets.txt`; ED and BAFQMC use the same ordering.
+The reported energy $`E=\langle\hat H\rangle`$ excludes the chemical-potential
+term in $`Z=\mathrm{Tr}e^{-\beta(\hat H-\mu\hat N)}`$.
 
 ## Hubbard-Stratonovich Fields
 
-The Trotter decomposition uses two real Gaussian fields on each site and time
-slice. With the paper's real coefficients $`\alpha_1,\alpha_2\ge0`$,
+The two real Gaussian fields correspond to the paper channels:
 
 ```math
-e^{-\Delta\tau U_1(n_b+n_c)^2}
-=\int\frac{d\phi_1}{\sqrt{2\pi}}\,
-e^{-\phi_1^2/2+\alpha_1\phi_1(n_b+n_c)},
-\qquad \alpha_1=\sqrt{-2U_1\Delta\tau},
+e^{-\Delta\tau U_1(n_b-n_c)^2}
+=\int\frac{d\phi_1}{\sqrt{2\pi}}e^{-\phi_1^2/2+i\sqrt{2U_1\Delta\tau}\,\phi_1(n_b-n_c)},
 ```
 
 ```math
-e^{-\Delta\tau U_2(n_b-n_c)^2}
-=\int\frac{d\phi_2}{\sqrt{2\pi}}\,
-e^{-\phi_2^2/2+i\alpha_2\phi_2(n_b-n_c)},
-\qquad \alpha_2=\sqrt{2U_2\Delta\tau}.
+e^{-\Delta\tau U_2(n_b+n_c)^2}
+=\int\frac{d\phi_2}{\sqrt{2\pi}}e^{-\phi_2^2/2+\sqrt{-2U_2\Delta\tau}\,\phi_2(n_b+n_c)}.
 ```
 
-The code stores the total-density coefficient as the real number $`\alpha_1`$
-and the relative-density coefficient as the imaginary number $`i\alpha_2`$;
-`Dtau` is $`\Delta\tau`$.
-
-At zero interaction strength the corresponding coupling vanishes. Thus the
-main-text scan has only the relative-density phase field coupled to the bosons;
-at $`U=0`$ both couplings vanish.
-
-After decoupling, the two flavor Hamiltonians are complex conjugates. The code samples the `b` flavor explicitly. The `c` flavor Green matrix is reconstructed with complex conjugation.
+Thus field slot 1 is the imaginary relative-density field and slot 2 is the
+real total-density field. At $`U_2=0`$ only the relative field is active.
+After decoupling the two flavor propagators are complex conjugates.
 
 ## Green Function Convention
 
@@ -142,8 +102,8 @@ Pole diagnostics are configuration diagnostics. They do not change the density, 
 | `Delta tau` | `Dtau = Beta / Ltrot` in `Params_set` |
 | `Ltrot` | `Ltrot` in `CalcBasic`, read from `paramC_sets.txt` |
 | `t` | `RT` in `CalcBasic`, currently set to `1.d0` in `Params_set` |
-| `U1`, `U2` | `RU1`, `RU2` in `CalcBasic`, read from `paramC_sets.txt` |
-| main-text `U` | `RU2` with `RU1=0` |
+| `U1`, `U2` | `U1`, `U2` in `CalcBasic`, read from `paramC_sets.txt` |
+| main-text `U` | `U1` with `U2=0` |
 | `mu` | `mu` in `CalcBasic`, read from `paramC_sets.txt` |
 | auxiliary field flavor index | `ns = 1` for `U1`, `ns = 2` for `U2` |
 | auxiliary fields | `Conf%phi_list(ns, ii, nt)` in `src/fields.f90` |
@@ -248,7 +208,7 @@ The interaction-energy density is reconstructed consistently in DQMC and ED:
 ```text
 interaction_energy_density =
   (U1 + U2) * (onsite_n2_up + onsite_n2_do) / Lq
-  + 2 * (U1 - U2) * doubleOcc
+  + 2 * (U2 - U1) * doubleOcc
 
 energy_density = kinetic + interaction_energy_density
 ```
@@ -270,7 +230,7 @@ site it is $`1`$. If the blocked mean total density is too small, the IPR is
 marked unreliable rather than plotted as a trusted comparison.
 
 For the $`3\times3`$ hopping convention, the single-particle minimum is $`\epsilon_{\min}=-3t`$.
-Grand-canonical $`U_1=0`$ campaign points use $`\mu<-3t`$; otherwise
+Grand-canonical $`U_2=0`$ campaign points use $`\mu<-3t`$; otherwise
 the free/equal-flavor growth channel makes the bosonic partition function
 diverge. For stable $`U_1=U_2=0`$ points, the campaign can use the exact
 grand-canonical free-boson reference instead of a many-body cutoff ED run:
@@ -294,9 +254,9 @@ S_{\rm PSF}(\Gamma)&=\frac1{N_s^2}\sum_{\mathbf k}n_{\mathbf k}n_{-\mathbf k}.
 The factor of two in $`\rho`$, $`S_{\rm SF}`$, and $`S_{\rm DW}`$ accounts for the two flavors.
 Reliable real ED is still preferred when present, but missing or unreliable
 free ED is replaced in campaign postprocessing by `ed_status=exact_free_boson`.
-Negative `U1` points are finite-window/cutoff comparisons, not fully
+Negative `U2` points are finite-window/cutoff comparisons, not fully
 converged grand-canonical ED results unless the cutoff diagnostics are
-explicitly satisfied. In the campaign postprocessing, a negative-`U1`
+explicitly satisfied. In the campaign postprocessing, a negative-`U2`
 finite-window ED point is allowed into trusted curves only when the total
 density is at most `5e-2` and at least six nonzero total-particle shells have
 been accumulated; earlier `low_density_cutoff_accepted` checkpoints remain

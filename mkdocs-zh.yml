@@ -78,7 +78,6 @@ nav:
       - 科学测试: testing.md
       - 参与贡献: contributing.md
       - 版本发布: releases.md
-      - 更新日志: changelog.md
       - 社区准则: code-of-conduct.md
       - 安全报告: security.md
 validation:

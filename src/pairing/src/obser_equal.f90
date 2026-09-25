@@ -244,8 +244,8 @@ contains
         enddo
 
         sample_interaction_energy_density = &
-            (RU1 + RU2) * (sample_onsite_n2_up + sample_onsite_n2_do) / dble(Nsite) &
-            + 2.d0 * (RU1 - RU2) * sample_doubleOcc
+            (U1 + U2) * (sample_onsite_n2_up + sample_onsite_n2_do) / dble(Nsite) &
+            + 2.d0 * (U2 - U1) * sample_doubleOcc
         sample_pairing_energy_density = RDelta * sample_pair_equal
         sample_chemical_energy_density = -mu * sample_density_total
         sample_energy_density = sample_kinetic + sample_interaction_energy_density &

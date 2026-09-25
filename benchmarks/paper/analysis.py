@@ -1,4 +1,4 @@
-"""Reblock the archived measurements and recover the four paper observables."""
+"""Reblock stored measurements and recover the four paper observables."""
 from __future__ import annotations
 
 import copy
@@ -56,7 +56,7 @@ def block_stats(raw: bytes, *, columns: int, samples: int, block_size: int, skip
     real = values[skip_samples:, 0]
     if block_size <= 0 or len(real) % block_size or len(real) < 2 * block_size:
         raise ValueError("measurements must contain at least two complete blocks")
-    # Match the original scripts' ordered Python sums, including the free point.
+    # Match the benchmark reference's ordered Python sums, including the free point.
     means = [sum(block.tolist()) / block_size for block in real.reshape(-1, block_size)]
     mean = sum(means) / len(means)
     stderr = math.sqrt(sum((v - mean) ** 2 for v in means) / (len(means) - 1) / len(means))
@@ -104,8 +104,8 @@ def recompute(index, data_dir, *, fresh_dir=None, models=("number_conserving", "
             else:
                 run_dir, ed_path = base / "inputs" / case_id, base / "ed_results" / (case_id + ".json")
             raw = {name: (run_dir / name).read_bytes() for name in RAW_OBSERVABLES.values()}
-            archive_keys = ("raw_archive", "original_run_dir", "ed_status", "ed_file", "input_dir")
-            case["archived_source"] = {key: case.pop(key) for key in archive_keys}
+            archive_keys = ("raw_archive", "ed_status", "ed_file", "input_dir")
+            case["stored_data"] = {key: case.pop(key) for key in archive_keys if key in case}
             case["run_dir"] = str(run_dir)
             case["ed_file"] = str(ed_path)
             case["ed_status"] = "exact_free_boson" if case["reference_kind"] == "exact_free_boson" else json.loads(ed_path.read_text()).get("status", "fixed_cutoff_dense_trace")
@@ -115,7 +115,7 @@ def recompute(index, data_dir, *, fresh_dir=None, models=("number_conserving", "
             if fresh_dir is None:
                 for key, value in (("dqmc", mean), ("stderr", stderr), ("ed", ed[name])):
                     if not math.isclose(value, case["observables"][name][key], rel_tol=5e-11, abs_tol=5e-14):
-                        raise ValueError(f"archived {key} mismatch: {model}/{case_id}/{name}: {value} vs {case['observables'][name][key]}")
+                        raise ValueError(f"stored {key} mismatch: {model}/{case_id}/{name}: {value} vs {case['observables'][name][key]}")
             case["observables"][name] = {"dqmc": mean, "stderr": stderr, "ed": ed[name]}
             for i, value in enumerate(blocks):
                 block_records.append({"model": model, "case": case_id, "observable": name, "block": i, "block_mean": value})
@@ -127,7 +127,8 @@ def save_tables(cases, blocks, output):
     output.mkdir(parents=True, exist_ok=True)
     rows = []
     for c in cases:
-        for name, value in c["observables"].items():
+        for name in RAW_OBSERVABLES:
+            value = c["observables"][name]
             rows.append({"model": c["model"], "case": c["id"], **c.get("manuscript", {}), "row": c["row"], "x": c["x"], "observable": name, "dqmc": value["dqmc"], "stderr": value["stderr"], "ed": value["ed"], "difference": value["dqmc"] - value["ed"]})
     for filename, records in (("observables.csv", rows), ("block_means.csv", blocks)):
         if not records:

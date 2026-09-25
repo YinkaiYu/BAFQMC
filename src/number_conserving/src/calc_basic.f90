@@ -9,7 +9,7 @@ module CalcBasic ! Global parameters
     integer,                parameter           :: Norb  = 1  ! triangular lattice
     integer,                parameter           :: Nsub  = 1  ! triangular lattice
     integer,                parameter           :: Nbond = 3  ! triangular lattice
-    integer,                parameter           :: Naux  = 2  ! flavor number of auxiliary field, respectively for U1 term and U2 term
+    integer,                parameter           :: Naux  = 2  ! auxiliary fields: U1 relative-density, U2 total-density
     integer,                public              :: Nlx, Nly, NlxTherm, NlyTherm
     integer,                public              :: Lq, LqTherm
     integer,                public              :: Ndim, NdimTherm
@@ -18,7 +18,10 @@ module CalcBasic ! Global parameters
     integer,                public              :: Ltrot, LtrotTherm
 ! Hamiltonian parameters
     real(kind=8),           public,     save    :: RT
-    real(kind=8),           public,     save    :: RU1, RU2
+    ! Paper convention: U1 >= 0 multiplies (n_b-n_c)^2 and U2 <= 0
+    ! multiplies (n_b+n_c)^2.  The first line of paramC_sets.txt follows
+    ! this order directly.
+    real(kind=8),           public,     save    :: U1, U2
     real(kind=8),           public,     save    :: mu
 ! update parameters
     real(kind=8),           public              :: shiftLoc
@@ -46,7 +49,7 @@ contains
         include 'mpif.h'
         if (IRANK == 0) then
             open(unit=20, file='paramC_sets.txt', status='unknown')
-            read(20,*) RU1, RU2, mu
+            read(20,*) U1, U2, mu
             read(20,*) Nlx, Nly, Ltrot, Beta
             read(20,*) NlxTherm, NlyTherm, LtrotTherm
             read(20,*) Nwrap, Nbin, Nsweep, shiftLoc
@@ -55,11 +58,13 @@ contains
             ! read(20,*) is_global, Nglobal, shiftGlb(1), shiftGlb(2)
             read(20,*) iniType, iniAmpl, iniBias(1), iniBias(2)
             close(20)
+            if (U1 < -Zero) stop "U1 must be non-negative (relative-density channel)"
+            if (U2 >  Zero) stop "U2 must be non-positive (total-density channel)"
         endif 
 !   MPI process: parallelization
         call MPI_BCAST(Beta, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
-        call MPI_BCAST(RU1, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
-        call MPI_BCAST(RU2, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
+        call MPI_BCAST(U1, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
+        call MPI_BCAST(U2, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         call MPI_BCAST(mu, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         call MPI_BCAST(shiftLoc, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         ! call MPI_BCAST(shiftGlb, Naux, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
@@ -138,8 +143,8 @@ contains
             write(50,*) 'Linear lengh Lx                                :', Nlx
             write(50,*) 'Linear lengh Ly                                :', Nly
             write(50,*) 'Hopping t                                      :', RT
-            write(50,*) 'Hubbard U1                                     :', RU1
-            write(50,*) 'Hubbard U2                                     :', RU2
+            write(50,*) 'Hubbard U1 (relative-density, repulsive)       :', U1
+            write(50,*) 'Hubbard U2 (total-density, attractive)         :', U2
             write(50,*) 'chemical potential                             :', mu
             write(50,*) 'Local update auxiliary field magnitude Shift   :', shiftLoc
             ! if (is_global) then
@@ -149,8 +154,8 @@ contains
             ! endif
             if (is_warm) then
             write(50,*) '# Warm                                         :', Nwarm
-            write(50,*) 'Thermalize auxiliary field magnitude for U1    :', shiftWarm(1)
-            write(50,*) 'Thermalize auxiliary field magnitude for U2    :', shiftWarm(2)
+            write(50,*) 'Thermalize U1 relative-field magnitude          :', shiftWarm(1)
+            write(50,*) 'Thermalize U2 total-field magnitude             :', shiftWarm(2)
             endif
             write(50,*) 'Choosing initial distribution type             :', iniType
             write(50,*) 'Magnitude of Gaussian distribution             :', iniAmpl

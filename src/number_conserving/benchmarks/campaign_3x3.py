@@ -85,20 +85,20 @@ def default_manifest() -> dict[str, Any]:
         ],
         "sweeps": [
             {
-                "name": "U2_sweep",
-                "vary": "U2",
-                "mu": -3.5,
-                "beta": 4.0,
-                "U1": 0.0,
-                "U2": [0.0, 0.5, 1.0, 1.5, 2.0],
-            },
-            {
                 "name": "U1_sweep",
                 "vary": "U1",
+                "mu": -3.5,
+                "beta": 4.0,
+                "U1": [0.0, 0.5, 1.0, 1.5, 2.0],
+                "U2": 0.0,
+            },
+            {
+                "name": "U2_sweep",
+                "vary": "U2",
                 "mu": -5.0,
                 "beta": 1.0,
-                "U1": [0.0, -0.05, -0.1, -0.15, -0.2],
-                "U2": 1.0,
+                "U1": 1.0,
+                "U2": [0.0, -0.05, -0.1, -0.15, -0.2],
             },
         ],
         "dqmc_defaults": {
@@ -139,20 +139,11 @@ def default_manifest() -> dict[str, Any]:
             "min_ipr_number": 1.0e-8,
         },
         "stability_notes": {
-            "u1_zero": "For 3x3 triangular U1=0 runs, use mu < -3.",
-            "negative_u1": (
-                "Negative U1 is a finite-window/cutoff comparison only; accepted "
+            "u2_zero": "For 3x3 triangular U2=0 runs, use mu < -3.",
+            "negative_u2": (
+                "Negative U2 is a finite-window/cutoff comparison only; accepted "
                 "points use status low_density_cutoff_accepted."
             ),
-        },
-        "hpc": {
-            "host": "cluster.example",
-            "ssh": "ssh cluster.example",
-            "work_dir": "/path/to/campaign",
-            "queues": ["compute", "large-memory"],
-            "job_prefix": DEFAULT_JOB_PREFIX,
-            "quspin_env": "/path/to/quspin-env",
-            "dqmc_env": "/path/to/python-env",
         },
     }
 
@@ -596,7 +587,7 @@ def _param_text(case: dict[str, Any], defaults: dict[str, Any], ltrot: int) -> s
             defaults["iniBias2"],
         ),
         "",
-        "RU1         RU2         mu",
+        "U1          U2          mu",
         "Nlx         Nly         Ltrot       Beta",
         "NlxTherm    NlyTherm    LtrotTherm",
         "Nwrap       Nbin        Nsweep      shiftLoc",
@@ -610,13 +601,18 @@ def _param_text(case: dict[str, Any], defaults: dict[str, Any], ltrot: int) -> s
 def _stage1_html(manifest: dict[str, Any]) -> str:
     defaults = manifest["dqmc_defaults"]
     ed_policy = manifest["ed_policy"]
-    hpc = manifest["hpc"]
+    hpc = manifest.get("hpc")
     rows = "\n".join(_sweep_rows(manifest))
     observables = "\n".join(
         f"<li><code>{html.escape(name)}</code></li>"
         for name in manifest["observables"]
     )
-    queues = ", ".join(html.escape(queue) for queue in hpc["queues"])
+    hpc_summary = (
+        "HPC settings are supplied by the user when jobs are scheduled."
+        if hpc is None else
+        f"HPC host: {html.escape(hpc.get('host', ''))}; queues: "
+        f"{html.escape(', '.join(hpc.get('queues', [])))}"
+    )
     cases = list(iter_cases(manifest))
     case_rows = "\n".join(
         "<tr>"
@@ -654,8 +650,8 @@ def _stage1_html(manifest: dict[str, Any]) -> str:
   <p>模型为双味 Bose-Hubbard 哈密顿量，$L_x=L_y=3$，$L_q=9$。比较对象为 <strong>BAFQMC vs ED</strong>，重点检查低密度窗口内的密度、能量、占据和结构因子是否一致。</p>
   <div class="scroll">
   $$H = t\\sum_{{\\langle ij\\rangle}}(b_i^\\dagger b_j+c_i^\\dagger c_j+\\mathrm{{h.c.}})
-  +U_1\\sum_i(n_{{b,i}}+n_{{c,i}})^2
-  +U_2\\sum_i(n_{{b,i}}-n_{{c,i}})^2.$$
+  +U_1\\sum_i(n_{{b,i}}-n_{{c,i}})^2
+  +U_2\\sum_i(n_{{b,i}}+n_{{c,i}})^2.$$
   </div>
 
   <h2>目标可观测量</h2>
@@ -673,8 +669,8 @@ def _stage1_html(manifest: dict[str, Any]) -> str:
   <p>结构因子使用标准 $S_O(q)=\\langle O_q^\\dagger O_q\\rangle/L_q^2$ 归一化；3x3 的分母为 81。晶格约定为 $a_1=(1,0)$、$a_2=(1/2,\\sqrt{{3}}/2)$，reciprocal basis 采用 $2\\pi$ 约定，$b_1=2\\pi(1,-1/\\sqrt{{3}})$、$b_2=2\\pi(0,2/\\sqrt{{3}})$。3x3 的 K 点为 $K=(2/3)b_1+(1/3)b_2=(4\\pi/3,0)$。IPR 从总密度分布 <code>density_site_total</code> 后处理得到，均匀 3x3 分布给出 $1/9$，单站点局域极限给出 1。</p>
 
   <h2>稳定性说明</h2>
-  <p>3x3 三角晶格当前跃迁约定下单粒子能量下界为 $-3$。因此 $U_1=0$ 的 3x3 grand-canonical 点必须满足 mu < -3；本 manifest 的 U2 sweep 使用 $\\mu=-3.5$。</p>
-  <p>负 $U_1$ 的总密度通道在无限粒子壳层下不是严格有界问题。本阶段只定义低密度有限窗口比较，ED 状态可以是 <code>converged</code>、<code>low_density_cutoff_accepted</code> 或 <code>incomplete</code>；负 $U_1$ 接受点需要明确标为 <code>low_density_cutoff_accepted</code>。</p>
+  <p>3x3 三角晶格当前跃迁约定下单粒子能量下界为 $-3$。对于 $U_2=0$ 的 3x3 grand-canonical 点，必须满足 $\\mu < -3$；本 manifest 的主扫描使用 $\\mu=-3.5$。</p>
+  <p>负 $U_2$ 的总密度通道在无限粒子壳层下不是严格有界问题。本阶段只定义低密度有限窗口比较，ED 状态可以是 <code>converged</code>、<code>low_density_cutoff_accepted</code> 或 <code>incomplete</code>；负 $U_2$ 接受点需要明确标为 <code>low_density_cutoff_accepted</code>。</p>
 
   <h2>参数表</h2>
   <table>
@@ -690,11 +686,10 @@ def _stage1_html(manifest: dict[str, Any]) -> str:
   <p><code>dtau={defaults['dtau']}</code>，<code>Ltrot=beta/dtau</code>，<code>Nbin={defaults['Nbin']}</code>，<code>Nsweep={defaults['Nsweep']}</code>，<code>Nwrap={defaults['Nwrap']}</code>，<code>shiftLoc={defaults['shiftLoc']}</code>，<code>block_size={defaults['block_size']}</code>，<code>mpi_np={defaults['mpi_np']}</code>。Warm-up 使用 <code>is_warm={defaults['is_warm']}</code>，<code>Nwarm={defaults['Nwarm']}</code>，<code>shiftWarm1={defaults['shiftWarm1']}</code>，<code>shiftWarm2={defaults['shiftWarm2']}</code>。</p>
 
   <h2>ED 截断与状态</h2>
-  <p>当前 ED 壳层起点为 <code>max_total_particles={ed_policy['max_total_particles']}</code>，尾项阈值为 <code>{ed_policy['tail_tolerance']}</code>，负 $U_1$ 低密度窗口要求 <code>density_total &lt;= {ed_policy['max_density_total']}</code> 且至少完成 <code>{ed_policy['min_completed_shells']}</code> 个非零壳层。后处理的论文可信门槛还会进一步要求负 $U_1$ finite-window 点满足 <code>density_total &lt;= 5e-2</code> 且 <code>completed_shells &gt;= 6</code>；更浅的早停 checkpoint 只能作为诊断，不能进入 trusted ED 曲线。</p>
+  <p>当前 ED 壳层起点为 <code>max_total_particles={ed_policy['max_total_particles']}</code>，尾项阈值为 <code>{ed_policy['tail_tolerance']}</code>，负 $U_2$ 低密度窗口要求 <code>density_total &lt;= {ed_policy['max_density_total']}</code> 且至少完成 <code>{ed_policy['min_completed_shells']}</code> 个非零壳层。后处理的论文可信门槛还会进一步要求负 $U_2$ finite-window 点满足 <code>density_total &lt;= 5e-2</code> 且 <code>completed_shells &gt;= 6</code>；更浅的早停 checkpoint 只能作为诊断，不能进入 trusted ED 曲线。</p>
 
-  <h2>HPC 记录</h2>
-  <p>登录命令：<code>{html.escape(hpc['ssh'])}</code>。工作目录：<code>{html.escape(hpc['work_dir'])}</code>。队列：<code>{queues}</code>。Slurm job prefix：<code>{html.escape(hpc['job_prefix'])}</code>，例如 <code>bafqmc/BAFQMC/U2_1.5_mu-3.5_b4</code> 和 <code>bafqmc/ED/U2_1.5_mu-3.5_b4</code>。</p>
-  <p>QuSpin 环境：<code>{html.escape(hpc['quspin_env'])}</code>；DQMC/分析环境：<code>{html.escape(hpc['dqmc_env'])}</code>。</p>
+  <h2>计算环境</h2>
+  <p>{hpc_summary}</p>
 </body>
 </html>
 """

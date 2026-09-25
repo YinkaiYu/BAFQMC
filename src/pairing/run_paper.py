@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the paired BAFQMC paper campaign from a portable JSON manifest.
 
-Fresh simulations are written separately from the archived paper data. The
+Fresh simulations are written separately from the stored paper data. The
 analysis exports observables, standard errors, and differences from ED.
 """
 from __future__ import annotations

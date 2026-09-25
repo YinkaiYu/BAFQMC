@@ -40,9 +40,9 @@ comparison between the two solvers. Every bin is compared with the analytic
 expectation for density, physical energy, and both K-point structure factors;
 the paired solver also measures the anomalous amplitude. These tests resolve
 the bosonic identity term and anomalous contractions in the density structure
-factor. No archived measurements or ED occupation cutoff enter this comparison.
+factor. No stored benchmark measurements or ED occupation cutoff enter this comparison.
 
-The fixed-field check turns on both interaction channels (`U1=-0.1`, `U2=0.7`)
+The fixed-field check turns on both interaction channels (`U1=0.1`, `U2=-0.7`)
 and reads explicit nonuniform fields on six imaginary-time slices. Independent
 dense propagation gives the determinant weight and Wick-contracted observables.
 Zero proposal displacement holds the field fixed while the executable traverses

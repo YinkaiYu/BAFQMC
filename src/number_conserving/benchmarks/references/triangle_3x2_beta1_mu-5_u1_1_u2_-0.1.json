@@ -1,0 +1,102 @@
+{
+  "case": "triangle_3x2_beta1_mu-5_u1_1_u2_-0.1",
+  "dqmc_fixture": "benchmarks/fixtures/triangle_3x2_beta1_mu-5_u1_1_u2_-0.1_mc_outputs",
+  "ed_tail_contribution": {
+    "doubleOcc": 1.7586523852612842e-06,
+    "numsquare_do": 3.1833576040762736e-05,
+    "numsquare_up": 3.1833576040762756e-05,
+    "squareOcc": 7.806661741356689e-07,
+    "total_NE": 2.3686431583588874e-05,
+    "total_kinetic": -4.283880745427686e-05
+  },
+  "normalization": {
+    "dqmc_doubleOcc": "DQMC doubleOcc has the same per-site normalization.",
+    "dqmc_kinetic": "DQMC file kinetic includes both flavors and is divided by Lq, so compare kinetic * Lq.",
+    "dqmc_squareOcc": "DQMC squareOcc matches this half normal-ordered same-flavor pair estimator.",
+    "dqmc_total_NE": "DQMC total particle number is num_up + num_do.",
+    "ed_doubleOcc": "Per-site cross-flavor onsite density <sum_i n_b,i n_c,i> / Lq.",
+    "ed_numsquare": "numsquare_up and numsquare_do are <N_b^2> and <N_c^2>.",
+    "ed_squareOcc": "Per-site half normal-ordered same-flavor onsite pair 0.5 * <sum_i,s n_s,i (n_s,i - 1)> / Lq.",
+    "ed_total_NE": "ED script accumulates NE = NE_b + NE_c.",
+    "ed_total_kinetic": "ED kinetic operator includes both b and c hopping layers."
+  },
+  "observables": {
+    "doubleOcc": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "doubleOcc"
+        ],
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.0006443360186882365
+    },
+    "numsquare_do": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "numsquare_do"
+        ],
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.07470426129050675
+    },
+    "numsquare_up": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "numsquare_up"
+        ],
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.07470426129050677
+    },
+    "squareOcc": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "squareOcc"
+        ],
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.00010290172053800603
+    },
+    "total_NE": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "num_up",
+          "num_do"
+        ],
+        "operation": "sum_last"
+      },
+      "rtol": 0.0,
+      "value": 0.13997061039816858
+    },
+    "total_kinetic": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "kinetic"
+        ],
+        "operation": "last_times_lq"
+      },
+      "rtol": 0.0,
+      "value": -0.2558942387788746
+    }
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 2,
+    "U1": 1.0,
+    "U2": -0.1,
+    "beta": 1.0,
+    "mu": -5.0,
+    "t": 1.0
+  },
+  "source": "Reference values; used by the compact DQMC-to-ED normalization regression."
+}

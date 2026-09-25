@@ -67,11 +67,11 @@ contains
         integer :: ii, nt
         call this%reset(.false.)
         do nt = 1, Ltrot
-            if (abs(RU1) > Zero) call LocalU_prop_therm(Op_U1, iseed, 1, nt)
-            if (abs(RU2) > Zero) call LocalU_prop_therm(Op_U2, iseed, 2, nt)
+            if (abs(U1) > Zero) call LocalU_prop_therm(Op_U1, iseed, 1, nt)
+            if (abs(U2) > Zero) call LocalU_prop_therm(Op_U2, iseed, 2, nt)
         enddo
-        if (abs(RU1) > Zero) call Op_U1%Acc_U_therm%ratio()
-        if (abs(RU2) > Zero) call Op_U2%Acc_U_therm%ratio()
+        if (abs(U1) > Zero) call Op_U1%Acc_U_therm%ratio()
+        if (abs(U2) > Zero) call Op_U2%Acc_U_therm%ratio()
         return
     end subroutine Local_sweep_therm
     
@@ -83,8 +83,8 @@ contains
         call this%reset(.false.)
         call Wrap_pre(Prop, WrList, 0)
         do nt = 1, Ltrot
-            if (abs(RU1) > Zero) call propU_pre(Op_U1, Prop, 1, nt)
-            if (abs(RU2) > Zero) call propU_pre(Op_U2, Prop, 2, nt)
+            if (abs(U1) > Zero) call propU_pre(Op_U1, Prop, 1, nt)
+            if (abs(U2) > Zero) call propU_pre(Op_U2, Prop, 2, nt)
             call propT_pre(Prop)
             if (mod(nt, Nwrap) == 0) call Wrap_pre(Prop, WrList, nt)
         enddo
@@ -101,8 +101,8 @@ contains
             call Obs_equal%calc(Prop, nt)
             Nobs = Nobs + 1
             call propT_L(Prop)
-            if (abs(RU2) > Zero) call LocalU_prop_L(Op_U2, Prop, iseed, 2, nt)
-            if (abs(RU1) > Zero) call LocalU_prop_L(Op_U1, Prop, iseed, 1, nt)
+            if (abs(U2) > Zero) call LocalU_prop_L(Op_U2, Prop, iseed, 2, nt)
+            if (abs(U1) > Zero) call LocalU_prop_L(Op_U1, Prop, iseed, 1, nt)
         enddo
         call Wrap_L(Prop, WrList, 0, "S")
         return
@@ -121,8 +121,8 @@ contains
         endif
         call Wrap_R(Prop, WrList, 0, "S")
         do nt = 1, Ltrot
-            if (abs(RU1) > Zero) call LocalU_prop_R(Op_U1, Prop, iseed, 1, nt)
-            if (abs(RU2) > Zero) call LocalU_prop_R(Op_U2, Prop, iseed, 2, nt)
+            if (abs(U1) > Zero) call LocalU_prop_R(Op_U1, Prop, iseed, 1, nt)
+            if (abs(U2) > Zero) call LocalU_prop_R(Op_U2, Prop, iseed, 2, nt)
             call propT_R(Prop)
             if (mod(nt, Nwrap) == 0) call Wrap_R(Prop, WrList, nt, "S")
             call Obs_equal%calc(Prop, nt)
@@ -153,10 +153,10 @@ contains
         enddo
         call Obs_equal%ave(Nobs)
         if (toggle) call Obs_tau%ave(Nobst)
-        if (abs(RU1) > Zero) call Op_U1%Acc_U_local%ratio()
-        if (abs(RU2) > Zero) call Op_U2%Acc_U_local%ratio()
-        if (abs(RU1) > Zero) call Op_U1%Phase_U_local%ratio()
-        if (abs(RU2) > Zero) call Op_U2%Phase_U_local%ratio()
+        if (abs(U1) > Zero) call Op_U1%Acc_U_local%ratio()
+        if (abs(U2) > Zero) call Op_U2%Acc_U_local%ratio()
+        if (abs(U1) > Zero) call Op_U1%Phase_U_local%ratio()
+        if (abs(U2) > Zero) call Op_U2%Phase_U_local%ratio()
         return
     end subroutine Local_sweep
     
@@ -164,7 +164,7 @@ contains
         include 'mpif.h'
         logical, intent(in) :: toggle
         real(kind=8) :: collect, collect_count
-        if (abs(RU1) > Zero) then
+        if (abs(U1) > Zero) then
             collect = 0.d0
             call MPI_Reduce(Op_U1%Acc_U_local%acc, collect, 1, MPI_Real8, MPI_SUM, 0, MPI_COMM_WORLD, IERR)
             if (IRANK == 0) then
@@ -188,7 +188,7 @@ contains
             if (IRANK == 0 .and. collect_count > 0.d0) write(50,*) 'Phase_U1_branch_pi_fraction                   :', collect / collect_count
             if (IRANK == 0) write(50,*) 'Phase_U1_local_proposals                      :', collect_count
         endif
-        if (abs(RU2) > Zero) then
+        if (abs(U2) > Zero) then
             collect = 0.d0
             call MPI_Reduce(Op_U2%Acc_U_local%acc, collect, 1, MPI_Real8, MPI_SUM, 0, MPI_COMM_WORLD, IERR)
             if (IRANK == 0) then
@@ -218,7 +218,7 @@ contains
     subroutine Therm_control_print()
         include 'mpif.h'
         real(kind=8) :: collect
-        if (abs(RU1) > Zero) then
+        if (abs(U1) > Zero) then
             collect = 0.d0
             call MPI_Reduce(Op_U1%Acc_U_therm%acc, collect, 1, MPI_Real8, MPI_SUM, 0, MPI_COMM_WORLD, IERR)
             if (IRANK == 0) then
@@ -226,7 +226,7 @@ contains
                 write(50,*) "Thermalize U1 Accept Ratio                     :", Op_U1%Acc_U_therm%acc
             endif
         endif
-        if (abs(RU2) > Zero) then
+        if (abs(U2) > Zero) then
             collect = 0.d0
             call MPI_Reduce(Op_U2%Acc_U_therm%acc, collect, 1, MPI_Real8, MPI_SUM, 0, MPI_COMM_WORLD, IERR)
             if (IRANK == 0) then

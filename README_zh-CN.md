@@ -69,14 +69,16 @@ Nambu 求解器支持实数在位配对。
 
 ```math
 \hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2(\hat n_{b,i}-\hat n_{c,i})^2\right],
-\qquad U_1\leq0,\quad U_2\geq0.
+U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right],
+\qquad U_1\geq0,\quad U_2\leq0.
 ```
 
-论文主模型对应 $`U_1=0`$、$`U_2=U`$。输入的配对强度就是论文中的实数
-$`\Delta`$；代码采用等价的算符相位 $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$。
-[模型、晶格与参数指南](docs/algorithm.md)说明了这一对应关系、统计系综和参考计算。
+论文主模型对应 $`U_1=U`$、$`U_2=0`$；补充材料固定 $`U_1=1`$ 并扫描
+吸引性的 $`U_2\le0`$。代码、输入、ED 数据和图表全部直接使用这套 notation。
+输入的配对强度就是论文中的实数 $`\Delta`$；代码采用等价的算符相位
+$`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$。[模型、晶格与参数指南](docs/algorithm.md)
+说明统计系综和参考计算。
 
 **想研究其他模型？** [模型扩展指南](docs/model-development.md)和专用 Agent 技能
 覆盖晶格、跃迁、相互作用与配对项的扩展，以及配套 ED 和物理测试。

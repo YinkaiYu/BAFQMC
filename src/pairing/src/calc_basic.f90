@@ -20,7 +20,7 @@ module CalcBasic ! Global parameters
     integer,                public              :: Ltrot, LtrotTherm
 ! Hamiltonian parameters
     real(kind=8),           public,     save    :: RT, RDelta
-    real(kind=8),           public,     save    :: RU1, RU2
+    real(kind=8),           public,     save    :: U1, U2
     real(kind=8),           public,     save    :: mu
 ! update parameters
     real(kind=8),           public              :: shiftLoc
@@ -48,7 +48,8 @@ contains
         include 'mpif.h'
         if (IRANK == 0) then
             open(unit=20, file='paramC_sets.txt', status='unknown')
-            read(20,*) RU1, RU2, mu, RDelta
+            ! The public convention is U1*(n_b-n_c)^2 + U2*(n_b+n_c)^2.
+            read(20,*) U1, U2, mu, RDelta
             read(20,*) Nlx, Nly, Ltrot, Beta
             read(20,*) NlxTherm, NlyTherm, LtrotTherm
             read(20,*) Nwrap, Nbin, Nsweep, shiftLoc
@@ -57,11 +58,13 @@ contains
             ! read(20,*) is_global, Nglobal, shiftGlb(1), shiftGlb(2)
             read(20,*) iniType, iniAmpl, iniBias(1), iniBias(2)
             close(20)
+            if (U1 < -Zero) stop "U1 must be non-negative (relative-density channel)"
+            if (U2 >  Zero) stop "U2 must be non-positive (total-density channel)"
         endif 
 !   MPI process: parallelization
         call MPI_BCAST(Beta, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
-        call MPI_BCAST(RU1, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
-        call MPI_BCAST(RU2, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
+        call MPI_BCAST(U1, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
+        call MPI_BCAST(U2, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         call MPI_BCAST(RDelta, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         call MPI_BCAST(mu, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
         call MPI_BCAST(shiftLoc, 1, MPI_Real8, 0, MPI_COMM_WORLD, IERR)
@@ -142,8 +145,8 @@ contains
             write(50,*) 'Linear lengh Lx                                :', Nlx
             write(50,*) 'Linear lengh Ly                                :', Nly
             write(50,*) 'Hopping t                                      :', RT
-            write(50,*) 'Hubbard U1                                     :', RU1
-            write(50,*) 'Hubbard U2                                     :', RU2
+            write(50,*) 'Relative-density U1 (>=0)                    :', U1
+            write(50,*) 'Total-density U2 (<=0)                       :', U2
             write(50,*) 'pairing Delta                                  :', RDelta
             write(50,*) 'chemical potential                             :', mu
             write(50,*) 'Local update auxiliary field magnitude Shift   :', shiftLoc

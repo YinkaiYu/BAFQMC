@@ -2,17 +2,18 @@
 
 This solver samples the two-flavor triangular-lattice Bose–Hubbard model with
 onsite pairing. Its full four-sector Nambu Green matrix and determinant square
-root implement the paired construction used in the manuscript. The Fortran
-physics kernels retain the source snapshot at commit
-`e4c1d04e6b756eb6bd6d0cf5b9a778c6b54a920c` of `code_bosonDQMC_paring`.
+root implement the paired construction used in the manuscript. The Fortran physics kernels are maintained directly in this repository under the manuscript notation.
 
 Commands below run from `src/pairing/` in Linux or WSL. See the repository
 [installation guide](../../docs/getting-started.md) for environment setup and the
 root README for the combined paper reproduction command.
 
 This solver produces panels (e–h) of the combined main-text benchmark: seven
-Delta points at `U=1`, `mu=-5`, and `beta=4`. In solver inputs, set `U1=0`
-and `U2=U`; these names retain the total-density and relative-density HS channels.
+Delta points at `U1=1`, `U2=0`, `mu=-5`, and `beta=4`. Inputs use the manuscript
+convention: `U1` multiplies the repulsive relative-density square and `U2`
+multiplies the attractive total-density square. Thus the main scan uses
+`U1=U` and `U2=0`; the supplemental two-channel scan keeps `U1=1` and
+varies non-positive `U2`.
 The solver's positive real pair coefficient is related to the manuscript's
 negative pair term by `c_code=-c_paper`. All four plotted observables are
 unchanged by this phase convention; the anomalous amplitude `pair_equal`
@@ -62,21 +63,20 @@ per value. These are production calculations; use the repository smoke command
 for a quick installation check. From the repository root,
 `python3 reproduce.py --scope main --model pairing` runs this scan and produces
 `benchmark_combined_pairing.pdf` with the manuscript's panel labels (e–h).
-The default seed policy is the archived
-campaign policy: initialize each case from `base_seed + case_index` and generate
+The default seed policy initializes each case from `base_seed + case_index` and generates
 its per-rank seed list. Use `--seed` to start independent chains and `--np` to
 set MPI ranks. Results vary with compiler, numerical libraries, and rank count.
 Use `--dry-run` to inspect parameters and per-case seeds without writing files.
 Repeat `--case CASE_NAME` to execute selected cases; initialization always uses
-the full manifest, preserving the original seed positions for separately
-scheduled cases. On WSL, choose an output directory on the Linux filesystem
+the full manifest, preserving seed positions for separately scheduled cases. On
+WSL, choose an output directory on the Linux filesystem
 instead of `/mnt/c`: the solver appends many small observable records.
 
 A calibration on an AMD Ryzen 5 9600X under WSL2, using Intel Fortran/MKL,
 one MPI rank and one numerical-library thread, took 46.38 seconds and 65 MiB
 peak RSS for 1000 bins at the paper's physical parameters, including the
-original 500 warmup iterations. Linear scaling gives approximately nine hours
-for all seven 100000-bin runs. The archived original runs recorded 12.2 hours
+500 warmup iterations. Linear scaling gives approximately nine hours
+for all seven 100000-bin runs. The measured production chains took 12.2 hours
 of aggregate case elapsed time. Allow roughly 9–13 hours for the pairing
 BAFQMC campaign on a similar machine, with variation from system load and
 storage. Its full observable output occupies about 683 MiB.
@@ -84,7 +84,7 @@ storage. Its full observable output occupies about 683 MiB.
 The stages write `inputs/<case>/`, `ed_results/<case>.json`, and
 `summary/comparison_observables.csv`. The JSON comparison additionally retains
 block errors, imaginary-part diagnostics and cutoff-sensitive observables.
-Its historical name `comparison_dqmc_ed_nmax3_ncut4.json` matches the paper
+The reference file `comparison_dqmc_ed_nmax3_ncut4.json` matches the paper
 plot input; consult the embedded manifest for the cutoffs of a custom run.
 Analysis exports all valid means, standard errors, and reference differences.
 `--require-agreement` optionally enables the inherited three-standard-error check.
@@ -117,7 +117,7 @@ is 12 GiB. Increase `--dense-memory-cap-gib` only to match available memory.
 Larger cutoffs grow rapidly and are separate scientific calculations.
 For the same machine and one thread, an actual paper-size ED case at
 `Delta=0.2` took 40.40 seconds and 3.01 GiB peak RSS; its four paper observables
-agreed with the archived ED values to within `5.3e-18` absolute. The seven ED
+agreed with the stored ED values to within `5.3e-18` absolute. The seven ED
 cases therefore require approximately five minutes under those conditions,
 in addition to the BAFQMC time. These timings were measured on 2026-09-15.
 

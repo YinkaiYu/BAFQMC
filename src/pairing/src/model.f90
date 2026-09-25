@@ -32,8 +32,8 @@ contains
         write(50,*) 'lowest  energy level of single particle Ham     :', Op_T%energy_min
         write(50,*) 'bandwidth            of single particle Ham     :', Op_T%bandwidth
 ! set H-S exponential
-        call Op_U1%set(RU1)
-        call Op_U2%set(RU2)
+        call Op_U1%set(U1, CHANNEL_RELATIVE)
+        call Op_U2%set(U2, CHANNEL_TOTAL)
         return
     end subroutine Model_init
     

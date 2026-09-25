@@ -1,14 +1,14 @@
 """Check interacting HS propagation against independent dense matrix products.
 
 Run with BAFQMC_RUN_MPI_TESTS=1. The actual number-conserving executable reads
-a prescribed nonuniform auxiliary field with U1<0 and U2>0. Zero proposal
+a prescribed nonuniform auxiliary field with U1>0 and U2<0. Zero proposal
 displacement and disabled warmup keep that field fixed. Every bin contains a
 left and right traversal of imaginary time; three stabilization intervals are
 checked against the same direct Gaussian trace at each cyclic time boundary.
 
 This checks configuration weights and fixed-field observables, including both
 interaction channels. It does not test Metropolis acceptance decisions or
-estimate interacting thermal averages. No archived measurements are used.
+estimate interacting thermal averages. No stored benchmark measurements are used.
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ NSLICE = 6
 NBIN = 3
 BETA = 0.6
 MU = -5.0
-U1, U2 = -0.1, 0.7
+U1, U2 = 0.7, -0.1
 DT = BETA / NSLICE
 TOLERANCE = 2.0e-10
 
@@ -49,7 +49,7 @@ def prescribed_fields():
         -0.19 + 0.28 * np.cos(0.43 * time - 0.61 * site)
         + 0.13 * np.sin(0.29 * time * site)
     )
-    return np.stack((density_field, relative_field), axis=-1)
+    return np.stack((relative_field, density_field), axis=-1)
 
 
 def direct_fixed_field_reference(fields):
@@ -66,8 +66,8 @@ def direct_fixed_field_reference(fields):
     eigenvalues, eigenvectors = np.linalg.eigh(hopping - MU * np.eye(NSITE))
     kinetic_slice = (eigenvectors * np.exp(-DT * eigenvalues)) @ eigenvectors.T
     hs_exponents = (
-        np.sqrt(-2.0 * U1 * DT) * fields[:, :, 0]
-        + 1j * np.sqrt(2.0 * U2 * DT) * fields[:, :, 1]
+        1j * np.sqrt(2.0 * U1 * DT) * fields[:, :, 0]
+        + np.sqrt(-2.0 * U2 * DT) * fields[:, :, 1]
     )
     slices = [kinetic_slice @ np.diag(np.exp(exponent)) for exponent in hs_exponents]
 
@@ -96,7 +96,7 @@ def direct_fixed_field_reference(fields):
     kinetic = float(np.mean(kinetic_values))
     interaction = (
         2.0 * (U1 + U2) * onsite_n2 / NSITE
-        + 2.0 * (U1 - U2) * double_occupation
+        + 2.0 * (U2 - U1) * double_occupation
     )
     matrix = np.eye(NSITE) - products[-1]
     _, log_abs_determinant = np.linalg.slogdet(matrix)

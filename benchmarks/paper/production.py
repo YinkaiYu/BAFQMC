@@ -85,7 +85,7 @@ def produce(root, data, index, output, models, stages, python_ed, threads, *, re
                     continue
                 source = stage_path(scratch, model, case_id, stage)
                 if previous and source.exists():
-                    # A failed chain restarts from its original input, never appends.
+                    # A failed chain restarts from its manifest input, never appends.
                     backup = scratch / "incomplete" / model / case_id / f"{stage}-{time.time_ns()}"
                     backup.parent.mkdir(parents=True, exist_ok=True)
                     shutil.move(str(source), str(backup))

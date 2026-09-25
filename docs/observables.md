@@ -81,8 +81,8 @@ The physical Hamiltonian is $`\hat H=\hat H_t+\hat H_U+\hat H_\Delta`$, where
 ```
 
 ```math
-\hat H_U=U_1\sum_i(\hat n_{b,i}+\hat n_{c,i})^2+
-U_2\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
+\hat H_U=U_1\sum_i(\hat n_{b,i}-\hat n_{c,i})^2+
+U_2\sum_i(\hat n_{b,i}+\hat n_{c,i})^2,
 ```
 
 ```math
@@ -91,7 +91,7 @@ U_2\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
 ```
 
 The paired executable accepts real $`\Delta`$; the number-conserving solver
-has $`\Delta=0`$. The paper's main model sets $`U_1=0`$ and $`U_2=U`$.
+has $`\Delta=0`$. The paper's main model sets $`U_1=U`$ and $`U_2=0`$.
 Each nearest-neighbor bond in $`\hat H_t`$ is counted once, with both hopping
 directions shown explicitly. Define $`e_t=\langle\hat H_t\rangle/N_s`$,
 $`e_U=\langle\hat H_U\rangle/N_s`$, and $`e_\Delta=\langle\hat H_\Delta\rangle/N_s`$.
@@ -120,7 +120,7 @@ e_\Delta&=\Delta P_{\mathrm{code}}=-\Delta P_{\mathrm{paper}}.
 | Output file | Definition |
 | --- | --- |
 | `kinetic` | $`e_t`$, including $`t`$ and both flavors |
-| `interaction_energy_density` | $`e_U=(U_1+U_2)(M_b+M_c)/N_s+2(U_1-U_2)D`$ |
+| `interaction_energy_density` | $`e_U=(U_1+U_2)(M_b+M_c)/N_s+2(U_2-U_1)D`$ |
 | `pair_equal` (**paired only**) | $`P_{\mathrm{code}}`$; negate it for the paper's pair amplitude |
 | `pairing_energy_density` (**paired only**) | $`e_\Delta=\Delta P_{\mathrm{code}}`$ |
 | `energy_density` | $`e=\langle\hat H\rangle/N_s=e_t+e_U+e_\Delta`$ |
@@ -173,9 +173,9 @@ including disconnected contributions, without subtraction of products of
 mean values. The pair structure factor is unchanged by the code-to-paper
 phase rotation.
 
-When the lattice cannot represent K, the executable still writes `sf_K`
-and `dw_K`, filled with zero placeholders. Treat those channels as
-unavailable on that lattice. This does not affect `psf_Gamma`.
+When the lattice cannot represent K, the `sf_K` and `dw_K` channels are
+unavailable on that lattice; the executable writes zero entries to preserve the
+output schema. This does not affect `psf_Gamma`.
 
 ## Density-correlation file families
 

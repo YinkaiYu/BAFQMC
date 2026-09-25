@@ -30,30 +30,29 @@ class ManuscriptTests(unittest.TestCase):
         groups = {}
         for case in self.index["cases"]:
             groups.setdefault(case["manuscript"]["benchmark"], []).append(case)
-        self.assertEqual(set(groups), {"repulsive_u", "pairing_delta", "attractive_u1"})
+        self.assertEqual(set(groups), {"repulsive_u", "pairing_delta", "attractive_u2"})
         expected = {
-            "repulsive_u": ([0, .25, .5, .75, 1, 1.25, 1.5, 2], "U2", "U", "main", "benchmark_combined", 0, "a-d", -3.5, 4),
-            "pairing_delta": ([0, .05, .1, .15, .2, .25, .3], "Delta", "Delta", "main", "benchmark_combined", 1, "e-h", -5, 4),
-            "attractive_u1": ([-.6, -.5, -.4, -.3, -.2, -.1, 0], "U1", "U1", "supplement", "benchmark_attractive", 0, "a-d", -7, 1),
+            "repulsive_u": ([0, .25, .5, .75, 1, 1.25, 1.5, 2], "U1", "main", "benchmark_combined", 0, "a-d", -3.5, 4),
+            "pairing_delta": ([0, .05, .1, .15, .2, .25, .3], "Delta", "main", "benchmark_combined", 1, "e-h", -5, 4),
+            "attractive_u2": ([-.6, -.5, -.4, -.3, -.2, -.1, 0], "U2", "supplement", "benchmark_attractive", 0, "a-d", -7, 1),
         }
-        for group, (grid, solver_parameter, scan_parameter, section, figure, row, panels, mu, beta) in expected.items():
+        for group, (grid, scan_parameter, section, figure, row, panels, mu, beta) in expected.items():
             with self.subTest(benchmark=group):
                 cases = groups[group]
-                self.assertEqual([case["parameters"][solver_parameter] for case in cases], grid)
+                self.assertEqual([case["parameters"][scan_parameter] for case in cases], grid)
                 for case in cases:
                     params, mapping = case["parameters"], case["manuscript"]
                     self.assertEqual((params["Lx"], params["Ly"], params["t"], params["mu"], params["beta"]), (3, 3, 1, mu, beta))
                     self.assertEqual((mapping["section"], mapping["figure"], mapping["figure_row"], mapping["panels"]), (section, figure, row, panels))
-                    self.assertEqual((mapping["scan_parameter"], mapping["solver_parameter"]), (scan_parameter, solver_parameter))
-                    self.assertEqual(case["x"], params[solver_parameter])
+                    self.assertEqual(mapping["scan_parameter"], scan_parameter)
+                    self.assertEqual(case["x"], params[scan_parameter])
                     if section == "main":
-                        self.assertEqual(params["U1"], 0)
-                        self.assertEqual(mapping["U"], params["U2"])
+                        self.assertEqual(params["U2"], 0)
                         self.assertLess(params["mu"], -3 * params["t"] - abs(params.get("Delta", 0)))
                     else:
-                        self.assertIsNone(mapping["U"])
-                    if group != "repulsive_u":
-                        self.assertEqual(params["U2"], 1)
+                        self.assertEqual(params["U1"], 1)
+                    if group == "repulsive_u":
+                        self.assertEqual(params["U2"], 0)
                     if group == "pairing_delta":
                         self.assertEqual((params["nmax"], params["ncut"]), (3, 4))
                     else:
@@ -120,7 +119,7 @@ class ManuscriptTests(unittest.TestCase):
                 rows = list(csv.DictReader(handle))
             self.assertEqual(len(rows), 88)
             by_key = {(case["model"], case["id"]): case for case in cases}
-            fields = ("benchmark", "section", "figure", "figure_row", "panels", "scan_parameter", "solver_parameter", "U")
+            fields = ("benchmark", "section", "figure", "figure_row", "panels", "scan_parameter")
             for row in rows:
                 mapping = by_key[(row["model"], row["case"])]["manuscript"]
                 for field in fields:

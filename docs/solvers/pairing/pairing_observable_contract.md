@@ -73,7 +73,7 @@ See [the Hamiltonian conventions](physics.md#manuscript-notation-and-pair-phase)
 | --- | --- | --- |
 | \(P_\Delta\) | `pair_equal` | \(N_s^{-1}\sum_i\langle b_i c_i+b_i^\dagger c_i^\dagger\rangle\) |
 | \(e_\Delta\) | `pairing_energy_density` | \(\Delta P_\Delta\), per site; total \(E_\Delta=N_s e_\Delta\) |
-| \(e_U\) | `interaction_energy_density` | \((U_1+U_2)(M_b^{(2)}+M_c^{(2)})/N_s+2(U_1-U_2)D_{bc}\), per site |
+| \(e_U\) | `interaction_energy_density` | \((U_1+U_2)(M_b^{(2)}+M_c^{(2)})/N_s+2(U_2-U_1)D_{bc}\), per site |
 | \(e_\mu\) | `chemical_energy_density` | \(-\mu\rho\), per-site diagnostic only |
 | \(E_{\rm grand}\) | `grand_energy_density` | \(N_s\,\texttt{grand\_energy\_density}=E+N_s e_\mu\), diagnostic only |
 

@@ -7,24 +7,24 @@
       "reference": "benchmarks/dqmc_references/triangle_3x2_free_beta3_mu-2.5.json"
     },
     {
-      "name": "triangle_3x2_beta3_mu-2.5_u1_0_u2_1",
-      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta3_mu-2.5_u1_0_u2_1",
-      "reference": "benchmarks/dqmc_references/triangle_3x2_beta3_mu-2.5_u1_0_u2_1.json"
+      "name": "triangle_3x2_beta3_mu-2.5_u1_1_u2_0",
+      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta3_mu-2.5_u1_1_u2_0",
+      "reference": "benchmarks/dqmc_references/triangle_3x2_beta3_mu-2.5_u1_1_u2_0.json"
     },
     {
-      "name": "triangle_3x2_beta6_mu-2.5_u1_0_u2_1",
-      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta6_mu-2.5_u1_0_u2_1",
-      "reference": "benchmarks/dqmc_references/triangle_3x2_beta6_mu-2.5_u1_0_u2_1.json"
+      "name": "triangle_3x2_beta6_mu-2.5_u1_1_u2_0",
+      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta6_mu-2.5_u1_1_u2_0",
+      "reference": "benchmarks/dqmc_references/triangle_3x2_beta6_mu-2.5_u1_1_u2_0.json"
     },
     {
-      "name": "triangle_3x2_beta1_mu-5_u1_-0.1_u2_1",
-      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta1_mu-5_u1_-0.1_u2_1",
-      "reference": "benchmarks/dqmc_references/triangle_3x2_beta1_mu-5_u1_-0.1_u2_1.json"
+      "name": "triangle_3x2_beta1_mu-5_u1_1_u2_-0.1",
+      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta1_mu-5_u1_1_u2_-0.1",
+      "reference": "benchmarks/dqmc_references/triangle_3x2_beta1_mu-5_u1_1_u2_-0.1.json"
     },
     {
-      "name": "triangle_3x2_beta1.4_mu-5_u1_-0.1_u2_1",
-      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta1.4_mu-5_u1_-0.1_u2_1",
-      "reference": "benchmarks/dqmc_references/triangle_3x2_beta1.4_mu-5_u1_-0.1_u2_1.json"
+      "name": "triangle_3x2_beta1.4_mu-5_u1_1_u2_-0.1",
+      "input_dir": "../../examples/number_conserving/benchmarks/triangle_3x2_beta1.4_mu-5_u1_1_u2_-0.1",
+      "reference": "benchmarks/dqmc_references/triangle_3x2_beta1.4_mu-5_u1_1_u2_-0.1.json"
     }
   ]
 }

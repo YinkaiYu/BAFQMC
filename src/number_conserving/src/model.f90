@@ -31,9 +31,10 @@ contains
         write(50,*) 'highest energy level of single particle Ham     :', Op_T%energy_max
         write(50,*) 'lowest  energy level of single particle Ham     :', Op_T%energy_min
         write(50,*) 'bandwidth            of single particle Ham     :', Op_T%bandwidth
-! set H-S exponential
-        call Op_U1%set(RU1)
-        call Op_U2%set(RU2)
+! set H-S exponentials: Op_U1 is the relative-density field and Op_U2
+! is the total-density field in the paper convention.
+        call Op_U1%set(U1)
+        call Op_U2%set(U2)
         return
     end subroutine Model_init
     

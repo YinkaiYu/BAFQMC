@@ -68,9 +68,11 @@ coefficient by $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$.
 Specify the interaction in operators, including its linear and constant
 terms. For example, $`n^2=n(n-1)+n`$, so replacing one by the other also changes
 the chemical-potential contribution. Keep physical energy and grand-canonical
-energy separately defined throughout the implementation. For extensions of
-the paper's main model, use $`b,c`$ for the two flavors and $`U=U_2`$ with
-$`U_1=0`$ for the relative-density interaction.
+energy separately defined throughout the implementation. For the paper's convention, use $`b,c`$ for the two flavors and write
+$`H_{\mathrm{int}}=U_1(n_b-n_c)^2+U_2(n_b+n_c)^2`$, with
+$`U_1\geq0`$ and $`U_2\leq0`$. The main benchmark is $`U_1=U`$, $`U_2=0`$;
+the paired benchmark uses $`U_1=1`$, $`U_2=0`$, and the supplemental scan
+fixes $`U_1=1`$ while varying $`U_2<0`$.
 
 ## Derive the decoupling and its sign protection
 
@@ -103,7 +105,7 @@ cross-partition couplings. Symmetry of the original interaction alone does not
 check these configuration-level conditions.
 
 The simplest existing construction gives an explicit example. For equal real
-hopping of the two flavors, $`U_1\leq0`$ and $`U_2\geq0`$ generate conjugate
+hopping of the two flavors, $`U_1\geq0`$ and $`U_2\leq0`$ generate conjugate
 single-flavor factors at the **same** field values. If $`B_c(\phi)=B_b(\phi)^*`$,
 then, within the convergent trace domain,
 
@@ -158,7 +160,7 @@ for the quadratic form above is
 ```
 
 Real Bogoliubov frequencies alone do not establish positivity of that energy
-matrix. For the current $`U_1=0`$ construction with uniform onsite pairing and
+matrix. For the current $`U_2=0`$ construction with uniform onsite pairing and
 real hopping, the corresponding sufficient bound is
 
 ```math
@@ -178,9 +180,9 @@ matrix must retain the correct particle/hole signs and conjugations; using a
 Hermitian eigensolver on that commutator matrix changes the propagator.
 
 The paired representation also has a scalar normal-ordering contribution.
-For the current total-density HS field $`x=\sqrt{-2U_1\Delta\tau}\,\phi_1`$,
-the scalar factor is $`e^{-x}`$, and a proposal contributes
-$`e^{-(x'-x)}`$ to `ratio_constant`. Re-derive this factor for a different
+For the current total-density HS field $`x_2=\sqrt{-2U_2\Delta\tau}\,\phi_2`$,
+the scalar factor is $`e^{-x_2}`$, and a proposal contributes
+$`e^{-(x_2'-x_2)}`$ to `ratio_constant`. Re-derive this factor for a different
 quadratic generator or Nambu convention.
 
 The local determinant factor currently uses
@@ -231,10 +233,10 @@ Consult the source directly through the
   one site and uses only diagonal entries of its $`4\times4`$ `Delta`.
   Adding off-diagonal entries to that array alone does not implement the
   required Woodbury update.
-- **Channel signs encode operators.** Paired `opU_set` selects total density
-  for negative coupling and relative density for positive coupling. Opposite
-  signs or additional operators require explicit channel definitions; renaming
-  `Op_U1` or changing a JSON number does not change that dispatch.
+- **Channel signs encode operators.** The paired `opU_set` uses the positive $`U_1`$ channel for relative density
+  and the nonpositive $`U_2`$ channel for total density. Opposite signs or
+  additional operators require explicit channel definitions; renaming `Op_U1`
+  or changing a JSON number does not change that dispatch.
 - **Measurements contain the old Hamiltonian explicitly.** Kinetic energy
   sums the scalar `RT` over `L_bonds`; paired energy uses onsite
   `RDelta*pair_equal`. Update these when propagation changes. The current
@@ -249,10 +251,9 @@ Consult the source directly through the
   zero while paired ED omits it. That zero represents an unavailable K
   estimator. Define and implement the new model's actual momenta.
 
-The existing paired time-dependent observable routine `Obs_tau_calc` is a
-placeholder. A research task involving imaginary-time correlations needs an
-implemented estimator and its propagation checks in addition to the
-equal-time workflow.
+The existing paired time-dependent observable routine `Obs_tau_calc` is outside
+the supported equal-time workflow. A research task involving imaginary-time
+correlations must add an estimator together with its propagation checks.
 
 ## Extend ED and analysis with the solver
 
@@ -310,7 +311,7 @@ t_1\cos(\mathbf k\cdot\mathbf a_1)
 ```
 
 This change preserves the conjugate-flavor relation for equal real hoppings
-and the original onsite HS channels. For $`U_1=0`$ and uniform real onsite
+and the original onsite HS channels. For $`U_2=0`$ and uniform real onsite
 pairing, a simple sufficient thermal bound is
 
 ```math
@@ -321,7 +322,7 @@ It follows from a lower bound on the hopping spectrum and need not be the
 tight band minimum. As a concrete implementation test, use
 $`(t_1,t_2,t_3)=(1,0.8,0.35)`$, $`\mu=-5`$, $`\beta=1`$ and first set
 $`U_1=U_2=0`$. Test $`\Delta=0`$ and, for the paired extension, $`\Delta=0.1`$.
-Then exercise the existing relative-density interaction at $`U_2=0.7`$.
+Then exercise the existing relative-density interaction at $`U_1=0.7`$.
 These are proposed extension tests, not bundled runnable cases.
 
 An agent implementing this request should:

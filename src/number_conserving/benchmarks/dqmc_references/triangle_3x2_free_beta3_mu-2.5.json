@@ -1,102 +1,102 @@
 {
   "case": "triangle_3x2_free_beta3_mu-2.5",
-  "source": "Free-boson analytic reference for U1=U2=0. This live-suite case verifies executable and observable normalization without Monte Carlo convergence.",
-  "parameters": {
-    "Lx": 3,
-    "Ly": 2,
-    "t": 1.0,
-    "U1": 0.0,
-    "U2": 0.0,
-    "beta": 3.0,
-    "mu": -2.5,
-    "Ltrot": 300,
-    "Nbin": 1,
-    "Nsweep": 1
-  },
   "normalization": {
     "analytic_total_NE": "Two flavors of free bosons with single-particle energies epsilon_k - mu = [0.5, 0.5, 0.5, 2.5, 2.5, 8.5].",
-    "dqmc_total_NE": "DQMC total particle number is num_up + num_do.",
     "analytic_total_kinetic": "Kinetic operator excludes the -mu diagonal shift and includes both flavors.",
-    "dqmc_kinetic": "DQMC file kinetic includes both flavors and is divided by Lq, so compare kinetic * Lq.",
-    "ed_doubleOcc": "Per-site cross-flavor onsite density <sum_i n_b,i n_c,i> / Lq.",
     "dqmc_doubleOcc": "DQMC doubleOcc has the same per-site normalization.",
-    "ed_squareOcc": "Per-site half normal-ordered same-flavor onsite pair 0.5 * <sum_i,s n_s,i (n_s,i - 1)> / Lq.",
+    "dqmc_kinetic": "DQMC file kinetic includes both flavors and is divided by Lq, so compare kinetic * Lq.",
     "dqmc_squareOcc": "DQMC squareOcc matches this half normal-ordered same-flavor pair estimator.",
-    "ed_numsquare": "numsquare_up and numsquare_do are <N_b^2> and <N_c^2>."
+    "dqmc_total_NE": "DQMC total particle number is num_up + num_do.",
+    "ed_doubleOcc": "Per-site cross-flavor onsite density <sum_i n_b,i n_c,i> / Lq.",
+    "ed_numsquare": "numsquare_up and numsquare_do are <N_b^2> and <N_c^2>.",
+    "ed_squareOcc": "Per-site half normal-ordered same-flavor onsite pair 0.5 * <sum_i,s n_s,i (n_s,i - 1)> / Lq."
   },
   "observables": {
-    "total_NE": {
-      "value": 1.725515062517064,
+    "doubleOcc": {
       "atol": 1e-12,
-      "rtol": 0.0,
       "dqmc": {
-        "operation": "sum_last",
+        "files": [
+          "doubleOcc"
+        ],
+        "min_samples": 1,
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.020676404381758794
+    },
+    "numsquare_do": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "numsquare_do"
+        ],
+        "min_samples": 1,
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 1.8545893733529215
+    },
+    "numsquare_up": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "numsquare_up"
+        ],
+        "min_samples": 1,
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 1.8545893733529215
+    },
+    "squareOcc": {
+      "atol": 1e-12,
+      "dqmc": {
+        "files": [
+          "squareOcc"
+        ],
+        "min_samples": 1,
+        "operation": "last"
+      },
+      "rtol": 0.0,
+      "value": 0.04135280876351759
+    },
+    "total_NE": {
+      "atol": 1e-12,
+      "dqmc": {
         "files": [
           "num_up",
           "num_do"
         ],
-        "min_samples": 1
-      }
+        "min_samples": 1,
+        "operation": "sum_last"
+      },
+      "rtol": 0.0,
+      "value": 1.725515062517064
     },
     "total_kinetic": {
-      "value": -3.446603001365339,
       "atol": 1e-12,
-      "rtol": 0.0,
       "dqmc": {
-        "operation": "last_times_lq",
         "files": [
           "kinetic"
         ],
-        "min_samples": 1
-      }
-    },
-    "doubleOcc": {
-      "value": 0.020676404381758794,
-      "atol": 1e-12,
+        "min_samples": 1,
+        "operation": "last_times_lq"
+      },
       "rtol": 0.0,
-      "dqmc": {
-        "operation": "last",
-        "files": [
-          "doubleOcc"
-        ],
-        "min_samples": 1
-      }
-    },
-    "squareOcc": {
-      "value": 0.04135280876351759,
-      "atol": 1e-12,
-      "rtol": 0.0,
-      "dqmc": {
-        "operation": "last",
-        "files": [
-          "squareOcc"
-        ],
-        "min_samples": 1
-      }
-    },
-    "numsquare_up": {
-      "value": 1.8545893733529215,
-      "atol": 1e-12,
-      "rtol": 0.0,
-      "dqmc": {
-        "operation": "last",
-        "files": [
-          "numsquare_up"
-        ],
-        "min_samples": 1
-      }
-    },
-    "numsquare_do": {
-      "value": 1.8545893733529215,
-      "atol": 1e-12,
-      "rtol": 0.0,
-      "dqmc": {
-        "operation": "last",
-        "files": [
-          "numsquare_do"
-        ],
-        "min_samples": 1
-      }
+      "value": -3.446603001365339
     }
-  }
+  },
+  "parameters": {
+    "Ltrot": 300,
+    "Lx": 3,
+    "Ly": 2,
+    "Nbin": 1,
+    "Nsweep": 1,
+    "U1": 0.0,
+    "U2": 0.0,
+    "beta": 3.0,
+    "mu": -2.5,
+    "t": 1.0
+  },
+  "source": "Free-boson analytic reference for U1=U2=0. This live-suite case verifies executable and observable normalization without Monte Carlo convergence."
 }

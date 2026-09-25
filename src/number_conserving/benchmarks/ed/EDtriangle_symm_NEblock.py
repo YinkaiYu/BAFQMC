@@ -3,7 +3,7 @@
 
 The script reads ``params.txt`` in the current directory and writes:
 
-- ``results.txt`` with the historical first four lines:
+- ``results.txt`` with the first four lines required by the parser:
   total_NE, total_kinetic, last-shell total_NE contribution, last-shell kinetic
   contribution.
 - ``results.json`` with all scalar observables used by the benchmark suite.
@@ -151,7 +151,7 @@ def build_block(
         c_array = np.asarray(c_config, dtype=float)
         hamiltonian[index, index] = (u1 + u2) * np.sum(
             b_array * b_array + c_array * c_array
-        ) + 2.0 * (u1 - u2) * np.sum(b_array * c_array)
+        ) + 2.0 * (u2 - u1) * np.sum(b_array * c_array)
         double_occ[index] = np.sum(b_array * c_array) / float(lq)
         square_occ[index] = (
             0.5

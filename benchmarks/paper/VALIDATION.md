@@ -5,12 +5,11 @@ The computational package was validated in Linux/WSL on
 used QuSpin 1.0.1, NumPy 2.4.4, SciPy 1.17.1, and Numba 0.65.1. Figure checks
 used NumPy 2.3.4 and Matplotlib 3.10.7.
 
-- All 35 imported Fortran model/propagation/measurement sources match their
-  source-repository snapshots byte for byte. The shared numerical interfaces
-  are the new portable code described in `src/common/README.md`.
+- All Fortran model, propagation, and measurement sources compile with the
+  shared numerical interfaces described in `src/common/README.md`.
 - Matrix reconstruction, Hermitian eigensystems, inversion, and the random
   sequence passed independent invariant checks. The modular random recurrence
-  also matched 150000 transitions of the historical integer-wrap convention.
+  also matched 150000 transitions under the integer-wrap convention.
 - The number-conserving live regression completed its analytic free case and
   four interacting 100000-bin cases. Its Python, parameter-routing, and ED
   memory checks passed.
@@ -18,13 +17,13 @@ used NumPy 2.3.4 and Matplotlib 3.10.7.
   formulations agreed on 25 observables and energy derivatives.
 - Small complete DQMC -> ED -> analysis runs passed for both solvers. Production
   orchestration checks cover per-case copying, hashes, continuation, and
-  restarting an interrupted chain from its original input.
+  restarting an interrupted chain from the manifest input.
 - A full paper-size paired ED calculation (7297 basis states at Delta=0.2)
-  reproduced the archived four reference values within 5.3e-18 absolute.
-- All 22 archived cases were reblocked from their original 100000-sample
-  measurement sequences before retaining the compact processed tables. The
-  stored means and standard errors agree with that independent reconstruction.
-  The compact package also passed without any raw archives present.
+  reproduced the four stored reference values within 5.3e-18 absolute.
+- All 22 stored cases were reblocked from their 100000-sample measurement
+  sequences before retaining the compact processed tables. The stored means
+  and standard errors agree with that independent reconstruction. The compact
+  package also passed without any raw chains present.
 - Both regenerated figure PDFs, rasterized to 1800 pixels wide with the same
   renderer, matched the manuscript figures pixel for pixel. PDF byte identity
   is not required because metadata can differ.
@@ -48,9 +47,9 @@ seven-point Delta scan in the main text, plus the seven-point U1 scan in the SM.
   continuation and interrupted-chain recovery, and selecting a single case
   for fresh reference calculation. Changing the selected cases is detected
   when resuming a campaign.
-- Scope selection preserves the original inputs, case ordering, and seeds.
-  The 88 stored observable rows retain every original numeric value; added
-  columns identify the current manuscript figures and notation.
+- Scope selection preserves the supplied inputs, case ordering, and seeds.
+  The 88 stored observable rows retain every numeric value; added columns
+  identify the current manuscript figures and notation.
 - The regenerated `benchmark_combined.pdf` and `benchmark_attractive.pdf`
   match the current manuscript figures pixel for pixel when rasterized to
   1800 pixels wide. Individual main-text rows retain labels a–d and e–h.

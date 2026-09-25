@@ -63,7 +63,7 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run
 The second command builds and runs BAFQMC, computes the ED references, then
 creates tables and figures from the new measurements. It includes all 22
 points: the 15 main benchmark points and seven supplemental points. Each
-production point uses 100000 measurement bins and the original input settings.
+production point uses 100000 measurement bins and the input settings listed in the paper manifest.
 For the reference desktop, budget **12–24 hours**, **16 GiB RAM** with about
 8 GiB available to the calculation, and **8 GiB free disk**. See
 [measured resource estimates](../benchmarks/paper/RESOURCES.md) for details.
@@ -75,7 +75,7 @@ runs/                                raw BAFQMC data and ED results
 progress.json                        completed stages and timing
 observables.csv                      means, SEM, and ED values
 block_means.csv                       blocked measurements
-records.json                         results with parameters and provenance
+records.json                         results with parameters and comparison values
 figures/benchmark_combined.pdf        main benchmark
 figures/benchmark_attractive.pdf      supplemental benchmark
 environment.json                     environment and selected-case metadata
@@ -88,7 +88,7 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run --resume
 ```
 
 Completed stages are checked and reused. The interrupted stage is rerun from
-its original inputs. The root runner manages scratch automatically; use
+the manifest inputs. The root runner manages scratch automatically; use
 `--work-dir /path/to/empty/linux-scratch` to choose its location.
 
 To compute a selected part of the paper:

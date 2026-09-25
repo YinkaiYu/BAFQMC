@@ -14,7 +14,10 @@ module OperatorHubbard_mod
     end type AccCounter
     
     type :: OperatorHubbard
-        complex(kind=8), private :: alpha ! = sqrt(-2UΔτ)
+        ! For either channel alpha=sqrt(-2 U Delta tau).  U1>=0 therefore
+        ! produces the imaginary relative-density factor, while U2<=0
+        ! produces the real total-density factor.
+        complex(kind=8), private :: alpha ! = sqrt(-2U*Dtau)
         complex(kind=8), private :: gaussian
         complex(kind=8), private :: expalpha
 
@@ -30,19 +33,19 @@ module OperatorHubbard_mod
     end type OperatorHubbard
     
 contains
-    subroutine opU_set(this, RU)
+    subroutine opU_set(this, U)
         class(OperatorHubbard), intent(inout) :: this
-        real(kind=8), intent(in) :: RU
+        real(kind=8), intent(in) :: U
         this%alpha = dcmplx( 0.d0, 0.d0 )
-        if ( RU < -Zero ) this%alpha = dcmplx( sqrt(-2.d0 * RU * Dtau), 0.d0 )
-        if ( RU >  Zero ) this%alpha = dcmplx( 0.d0, sqrt( 2.d0 * RU * Dtau) )
+        if ( U < -Zero ) this%alpha = dcmplx( sqrt(-2.d0 * U * Dtau), 0.d0 )
+        if ( U >  Zero ) this%alpha = dcmplx( 0.d0, sqrt( 2.d0 * U * Dtau) )
         return
     end subroutine opU_set
     
     subroutine opU_get_exp(this, phi, nflag)
         class(OperatorHubbard), intent(inout) :: this
         integer, intent(in) :: nflag ! +1 or -1; propagating direction
-        real(kind=8), intent(in) :: phi ! space time local auxiliary field value, for phi_1 or phi_2
+        real(kind=8), intent(in) :: phi ! space-time field for U1 (relative) or U2 (total)
         this%gaussian = dcmplx( exp(-0.5d0 * phi * phi), 0.d0 )
         this%expalpha = exp( this%alpha * phi * nflag )
         return

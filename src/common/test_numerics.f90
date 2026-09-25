@@ -41,7 +41,7 @@ program test_numerics
     if (residual > 1.0e-12_dp) error stop 'UDV reconstruction'
     call mmult(product,conjg(transpose(u)),u)
     if (maxval(abs(product-identity)) > 1.0e-12_dp) error stop 'QR orthogonality'
-    ! Literal checkpoints independently evaluated for the historical recurrence.
+    ! Literal checkpoints for the documented recurrence.
     seed = 1
     value = ranf(seed)
     if (seed /= 48828125) error stop 'RNG first checkpoint'

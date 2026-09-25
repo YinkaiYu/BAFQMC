@@ -81,14 +81,14 @@ class Campaign3x3Tests(unittest.TestCase):
         cases = list(campaign.iter_cases(campaign.default_manifest()))
         labels = {case["label"] for case in cases}
 
-        self.assertIn("U2_0_mu-3.5_b4", labels)
-        self.assertIn("U1_0_mu-5_b1", labels)
-        self.assertEqual({case["sweep"] for case in cases}, {"U2_sweep", "U1_sweep"})
+        self.assertIn("U1_0_mu-3.5_b4", labels)
+        self.assertIn("U2_0_mu-5_b1", labels)
+        self.assertEqual({case["sweep"] for case in cases}, {"U1_sweep", "U2_sweep"})
         self.assertTrue(
             any(case["U2"] == 0.0 and case["mu"] == -3.5 for case in cases)
         )
         self.assertTrue(
-            any(case["U1"] == 0.0 and case["U2"] == 1.0 for case in cases)
+            any(case["U1"] == 1.0 and case["U2"] == 0.0 for case in cases)
         )
 
 
@@ -96,13 +96,13 @@ class Campaign3x3Tests(unittest.TestCase):
     def test_write_dqmc_case_creates_fixed_runtime_inputs(self) -> None:
         manifest = campaign.default_manifest()
         case = {
-            "sweep": "U2_sweep",
+            "sweep": "U1_sweep",
             "Lx": 3,
             "Ly": 3,
             "beta": 4.0,
             "mu": -3.5,
-            "U1": 0.0,
-            "U2": 1.5,
+            "U1": 1.5,
+            "U2": 0.0,
         }
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = campaign.write_dqmc_case(
@@ -120,7 +120,7 @@ class Campaign3x3Tests(unittest.TestCase):
         self.assertEqual(confin_text, "0\n")
         self.assertEqual(seeds_text, "13579\n")
         rows = [line.split() for line in param_text.splitlines()[:7]]
-        self.assertEqual([float(x) for x in rows[0]], [0.0, 1.5, -3.5])
+        self.assertEqual([float(x) for x in rows[0]], [1.5, 0.0, -3.5])
         self.assertEqual([float(x) for x in rows[1]], [3, 3, 400, 4.0])
         self.assertEqual([float(x) for x in rows[3]], [10, 100000, 1, 1.5])
         self.assertEqual(rows[4][0].lower(), ".false.")
@@ -190,7 +190,7 @@ class Campaign3x3Tests(unittest.TestCase):
 
     def test_results_summary_retains_valid_measurements(self) -> None:
         manifest = campaign.default_manifest()
-        manifest["sweeps"] = [{**manifest["sweeps"][0], "U2": [0.0]}]
+        manifest["sweeps"] = [{**manifest["sweeps"][0], "U1": [0.0]}]
         manifest["dqmc_defaults"]["block_size"] = 2
         case = next(iter(campaign.iter_cases(manifest)))
         with tempfile.TemporaryDirectory() as tmp:

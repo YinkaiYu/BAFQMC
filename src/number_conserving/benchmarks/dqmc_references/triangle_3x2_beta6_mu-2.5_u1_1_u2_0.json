@@ -1,0 +1,127 @@
+{
+  "case": "triangle_3x2_beta6_mu-2.5_u1_1_u2_0",
+  "normalization": {
+    "dqmc_doubleOcc": "DQMC doubleOcc has the same per-site normalization.",
+    "dqmc_kinetic": "DQMC file kinetic includes both flavors and is divided by Lq, so compare mean(kinetic) * Lq.",
+    "dqmc_squareOcc": "DQMC squareOcc matches this half normal-ordered same-flavor pair estimator.",
+    "dqmc_total_NE": "Use mean(num_up) + mean(num_do) for the Monte Carlo run.",
+    "ed_doubleOcc": "Per-site cross-flavor onsite density <sum_i n_b,i n_c,i> / Lq.",
+    "ed_numsquare": "numsquare_up and numsquare_do are <N_b^2> and <N_c^2>.",
+    "ed_squareOcc": "Per-site half normal-ordered same-flavor onsite pair 0.5 * <sum_i,s n_s,i (n_s,i - 1)> / Lq.",
+    "ed_total_NE": "ED script accumulates NE = NE_b + NE_c.",
+    "ed_total_kinetic": "ED kinetic operator includes both b and c hopping layers."
+  },
+  "observables": {
+    "doubleOcc": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "doubleOcc"
+        ],
+        "min_samples": 100000,
+        "operation": "mean",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": 5.0104309962475375e-06
+    },
+    "numsquare_do": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "numsquare_do"
+        ],
+        "min_samples": 100000,
+        "operation": "mean",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": 0.00041666206338322737
+    },
+    "numsquare_up": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "numsquare_up"
+        ],
+        "min_samples": 100000,
+        "operation": "mean",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": 0.00041666206338322737
+    },
+    "squareOcc": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "squareOcc"
+        ],
+        "min_samples": 100000,
+        "operation": "mean",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": 2.3674394261440157e-09
+    },
+    "total_NE": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "num_up",
+          "num_do"
+        ],
+        "min_samples": 100000,
+        "operation": "sum_mean",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": 0.0008330248173669302
+    },
+    "total_kinetic": {
+      "atol": 0.0,
+      "dqmc": {
+        "files": [
+          "kinetic"
+        ],
+        "min_samples": 100000,
+        "operation": "mean_times_lq",
+        "statistics": {
+          "block_size": 10000,
+          "stderr_tolerance": 3.0
+        }
+      },
+      "rtol": 0.0,
+      "value": -0.001659465125418983
+    }
+  },
+  "parameters": {
+    "Ltrot": 600,
+    "Lx": 3,
+    "Ly": 2,
+    "Nbin": 100000,
+    "Nsweep": 1,
+    "U1": 1.0,
+    "U2": 0.0,
+    "beta": 6.0,
+    "mu": -2.5,
+    "shiftLoc": 1.5,
+    "t": 1.0
+  },
+  "source": "Long real-DQMC benchmark against the beta=6 ED result."
+}

@@ -69,12 +69,12 @@ Nambu 求解器支持实数在位配对。
 
 ```math
 \hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2(\hat n_{b,i}-\hat n_{c,i})^2\right],
-\qquad U_1\leq0,\quad U_2\geq0.
+ U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right],
+\qquad U_1\geq0,\quad U_2\leq0.
 ```
 
-论文主模型对应 $`U_1=0`$、$`U_2=U`$。输入的配对强度就是论文中的实数
+论文主模型对应 $`U_1=U`$、$`U_2=0`$。输入的配对强度就是论文中的实数
 $`\Delta`$；代码采用等价的算符相位 $`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$。
 [模型、晶格与参数指南](./algorithm.md)说明了这一对应关系、统计系综和参考计算。
 

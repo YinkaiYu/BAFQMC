@@ -75,16 +75,21 @@ Supplemental Material:
 
 ```math
 \hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2(\hat n_{b,i}-\hat n_{c,i})^2\right],
-\qquad U_1\leq0,\quad U_2\geq0.
+U_1(\hat n_{b,i}-\hat n_{c,i})^2+U_2(\hat n_{b,i}+\hat n_{c,i})^2
+\right],
+\qquad U_1\geq0,\quad U_2\leq0.
 ```
 
-The main model is $`U_1=0`$, $`U_2=U`$. The input pairing strength is the same
-real $`\Delta`$ as in the paper; the code uses the equivalent operator phase
-$`c_{\mathrm{code}}=-c_{\mathrm{paper}}`$. The
-[model, lattice, and parameter guide](docs/algorithm.md) explains this mapping,
-the ensemble, and the reference calculations.
+This is the paper convention: $U_1$ is the repulsive relative-density
+coupling and $U_2$ is the attractive total-density coupling. The main benchmark
+uses $(U_1,U_2)=(U,0)$; the Supplemental Material scans $U_2$ at fixed
+$U_1=1$. The Fortran and ED kernels use this same ordering directly: `U1` is the
+relative-density channel and `U2` is the total-density channel. Input files,
+campaigns, stored benchmark data, and figures therefore use one notation
+throughout.
+
+The [model, lattice, and parameter guide](docs/algorithm.md) explains the
+ensemble, HS fields, and reference calculations.
 
 **Want to study another model?** The [model-development guide](docs/model-development.md)
 and dedicated agent skill explain how to extend the lattice, hopping,

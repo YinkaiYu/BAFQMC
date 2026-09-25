@@ -37,14 +37,14 @@ $`\hat c_{\mathrm{code}}=-\hat c_{\mathrm{paper}}`$，因此在相同输入 $`\D
 ```math
 \begin{aligned}
 \hat H_U={}&\sum_i\left[
-U_1(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2(\hat n_{b,i}-\hat n_{c,i})^2\right]\\
+U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right]\\
 ={}&\sum_i\left[(U_1+U_2)(\hat n_{b,i}^2+\hat n_{c,i}^2)
-+2(U_1-U_2)\hat n_{b,i}\hat n_{c,i}\right].
++2(U_2-U_1)\hat n_{b,i}\hat n_{c,i}\right].
 \end{aligned}
 ```
 
-主模型设 $`U_1=0`$，$`U_2=U`$。连续 HS 实现使用 $`U_1\leq0`$ 和 $`U_2\geq0`$。
+主模型设 $`U_1=U`$，$`U_2=0`$。补充材料固定 $`U_1=1`$ 并扫描 $`U_2\leq0`$。
 
 平方密度包含其线性粒子数项。若从以 $`n(n-1)`$ 形式写出的模型转换，需将由此产生的化学势偏移同时代入 BAFQMC 和 ED。
 
@@ -102,7 +102,7 @@ N_s=L_xL_y,\\
 | --- | --- |
 | 晶格尺寸 $`L_x,L_y`$ | 运行时输入 `Nlx,Nly`；BAFQMC 接受不同的正整数晶格长度 |
 | 温度 $`\beta`$ 和时间步长 $`\Delta\tau=\beta/L_\tau`$ | 运行时输入 `Beta,Ltrot` |
-| 密度相互作用 $`U_1,U_2`$ 和化学势 $`\mu`$ | 运行时输入 `RU1,RU2,mu` |
+| 密度相互作用 $`U_1,U_2`$ 和化学势 $`\mu`$ | 运行时输入 `U1,U2,mu` |
 | 实数格点配对 $`\Delta`$ | 配对求解器中的运行时输入 `RDelta` |
 | 跃迁强度 $`t`$ | 在每个求解器的 `src/calc_basic.f90` 中由 `Params_set` 设为 `RT=1.d0`；若需改变，请修改实现并重新编译 |
 | 晶体几何、键振幅、额外相互作用或配对模式 | 模型开发；使用[扩展指南](./model-development.md) |
@@ -115,26 +115,26 @@ N_s=L_xL_y,\\
 
 ```math
 \begin{aligned}
-e^{-\Delta\tau U_1 n_+^2}
+e^{-\Delta\tau U_1 n_-^2}
 &=\int\frac{d\phi_1}{\sqrt{2\pi}}e^{-\phi_1^2/2}
-  e^{\sqrt{-2U_1\Delta\tau}\,\phi_1n_+},\\
-e^{-\Delta\tau U_2 n_-^2}
+  e^{\mathrm i\sqrt{2U_1\Delta\tau}\,\phi_1n_-},\\
+e^{-\Delta\tau U_2 n_+^2}
 &=\int\frac{d\phi_2}{\sqrt{2\pi}}e^{-\phi_2^2/2}
-  e^{\mathrm i\sqrt{2U_2\Delta\tau}\,\phi_2n_-}.
+  e^{\sqrt{-2U_2\Delta\tau}\,\phi_2n_+}.
 \end{aligned}
 ```
 
 对于粒子数守恒传播，两个组分对应共轭的在位势。因此 $`B_{c,\ell}=\overline{B_{b,\ell}}`$，代码可通过对 $`b`$ 扇区取共轭得到 $`c`$ 扇区的 Green 函数。配对实现对完整的 Nambu 高斯迹求值，包括正规序标量因子和行列式平方根权重。局域场更新、稳定化传播和 Wick 估计量在 Fortran 中实现；Python 负责 ED、计算方案和分析。
 
-对于主模型 $`U_1=0`$，充分条件 $`\mu<-3t-|\Delta|`$ 在整个辅助场域内确保迹有限；所有主要基准点均满足该条件。补充材料中具有吸引相互作用 $`U_1<0`$ 的 benchmark使用其单独指定的有限占据比较参考。对于新的哈密顿量，请按[模型开发指南](./model-development.md)中的说明，建立迹域及相应的 HS 对称性与实现。
+对于主模型 $`U_2=0`$，充分条件 $`\mu<-3t-|\Delta|`$ 在整个辅助场域内确保迹有限；所有主要基准点均满足该条件。补充材料中具有吸引相互作用 $`U_2<0`$ 的 benchmark 使用其单独指定的有限占据比较参考。对于新的哈密顿量，请按[模型开发指南](./model-development.md)中的说明，建立迹域及相应的 HS 对称性与实现。
 
 ## 基准模型与可观测量
 
 | 扫描 | 哈密顿量参数 | 几何结构与系综 |
 | --- | --- | --- |
-| 主相互作用扫描 | $`U_1=0`$，$`U_2=U`$，$`\Delta=0`$ | $`3\times3`$，$`t=1`$，$`\beta=4`$，$`\mu=-3.5`$ |
-| 主配对扫描 | $`U_1=0`$，$`U_2=U=1`$，变化 $`\Delta`$ | $`3\times3`$，$`t=1`$，$`\beta=4`$，$`\mu=-5`$ |
-| 补充密度通道扫描 | 变化 $`U_1\leq0`$，$`U_2=1`$，$`\Delta=0`$ | $`3\times3`$，$`t=1`$，$`\beta=1`$，$`\mu=-7`$ |
+| 主相互作用扫描 | $`U_1=U`$，$`U_2=0`$，$`\Delta=0`$ | $`3\times3`$，$`t=1`$，$`\beta=4`$，$`\mu=-3.5`$ |
+| 主配对扫描 | $`U_1=1`$，$`U_2=0`$，变化 $`\Delta`$ | $`3\times3`$，$`t=1`$，$`\beta=4`$，$`\mu=-5`$ |
+| 补充密度通道扫描 | $`U_1=1`$，变化 $`U_2\leq0`$，$`\Delta=0`$ | $`3\times3`$，$`t=1`$，$`\beta=1`$，$`\mu=-7`$ |
 
 论文中配对项带负号。论文算符与实现算符的关系为
 $`b_{\mathrm{code}}=b_{\mathrm{paper}}`$ 和

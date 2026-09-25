@@ -16,7 +16,7 @@ class CampaignAnalysisTests(unittest.TestCase):
     def ed_payload(
         self,
         *,
-        u1: float,
+        u2: float,
         status: str,
         density_total: float = 0.1,
         completed_shells: int = 3,
@@ -26,7 +26,7 @@ class CampaignAnalysisTests(unittest.TestCase):
         observables["density_total"] = density_total
         return {
             "schema_version": 1,
-            "parameters": {"U1": u1},
+            "parameters": {"U2": u2},
             "status": status,
             "completed_shells": completed_shells,
             "observables": observables,
@@ -176,12 +176,12 @@ class CampaignAnalysisTests(unittest.TestCase):
         self.assertFalse(unstable.reliable)
         self.assertTrue(math.isnan(unstable.value))
 
-    def test_ed_reliability_accepts_bounded_and_negative_u1_statuses(self) -> None:
-        bounded = self.ed_payload(u1=0.0, status="converged")
+    def test_ed_reliability_accepts_bounded_and_negative_u2_statuses(self) -> None:
+        bounded = self.ed_payload(u2=0.0, status="converged")
         self.assertTrue(ca.ed_reference_reliable(bounded).reliable)
 
         negative = self.ed_payload(
-            u1=-0.1,
+            u2=-0.1,
             status="low_density_cutoff_accepted",
             density_total=0.01,
             completed_shells=6,
@@ -191,12 +191,12 @@ class CampaignAnalysisTests(unittest.TestCase):
         self.assertTrue(decision.reliable)
         self.assertEqual(decision.kind, "finite_window")
 
-        incomplete = self.ed_payload(u1=0.0, status="incomplete", tail=0.2)
+        incomplete = self.ed_payload(u2=0.0, status="incomplete", tail=0.2)
         incomplete_decision = ca.ed_reference_reliable(incomplete)
         self.assertFalse(incomplete_decision.reliable)
         self.assertEqual(
             incomplete_decision.reason,
-            "unsupported_ed_status: status=incomplete, U1=0.0",
+            "unsupported_ed_status: status=incomplete, U2=0.0",
         )
 
     def test_ed_reliability_rejects_minimal_or_stale_payloads(self) -> None:
@@ -208,27 +208,27 @@ class CampaignAnalysisTests(unittest.TestCase):
         self.assertEqual(decision.reason, "unsupported_or_missing_schema_version")
 
     def test_ed_reliability_cross_checks_tail_and_cutoff_policy(self) -> None:
-        bad_tail = self.ed_payload(u1=0.0, status="converged", tail=0.2)
+        bad_tail = self.ed_payload(u2=0.0, status="converged", tail=0.2)
         too_few_converged_shells = self.ed_payload(
-            u1=0.0,
+            u2=0.0,
             status="converged",
             completed_shells=1,
             tail=1.0e-5,
         )
         high_density = self.ed_payload(
-            u1=-0.1,
+            u2=-0.1,
             status="low_density_cutoff_accepted",
             density_total=2.0,
             tail=0.5,
         )
         too_few_shells = self.ed_payload(
-            u1=-0.1,
+            u2=-0.1,
             status="low_density_cutoff_accepted",
             completed_shells=1,
             tail=0.5,
         )
         too_shallow_for_trusted_window = self.ed_payload(
-            u1=-0.2,
+            u2=-0.2,
             status="low_density_cutoff_accepted",
             density_total=0.032,
             completed_shells=2,
@@ -254,7 +254,7 @@ class CampaignAnalysisTests(unittest.TestCase):
         )
 
     def test_ed_reliability_rejects_schema_only_dry_run_payloads(self) -> None:
-        dry_run = self.ed_payload(u1=0.0, status="dry_run")
+        dry_run = self.ed_payload(u2=0.0, status="dry_run")
         dry_run["parameters"]["dry_run"] = True
 
         decision = ca.ed_reference_reliable(dry_run)

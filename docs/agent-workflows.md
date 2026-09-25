@@ -77,8 +77,7 @@ python3 reproduce.py --output benchmarks/paper/output/paper-run
 ```
 
 The default includes all 22 production points, freshly generated references,
-statistical processing, and figures. Preserve the original sampling and ED
-settings. If execution is interrupted, continue with:
+statistical processing, and figures. Preserve the sampling and ED settings listed by the selected manifest. If execution is interrupted, continue with:
 
 ```bash
 python3 reproduce.py --output benchmarks/paper/output/paper-run --resume

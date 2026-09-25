@@ -78,7 +78,8 @@ def build_tensor_hamiltonian(params: dict[str, Any], basis):
         ["|n", [[-mu, i] for i in range(nsite)]],
         ["nn|", [[u1 + u2, i, i] for i in range(nsite)]],
         ["|nn", [[u1 + u2, i, i] for i in range(nsite)]],
-        ["n|n", [[2.0 * (u1 - u2), i, i] for i in range(nsite)]],
+        # Paper convention: U1 multiplies relative density and U2 total density.
+        ["n|n", [[2.0 * (u2 - u1), i, i] for i in range(nsite)]],
         ["+|+", [[delta, i, i] for i in range(nsite)]],
         ["-|-", [[delta, i, i] for i in range(nsite)]],
     ]
@@ -211,7 +212,7 @@ def tensor_observable_values(
     delta = float(params["Delta"])
     interaction_energy_total = (
         (u1 + u2) * (onsite_n2_up + onsite_n2_do)
-        + 2.0 * (u1 - u2) * float(nsite) * double_occ
+        + 2.0 * (u2 - u1) * float(nsite) * double_occ
     )
     pairing_total = delta * float(nsite) * pair_equal
     chemical_energy_total = -mu * total_ne

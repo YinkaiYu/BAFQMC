@@ -40,16 +40,6 @@
     ],
     "tail_tolerance": 0.001
   },
-  "hpc": {
-    "host": "cluster.example",
-    "job_prefix": "bafqmc/",
-    "queues": [
-      "compute",
-      "large-memory"
-    ],
-    "ssh": "ssh cluster.example",
-    "work_dir": "/path/to/campaign"
-  },
   "lattice": {
     "Lx": 3,
     "Ly": 3
@@ -64,37 +54,37 @@
     "S_DW_K"
   ],
   "stability_notes": {
-    "negative_u1": "Negative U1 is a finite-window/cutoff comparison only; accepted points use status low_density_cutoff_accepted.",
-    "u1_zero": "For 3x3 triangular U1=0 runs, use mu < -3."
+    "negative_u2": "Negative U2 is a finite-window/cutoff comparison only; accepted points use status low_density_cutoff_accepted.",
+    "u2_zero": "For 3x3 triangular U2=0 runs, use mu < -3."
   },
   "sweeps": [
     {
-      "U1": 0.0,
-      "U2": [
+      "U1": [
         0.0,
         0.5,
         1.0,
         1.5,
         2.0
       ],
+      "U2": 0.0,
       "beta": 4.0,
       "mu": -3.5,
-      "name": "U2_sweep",
-      "vary": "U2"
+      "name": "U1_sweep",
+      "vary": "U1"
     },
     {
-      "U1": [
+      "U1": 1.0,
+      "U2": [
         0.0,
         -0.05,
         -0.1,
         -0.15,
         -0.2
       ],
-      "U2": 1.0,
       "beta": 1.0,
       "mu": -5.0,
-      "name": "U1_sweep",
-      "vary": "U1"
+      "name": "U2_sweep",
+      "vary": "U2"
     }
   ]
 }

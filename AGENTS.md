@@ -33,7 +33,7 @@ follow these Markdown instructions; no particular agent service is required.
   published inputs and use separate files and output directories for new work.
 - Report what actually ran, its parameters, and the output paths. A smoke run
   is an installation check; a full reproduction runs all selected production
-  points with their original statistics and reference settings.
+  points with their defined statistics and reference settings.
 - Use the paper's notation in reader-facing formulas: main coupling `U`,
   creation operators `b^+,c^+`, and the paper's pairing sign. Explain code-variable
   and phase mappings explicitly. Use fenced `math` blocks and protected inline math (`$` + backticks)
@@ -108,9 +108,8 @@ choices that materially determine the calculation.
 Read [docs/algorithm.md](docs/algorithm.md) and the relevant solver physics
 guide before changing a kernel or estimator.
 
-- `U1` multiplies `(n_b+n_c)^2`; `U2` multiplies `(n_b-n_c)^2`. The main-text
-  coupling is `U=U2` with `U1=0`. The supplemental scan retains both channels.
-  The existing continuous HS implementation uses `U1<=0` and `U2>=0`.
+- `U1` multiplies `(n_b-n_c)^2` and is non-negative; `U2` multiplies
+  `(n_b+n_c)^2` and is non-positive. The main-text scan uses `U1=U` and `U2=0`; the supplemental scan fixes `U1=1` and varies attractive `U2`.
 - Positive `t=1` is the frustrated triangular hopping convention. The trace
   uses `H - mu*N`; `energy_density` contains physical energy per site,
   excluding `-mu*N`. The paper plots `-E = -Lx*Ly*energy_density`.
@@ -127,8 +126,8 @@ guide before changing a kernel or estimator.
   K estimators require commensurate sizes, with both lengths multiples of 3.
   A multisublattice model has `Ns=nsub*Lx*Ly` and requires physical intracell
   positions, bond indices, Fourier form factors, and corresponding normalization.
-- For the `U1=0` main model, `mu < -3*t - abs(Delta)` is the sufficient
-  convergence condition used by the benchmarks. The attractive `U1<0` scan
+- For the `U2=0` main model, `mu < -3*t - abs(Delta)` is the sufficient
+  convergence condition used by the benchmarks. The attractive `U2<0` scan
   uses a separate finite-occupation reference. Preserve this distinction.
 - Published error bars are **standard errors of the mean (SEM)** from ten
   blocks of 10000 measurement bins, not the standard deviation of individual
@@ -198,7 +197,7 @@ Continuation restarts an interrupted stage from its initial inputs.
 
 ## Data and changes
 
-- Develop new models with named examples and campaign outputs so the original
+- Develop new models with named examples and campaign outputs so the paper
   and new calculations remain easy to run. Update inputs and processed data
   intentionally when the task calls for it; record changed physical definitions,
   calculation settings, and the reason for revised results in normal documentation.
@@ -208,7 +207,7 @@ Continuation restarts an interrupted stage from its initial inputs.
   references are appropriate to track for new reproducible examples.
 - The executables append to fixed output filenames in their working
   directories. Every independent chain needs a fresh directory. Preserve the
-  archived pairing case order when selecting cases because it determines seeds.
+  supplied pairing case order when selecting cases because it determines seeds.
 - Keep code and docs self-contained. Use repository-relative paths or explicit
   user-supplied paths; no dependencies on a manuscript checkout or local machine.
 - Preserve unrelated work, inspect the final diff, and run checks proportionate

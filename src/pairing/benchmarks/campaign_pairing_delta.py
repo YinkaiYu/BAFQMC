@@ -54,8 +54,8 @@ def default_manifest(
     *,
     Lx: int = 3,
     Ly: int = 3,
-    U1: float = 0.0,
-    U2: float = 1.0,
+    U1: float = 1.0,
+    U2: float = 0.0,
     beta: float = 4.0,
     mu: float = -3.5,
     deltas: Sequence[float] | None = None,
@@ -230,8 +230,8 @@ def write_ed_case(
         "Lx": int(params["Lx"]),
         "Ly": int(params["Ly"]),
         "t": float(params.get("t", 1.0)),
-        "U1": float(_param(params, "U1", "RU1")),
-        "U2": float(_param(params, "U2", "RU2")),
+        "U1": float(_param(params, "U1")),
+        "U2": float(_param(params, "U2")),
         "mu": float(_param(params, "mu", "Mu")),
         "Delta": float(_param(params, "Delta", "delta", "RDelta")),
         "beta": float(_param(params, "beta", "Beta")),
@@ -481,8 +481,8 @@ def main(argv: list[str] | None = None) -> int:
 def _add_manifest_override_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--Lx", type=int, default=3)
     parser.add_argument("--Ly", type=int, default=3)
-    parser.add_argument("--U1", type=float, default=0.0)
-    parser.add_argument("--U2", type=float, default=1.0)
+    parser.add_argument("--U1", type=float, default=1.0)
+    parser.add_argument("--U2", type=float, default=0.0)
     parser.add_argument("--beta", type=float, default=4.0)
     parser.add_argument("--mu", type=float, default=-3.5)
     parser.add_argument("--deltas", default=",".join(str(value) for value in DEFAULT_DELTAS))
@@ -565,8 +565,7 @@ def _paramc_text(params: Mapping[str, Any], defaults: Mapping[str, Any]) -> str:
         raise ValueError("Ltrot must be positive")
     rows = [
         [
-            float(_param(params, "U1", "RU1")),
-            float(_param(params, "U2", "RU2")),
+            float(_param(params, "U1")), float(_param(params, "U2")),
             float(_param(params, "mu", "Mu")),
             float(_param(params, "Delta", "delta", "RDelta")),
         ],
@@ -602,7 +601,7 @@ def _paramc_text(params: Mapping[str, Any], defaults: Mapping[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "RU1         RU2         mu          RDelta",
+            "U1          U2          mu          RDelta",
             "Nlx         Nly         Ltrot       Beta",
             "NlxTherm    NlyTherm    LtrotTherm",
             "Nwrap       Nbin        Nsweep      shiftLoc",

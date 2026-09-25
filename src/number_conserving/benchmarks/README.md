@@ -89,11 +89,11 @@ Each case has `paramC_sets.txt`, `confin.txt`, `seeds.txt`, and ED
 The portable `run_paper.py` interface also accepts custom case manifests;
 see [the solver guide](../README.md) for its schema and stage commands.
 
-The relative-density interaction is `U2`; the main-text symbol is
-`U=U2` with `U1=0`. Both interaction channels remain available for new
+The relative-density interaction is `U1`; the main-text scan uses
+`U1=U` with `U2=0`. Both interaction channels remain available for new
 calculations. For triangular hopping `t=1`, the single-particle minimum
 is -3, so the noninteracting grand-canonical reference requires `mu < -3`.
-Attractive `U1` scans use the stated finite-occupation reference prescription.
+Attractive `U2` scans use the stated finite-occupation reference prescription.
 
 For lattice dimensions divisible by three, `K=(4*pi/3,0)` has code index
 `(2*Lx/3+1,Ly/3+1)`, consistent with
@@ -106,7 +106,7 @@ checkpoint after each completed particle shell. The fields
 and stopping rule. Use `--no-stop-when-reliable`, or set
 `stop_when_reliable` to false, to complete the configured maximum.
 
-The paper inputs retain their original convergence policies. The attractive
+The paper inputs retain their specified convergence policies. The attractive
 scan uses six completed shells. Stable free points use the analytic Bose
 distribution, including `<N^2>=<N>^2+sum_k n_k*(1+n_k)` for each flavor.
 Each result records physical parameters, completed shells, and reference status.
@@ -142,9 +142,9 @@ RUN_ED_SMOKE=1 python3 -m unittest \
 Use the Python interpreter from your QuSpin environment for ED work. Set
 `ED_PYTHON=/path/to/python` to select that interpreter for optional runtime tests.
 For paper cases, use `run_paper.py`; it accepts the exact distributed input
-files and ED convergence policy through a portable manifest. The original
-campaign helper remains available for preparing broader custom sweeps; its
-cluster settings are placeholders and are not needed for local execution.
+files and ED convergence policy through a portable manifest. The campaign
+helper prepares broader custom sweeps; cluster scheduling is configured by the
+user when needed.
 
 ## Pole Diagnostic Checks
 

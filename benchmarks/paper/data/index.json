@@ -1,27 +1,50 @@
 {
-  "schema_version": 1,
-  "sources": {
-    "number_conserving": {
-      "repository": "code_bosonDQMC",
-      "campaign": "20260603_bafqmc_ed_3x3_observables_v2_standard",
-      "source_checkout_commit": "68b82365ab817fd4a96e357358c31181f7acb3f3",
-      "commit_scope": "Source snapshot at integration; ignored historical data were not versioned by this commit.",
-      "selection": "Original _paper_candidate_u2_records and _paper_candidate_u1_records; reliable reference plus 0 < rho <= 0.05 for the U1 row."
-    },
-    "pairing": {
-      "repository": "code_bosonDQMC_paring",
-      "campaign": "20260605_pairing_delta_mu_m5_production",
-      "source_checkout_commit": "e4c1d04e6b756eb6bd6d0cf5b9a778c6b54a920c",
-      "commit_scope": "Source snapshot at integration; ignored historical data were not versioned by this commit.",
-      "original_comparison_status": "comparison_has_failures"
-    }
-  },
   "cases": [
     {
-      "id": "triangle_3x3_U2_0_mu-3.5_b4",
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_0_mu-3.5_b4.json",
+      "ed_status": "incomplete",
+      "id": "triangle_3x3_U1_0_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_0_mu-3.5_b4",
       "model": "number_conserving",
-      "row": 0,
-      "x": 0.0,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 0.008334272769674416,
+          "ed": 0.008334272769675436,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 5.782411586589358e-19,
+          "z_score": -1763.9999999999998
+        },
+        "S_SF_K": {
+          "dqmc": 0.03478169838882157,
+          "ed": 0.03478169838881459,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.312964634635743e-18,
+          "z_score": 3017.9999999999995
+        },
+        "density_total": {
+          "dqmc": 0.06956450548352429,
+          "ed": 0.06956450548350991,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 4.625929269271486e-18,
+          "z_score": 3107.9999999999995
+        },
+        "energy_density": {
+          "dqmc": -0.2086901903328608,
+          "ed": -0.2086901903328875,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 9.251858538542972e-18,
+          "z_score": 2885.9999999999995
+        }
+      },
       "parameters": {
         "Lx": 3,
         "Ly": 3,
@@ -32,947 +55,932 @@
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_0_mu-3.5_b4.tar.gz",
+      "reference_kind": "exact_free_boson",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.06956450548352429,
-          "ed": 0.06956450548350991,
-          "stderr": 4.625929269271486e-18,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 3107.9999999999995,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.2086901903328608,
-          "ed": -0.2086901903328875,
-          "stderr": 9.251858538542972e-18,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 2885.9999999999995,
-          "pass_uncertainty": true
-        },
-        "S_SF_K": {
-          "dqmc": 0.03478169838882157,
-          "ed": 0.03478169838881459,
-          "stderr": 2.312964634635743e-18,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 3017.9999999999995,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 0.008334272769674416,
-          "ed": 0.008334272769675436,
-          "stderr": 5.782411586589358e-19,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1763.9999999999998,
-          "pass_uncertainty": true
-        }
-      },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_0_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_0_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_0_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_0_mu-3.5_b4",
-      "ed_status": "incomplete",
-      "reference_kind": "exact_free_boson"
+      "x": 0.0
     },
     {
-      "id": "triangle_3x3_U2_0.25_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 0.25,
-      "parameters": {
-        "Lx": 3,
-        "Ly": 3,
-        "U1": 0.0,
-        "U2": 0.25,
-        "beta": 4.0,
-        "max_total_particles": 10,
-        "mu": -3.5,
-        "t": 1.0
-      },
       "block_size": 10000,
-      "samples": 100000,
-      "skip_samples": 0,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_0.25_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_0.25_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_0.25_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.023066087831923675,
-          "ed": 0.02312133673254186,
-          "stderr": 3.865928750492665e-05,
+        "S_DW_K": {
+          "dqmc": 0.00262844921058692,
+          "ed": 0.0026348946816658583,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.4291236125638427,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.06344238776503619,
-          "ed": -0.06359455087739854,
-          "stderr": 0.00010644196997068585,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.4295405506329706,
-          "pass_uncertainty": true
+          "stderr": 4.463372374597085e-06,
+          "z_score": -1.4440809634486693
         },
         "S_SF_K": {
           "dqmc": 0.011530826443106539,
           "ed": 0.011558587773593074,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.9402473729774645e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1.4308139711037537,
-          "pass_uncertainty": true
+          "z_score": -1.4308139711037537
         },
-        "S_DW_K": {
-          "dqmc": 0.00262844921058692,
-          "ed": 0.0026348946816658583,
-          "stderr": 4.463372374597085e-06,
+        "density_total": {
+          "dqmc": 0.023066087831923675,
+          "ed": 0.02312133673254186,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.4440809634486693,
-          "pass_uncertainty": true
+          "stderr": 3.865928750492665e-05,
+          "z_score": -1.4291236125638427
+        },
+        "energy_density": {
+          "dqmc": -0.06344238776503619,
+          "ed": -0.06359455087739854,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 0.00010644196997068585,
+          "z_score": 1.4295405506329706
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.25_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_0.25_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.25_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_0.25_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_0.5_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 0.5,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 0.5,
+        "U1": 0.25,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_0.25_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 0.25
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_0.5_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_0.5_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_0.5_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.008361721004857204,
-          "ed": 0.00834676319902679,
-          "stderr": 3.496767468049127e-05,
+        "S_DW_K": {
+          "dqmc": 0.0009415371712830848,
+          "ed": 0.000939817486707002,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.42776095256797536,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.020927452687041305,
-          "ed": -0.020892111580729632,
-          "stderr": 8.551251434425962e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.41328578141668126,
-          "pass_uncertainty": true
+          "stderr": 3.939991246838594e-06,
+          "z_score": 0.43646913618468164
         },
         "S_SF_K": {
           "dqmc": 0.004179204842004382,
           "ed": 0.004172109997630162,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.7201124878413566e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.41246397688348274,
-          "pass_uncertainty": true
+          "z_score": 0.41246397688348274
         },
-        "S_DW_K": {
-          "dqmc": 0.0009415371712830848,
-          "ed": 0.000939817486707002,
-          "stderr": 3.939991246838594e-06,
+        "density_total": {
+          "dqmc": 0.008361721004857204,
+          "ed": 0.00834676319902679,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.43646913618468164,
-          "pass_uncertainty": true
+          "stderr": 3.496767468049127e-05,
+          "z_score": 0.42776095256797536
+        },
+        "energy_density": {
+          "dqmc": -0.020927452687041305,
+          "ed": -0.020892111580729632,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 8.551251434425962e-05,
+          "z_score": -0.41328578141668126
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.5_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_0.5_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.5_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_0.5_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_0.75_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 0.75,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 0.75,
+        "U1": 0.5,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_0.5_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 0.5
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_0.75_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_0.75_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_0.75_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.0030297931020989224,
-          "ed": 0.003050953282188248,
-          "stderr": 1.4164532829613327e-05,
+        "S_DW_K": {
+          "dqmc": 0.00033960945617343555,
+          "ed": 0.00034201053334996447,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.4938847856024309,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.006828331727976962,
-          "ed": -0.00687687907240557,
-          "stderr": 3.1651889763986264e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.5337897607569035,
-          "pass_uncertainty": true
+          "stderr": 1.584091434737631e-06,
+          "z_score": -1.515744056104058
         },
         "S_SF_K": {
           "dqmc": 0.0015141610136183523,
           "ed": 0.0015249102450823665,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 7.039228767592115e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1.5270467573809428,
-          "pass_uncertainty": true
+          "z_score": -1.5270467573809428
         },
-        "S_DW_K": {
-          "dqmc": 0.00033960945617343555,
-          "ed": 0.00034201053334996447,
-          "stderr": 1.584091434737631e-06,
+        "density_total": {
+          "dqmc": 0.0030297931020989224,
+          "ed": 0.003050953282188248,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.515744056104058,
-          "pass_uncertainty": true
+          "stderr": 1.4164532829613327e-05,
+          "z_score": -1.4938847856024309
+        },
+        "energy_density": {
+          "dqmc": -0.006828331727976962,
+          "ed": -0.00687687907240557,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 3.1651889763986264e-05,
+          "z_score": 1.5337897607569035
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_0.75_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_0.75_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_0.75_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_0.75_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_1_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 1.0,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 0.75,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_0.75_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 0.75
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_1_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_1_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_1_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.0011230128295095967,
-          "ed": 0.0011178747201618002,
-          "stderr": 1.1285167650360889e-05,
+        "S_DW_K": {
+          "dqmc": 0.0001256117641988725,
+          "ed": 0.00012504072026434446,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.4552975646429274,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.002249849860077203,
-          "ed": -0.00224045052686518,
-          "stderr": 2.1673246575909726e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.43368367443714756,
-          "pass_uncertainty": true
+          "stderr": 1.2575368005224358e-06,
+          "z_score": 0.4540971956373828
         },
         "S_SF_K": {
           "dqmc": 0.0005611161150292454,
           "ed": 0.0005587000432186606,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 5.501728167880557e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.4391477980846073,
-          "pass_uncertainty": true
+          "z_score": 0.4391477980846073
         },
-        "S_DW_K": {
-          "dqmc": 0.0001256117641988725,
-          "ed": 0.00012504072026434446,
-          "stderr": 1.2575368005224358e-06,
+        "density_total": {
+          "dqmc": 0.0011230128295095967,
+          "ed": 0.0011178747201618002,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.4540971956373828,
-          "pass_uncertainty": true
+          "stderr": 1.1285167650360889e-05,
+          "z_score": 0.4552975646429274
+        },
+        "energy_density": {
+          "dqmc": -0.002249849860077203,
+          "ed": -0.00224045052686518,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.1673246575909726e-05,
+          "z_score": -0.43368367443714756
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_1_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_1_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_1_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_1_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_1.25_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 1.25,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.25,
+        "U1": 1.0,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_1_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 1.0
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_1.25_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_1.25_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_1.25_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.00040542709646718106,
-          "ed": 0.0004100499673430961,
-          "stderr": 3.2243870012367857e-06,
+        "S_DW_K": {
+          "dqmc": 4.529260333144995e-05,
+          "ed": 4.581011130810248e-05,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.433720851170105,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.0007107442591009195,
-          "ed": -0.0007193186795328019,
-          "stderr": 5.505004671935445e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.557568238878148,
-          "pass_uncertainty": true
+          "stderr": 3.600252848124048e-07,
+          "z_score": -1.4374211992421158
         },
         "S_SF_K": {
           "dqmc": 0.00020254628290248983,
           "ed": 0.00020492541967940254,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.5856505439039986e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1.5004168390439208,
-          "pass_uncertainty": true
+          "z_score": -1.5004168390439208
         },
-        "S_DW_K": {
-          "dqmc": 4.529260333144995e-05,
-          "ed": 4.581011130810248e-05,
-          "stderr": 3.600252848124048e-07,
+        "density_total": {
+          "dqmc": 0.00040542709646718106,
+          "ed": 0.0004100499673430961,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -1.4374211992421158,
-          "pass_uncertainty": true
+          "stderr": 3.2243870012367857e-06,
+          "z_score": -1.433720851170105
+        },
+        "energy_density": {
+          "dqmc": -0.0007107442591009195,
+          "ed": -0.0007193186795328019,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 5.505004671935445e-06,
+          "z_score": 1.557568238878148
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_1.25_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_1.25_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_1.25_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main_u2_refine/production_inputs/triangle_3x3_U2_1.25_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_1.5_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 1.5,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.5,
+        "U1": 1.25,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_1.25_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 1.25
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_1.5_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_1.5_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_1.5_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.0001524480501206063,
-          "ed": 0.00015055726438054925,
-          "stderr": 2.8014033574629863e-06,
+        "S_DW_K": {
+          "dqmc": 1.7018306331890733e-05,
+          "ed": 1.6808817483482145e-05,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.6749423409592086,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.00022878538687320146,
-          "ed": -0.00022649154671787054,
-          "stderr": 3.918766272339629e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.5853475292777326,
-          "pass_uncertainty": true
+          "stderr": 3.117750397568414e-07,
+          "z_score": 0.671923090995266
         },
         "S_SF_K": {
           "dqmc": 7.609632827608807e-05,
           "ed": 7.523579891353133e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.3557562727639805e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.634722759425178,
-          "pass_uncertainty": true
+          "z_score": 0.634722759425178
         },
-        "S_DW_K": {
-          "dqmc": 1.7018306331890733e-05,
-          "ed": 1.6808817483482145e-05,
-          "stderr": 3.117750397568414e-07,
+        "density_total": {
+          "dqmc": 0.0001524480501206063,
+          "ed": 0.00015055726438054925,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.671923090995266,
-          "pass_uncertainty": true
+          "stderr": 2.8014033574629863e-06,
+          "z_score": 0.6749423409592086
+        },
+        "energy_density": {
+          "dqmc": -0.00022878538687320146,
+          "ed": -0.00022649154671787054,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 3.918766272339629e-06,
+          "z_score": -0.5853475292777326
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_1.5_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_1.5_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_1.5_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_1.5_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U2_2_mu-3.5_b4",
-      "model": "number_conserving",
-      "row": 0,
-      "x": 2.0,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 2.0,
+        "U1": 1.5,
+        "U2": 0.0,
         "beta": 4.0,
         "max_total_particles": 10,
         "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_1.5_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 1.5
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U1_2_mu-3.5_b4.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U1_2_mu-3.5_b4",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U1_2_mu-3.5_b4",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 2.1075635974322966e-05,
-          "ed": 2.034772849375043e-05,
-          "stderr": 7.225977720821225e-07,
+        "S_DW_K": {
+          "dqmc": 2.352256890967137e-06,
+          "ed": 2.2714750843911827e-06,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 1.0073480831183748,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -2.093637314209449e-05,
-          "ed": -2.04615502739713e-05,
-          "stderr": 6.137986794277103e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.7735807912879571,
-          "pass_uncertainty": true
+          "stderr": 8.03686228565941e-08,
+          "z_score": 1.0051411073709402
         },
         "S_SF_K": {
           "dqmc": 1.048836928427452e-05,
           "ed": 1.016485429278994e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 3.4239930730586436e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.9448470968885024,
-          "pass_uncertainty": true
+          "z_score": 0.9448470968885024
         },
-        "S_DW_K": {
-          "dqmc": 2.352256890967137e-06,
-          "ed": 2.2714750843911827e-06,
-          "stderr": 8.03686228565941e-08,
+        "density_total": {
+          "dqmc": 2.1075635974322966e-05,
+          "ed": 2.034772849375043e-05,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 1.0051411073709402,
-          "pass_uncertainty": true
+          "stderr": 7.225977720821225e-07,
+          "z_score": 1.0073480831183748
+        },
+        "energy_density": {
+          "dqmc": -2.093637314209449e-05,
+          "ed": -2.04615502739713e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 6.137986794277103e-07,
+          "z_score": -0.7735807912879571
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U2_2_mu-3.5_b4",
-      "ed_file": "number_conserving/ed/triangle_3x3_U2_2_mu-3.5_b4.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U2_2_mu-3.5_b4.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/main/production_inputs/triangle_3x3_U2_2_mu-3.5_b4",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.6_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.6,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.6,
-        "U2": 1.0,
-        "beta": 1.0,
-        "max_total_particles": 8,
-        "mu": -7.0,
+        "U1": 2.0,
+        "U2": 0.0,
+        "beta": 4.0,
+        "max_total_particles": 10,
+        "mu": -3.5,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U1_2_mu-3.5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
+      "x": 2.0
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.6_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.6_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.6_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.006497375488519056,
-          "ed": 0.006509946781841398,
-          "stderr": 4.222588441929624e-05,
+        "S_DW_K": {
+          "dqmc": 0.0007384324028200066,
+          "ed": 0.0007400590783085573,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.29771533492375135,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.014511274933613923,
-          "ed": -0.014542406096890954,
-          "stderr": 7.77169365330826e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.40057115817707334,
-          "pass_uncertainty": true
+          "stderr": 4.913134578292701e-06,
+          "z_score": -0.33108710185502366
         },
         "S_SF_K": {
           "dqmc": 0.0028148654996929695,
           "ed": 0.002821652023062288,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.5552353529867777e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.43636632592523417,
-          "pass_uncertainty": true
+          "z_score": -0.43636632592523417
         },
-        "S_DW_K": {
-          "dqmc": 0.0007384324028200066,
-          "ed": 0.0007400590783085573,
-          "stderr": 4.913134578292701e-06,
+        "density_total": {
+          "dqmc": 0.006497375488519056,
+          "ed": 0.006509946781841398,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.33108710185502366,
-          "pass_uncertainty": true
+          "stderr": 4.222588441929624e-05,
+          "z_score": -0.29771533492375135
+        },
+        "energy_density": {
+          "dqmc": -0.014511274933613923,
+          "ed": -0.014542406096890954,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 7.77169365330826e-05,
+          "z_score": 0.40057115817707334
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.6_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.6_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.6_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.6_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.5_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.5,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.5,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.6,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.6_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.6
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.5_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.5_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.5_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.005840914416938417,
-          "ed": 0.005839430490698387,
-          "stderr": 3.478470783008261e-05,
+        "S_DW_K": {
+          "dqmc": 0.0006599611563699076,
+          "ed": 0.0006598743181688734,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.04266030484656518,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.012423998760124183,
-          "ed": -0.012421882027009857,
-          "stderr": 5.9805159152917585e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.03539382127407731,
-          "pass_uncertainty": true
+          "stderr": 4.014400657299993e-06,
+          "z_score": 0.021631672682279685
         },
         "S_SF_K": {
           "dqmc": 0.0025341590697462806,
           "ed": 0.0025344437319338928,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.2809048635002737e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.022223523051843698,
-          "pass_uncertainty": true
+          "z_score": -0.022223523051843698
         },
-        "S_DW_K": {
-          "dqmc": 0.0006599611563699076,
-          "ed": 0.0006598743181688734,
-          "stderr": 4.014400657299993e-06,
+        "density_total": {
+          "dqmc": 0.005840914416938417,
+          "ed": 0.005839430490698387,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.021631672682279685,
-          "pass_uncertainty": true
+          "stderr": 3.478470783008261e-05,
+          "z_score": 0.04266030484656518
+        },
+        "energy_density": {
+          "dqmc": -0.012423998760124183,
+          "ed": -0.012421882027009857,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 5.9805159152917585e-05,
+          "z_score": -0.03539382127407731
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.5_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.5_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.5_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.5_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.4_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.4,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.4,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.5,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.5_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.5
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.4_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.4_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.4_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.005247903210259942,
-          "ed": 0.005249284611871843,
-          "stderr": 2.7565339735065283e-05,
+        "S_DW_K": {
+          "dqmc": 0.0005905608260825887,
+          "ed": 0.0005907767082604558,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.05011371618045228,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.01061232905936528,
-          "ed": -0.01061719772358789,
-          "stderr": 4.468282730245381e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.1089605227899651,
-          "pass_uncertainty": true
+          "stderr": 3.1279824315639226e-06,
+          "z_score": -0.06901642914893039
         },
         "S_SF_K": {
           "dqmc": 0.0022788022133110263,
           "ed": 0.0022802943233553173,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 1.0135843047700579e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.1472112420514964,
-          "pass_uncertainty": true
+          "z_score": -0.1472112420514964
         },
-        "S_DW_K": {
-          "dqmc": 0.0005905608260825887,
-          "ed": 0.0005907767082604558,
-          "stderr": 3.1279824315639226e-06,
+        "density_total": {
+          "dqmc": 0.005247903210259942,
+          "ed": 0.005249284611871843,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.06901642914893039,
-          "pass_uncertainty": true
+          "stderr": 2.7565339735065283e-05,
+          "z_score": -0.05011371618045228
+        },
+        "energy_density": {
+          "dqmc": -0.01061232905936528,
+          "ed": -0.01061719772358789,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 4.468282730245381e-05,
+          "z_score": 0.1089605227899651
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.4_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.4_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.4_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.4_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.3_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.3,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.3,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.4,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.4_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.4
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.3_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.3_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.3_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.004724901334777746,
-          "ed": 0.0047258669857773855,
-          "stderr": 2.1384924754395673e-05,
+        "S_DW_K": {
+          "dqmc": 0.0005301207219978168,
+          "ed": 0.0005302734840042115,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.04515568844545949,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.009065948557263776,
-          "ed": -0.00906987373178684,
-          "stderr": 3.149657204892148e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.12462227689311095,
-          "pass_uncertainty": true
+          "stderr": 2.4228119569163614e-06,
+          "z_score": -0.06305153231502125
         },
         "S_SF_K": {
           "dqmc": 0.0020529368885916863,
           "ed": 0.0020541211918234104,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 7.704562591902678e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.1537145318241283,
-          "pass_uncertainty": true
+          "z_score": -0.1537145318241283
         },
-        "S_DW_K": {
-          "dqmc": 0.0005301207219978168,
-          "ed": 0.0005302734840042115,
-          "stderr": 2.4228119569163614e-06,
+        "density_total": {
+          "dqmc": 0.004724901334777746,
+          "ed": 0.0047258669857773855,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.06305153231502125,
-          "pass_uncertainty": true
+          "stderr": 2.1384924754395673e-05,
+          "z_score": -0.04515568844545949
+        },
+        "energy_density": {
+          "dqmc": -0.009065948557263776,
+          "ed": -0.00906987373178684,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 3.149657204892148e-05,
+          "z_score": 0.12462227689311095
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.3_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.3_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.3_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.3_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.2_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.2,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.2,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.3,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.3_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.3
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.2_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.2_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.2_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.004259177779494578,
-          "ed": 0.004259403499212798,
-          "stderr": 1.8027756659641612e-05,
+        "S_DW_K": {
+          "dqmc": 0.0004767917154163923,
+          "ed": 0.0004768481273974076,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.012520677002792595,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.007737749761191513,
-          "ed": -0.007737927923372793,
-          "stderr": 2.4690436661443118e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.00721583760233348,
-          "pass_uncertainty": true
+          "stderr": 2.027155494722549e-06,
+          "z_score": -0.02782814695870681
         },
         "S_SF_K": {
           "dqmc": 0.0018516495906779223,
           "ed": 0.001852094519459317,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 6.49934960045515e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.06845743170417683,
-          "pass_uncertainty": true
+          "z_score": -0.06845743170417683
         },
-        "S_DW_K": {
-          "dqmc": 0.0004767917154163923,
-          "ed": 0.0004768481273974076,
-          "stderr": 2.027155494722549e-06,
+        "density_total": {
+          "dqmc": 0.004259177779494578,
+          "ed": 0.004259403499212798,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.02782814695870681,
-          "pass_uncertainty": true
+          "stderr": 1.8027756659641612e-05,
+          "z_score": -0.012520677002792595
+        },
+        "energy_density": {
+          "dqmc": -0.007737749761191513,
+          "ed": -0.007737927923372793,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.4690436661443118e-05,
+          "z_score": 0.00721583760233348
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.2_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.2_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.2_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_-0.2_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_-0.1_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": -0.1,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": -0.1,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.2,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.2_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.2
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_-0.1_mu-7_b1.json",
+      "ed_status": "low_density_cutoff_accepted",
+      "id": "triangle_3x3_U2_-0.1_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_-0.1_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.0038442616799292235,
-          "ed": 0.0038422657818878003,
-          "stderr": 1.3537427344473325e-05,
+        "S_DW_K": {
+          "dqmc": 0.00042961007970864217,
+          "ed": 0.00042940102929416734,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.14743554965323843,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.006590358856603087,
-          "ed": -0.006588623263085799,
-          "stderr": 1.6952565164997094e-05,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.10237940396607052,
-          "pass_uncertainty": true
+          "stderr": 1.512996550672763e-06,
+          "z_score": 0.13816978920531528
         },
         "S_SF_K": {
           "dqmc": 0.0016714610168946566,
           "ed": 0.0016711423867776882,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 4.805098407144882e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.06631084110464944,
-          "pass_uncertainty": true
+          "z_score": 0.06631084110464944
         },
-        "S_DW_K": {
-          "dqmc": 0.00042961007970864217,
-          "ed": 0.00042940102929416734,
-          "stderr": 1.512996550672763e-06,
+        "density_total": {
+          "dqmc": 0.0038442616799292235,
+          "ed": 0.0038422657818878003,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": 0.13816978920531528,
-          "pass_uncertainty": true
+          "stderr": 1.3537427344473325e-05,
+          "z_score": 0.14743554965323843
+        },
+        "energy_density": {
+          "dqmc": -0.006590358856603087,
+          "ed": -0.006588623263085799,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.6952565164997094e-05,
+          "z_score": -0.10237940396607052
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_-0.1_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_-0.1_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_-0.1_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_fill_local/production_inputs/triangle_3x3_U1_-0.1_mu-7_b1",
-      "ed_status": "low_density_cutoff_accepted",
-      "reference_kind": "finite_cutoff_ed"
-    },
-    {
-      "id": "triangle_3x3_U1_0_mu-7_b1",
-      "model": "number_conserving",
-      "row": 1,
-      "x": 0.0,
       "parameters": {
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.1,
         "beta": 1.0,
         "max_total_particles": 8,
         "mu": -7.0,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_-0.1_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
       "samples": 100000,
       "skip_samples": 0,
+      "x": -0.1
+    },
+    {
+      "block_size": 10000,
+      "ed_file": "number_conserving/ed/triangle_3x3_U2_0_mu-7_b1.json",
+      "ed_status": "converged",
+      "id": "triangle_3x3_U2_0_mu-7_b1",
+      "input_dir": "number_conserving/inputs/triangle_3x3_U2_0_mu-7_b1",
+      "model": "number_conserving",
       "observables": {
-        "density_total": {
-          "dqmc": 0.00346270321441832,
-          "ed": 0.0034682754338637082,
-          "stderr": 7.218059390849388e-06,
+        "S_DW_K": {
+          "dqmc": 0.00038646017323348055,
+          "ed": 0.0003870854981759543,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.7719830419312319,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.00559035452215304,
-          "ed": -0.005595545313200564,
-          "stderr": 9.18647372774793e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.5650471771170482,
-          "pass_uncertainty": true
+          "stderr": 8.076246637080312e-07,
+          "z_score": -0.77427667897447
         },
         "S_SF_K": {
           "dqmc": 0.0015068161207784302,
           "ed": 0.0015087275839611542,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
           "stderr": 2.7030783779734452e-06,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.7071430848250383,
-          "pass_uncertainty": true
+          "z_score": -0.7071430848250383
         },
-        "S_DW_K": {
-          "dqmc": 0.00038646017323348055,
-          "ed": 0.0003870854981759543,
-          "stderr": 8.076246637080312e-07,
+        "density_total": {
+          "dqmc": 0.00346270321441832,
+          "ed": 0.0034682754338637082,
+          "pass_uncertainty": true,
           "reason": "ok",
           "reliable": true,
-          "z_score": -0.77427667897447,
-          "pass_uncertainty": true
+          "stderr": 7.218059390849388e-06,
+          "z_score": -0.7719830419312319
+        },
+        "energy_density": {
+          "dqmc": -0.00559035452215304,
+          "ed": -0.005595545313200564,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 9.18647372774793e-06,
+          "z_score": 0.5650471771170482
         }
       },
-      "input_dir": "number_conserving/inputs/triangle_3x3_U1_0_mu-7_b1",
-      "ed_file": "number_conserving/ed/triangle_3x3_U1_0_mu-7_b1.json",
-      "raw_archive": "number_conserving/raw/triangle_3x3_U1_0_mu-7_b1.tar.gz",
-      "original_run_dir": "data/20260603_bafqmc_ed_3x3_observables_v2_standard/u1_mu7_extended_local/production_inputs/triangle_3x3_U1_0_mu-7_b1",
-      "ed_status": "converged",
-      "reference_kind": "finite_cutoff_ed"
+      "parameters": {
+        "Lx": 3,
+        "Ly": 3,
+        "U1": 1.0,
+        "U2": 0.0,
+        "beta": 1.0,
+        "max_total_particles": 8,
+        "mu": -7.0,
+        "t": 1.0
+      },
+      "raw_archive": "number_conserving/raw/triangle_3x3_U2_0_mu-7_b1.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 1,
+      "samples": 100000,
+      "skip_samples": 0,
+      "x": 0.0
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.0,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 3.0196867807654517e-07,
+          "ed": 3.0343946750764685e-07,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.9568194742404927e-09,
+          "z_score": -0.49742280308792913
+        },
+        "S_SF_K": {
+          "dqmc": 1.3581794581980585e-06,
+          "ed": 1.3654284403219222e-06,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.28535964578654e-08,
+          "z_score": -0.5639652798830366
+        },
+        "density_total": {
+          "dqmc": 2.7176727833724238e-06,
+          "ed": 2.730909975777853e-06,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.661093433203034e-08,
+          "z_score": -0.49743433433287315
+        },
+        "energy_density": {
+          "dqmc": -5.4316153880627695e-06,
+          "ed": -5.461697976770212e-06,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 5.038891467141987e-08,
+          "z_score": 0.5970080701997181
+        }
+      },
       "parameters": {
         "Delta": 0.0,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0_mum5_b4",
@@ -981,65 +989,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 2.7176727833724238e-06,
-          "ed": 2.730909975777853e-06,
-          "stderr": 2.661093433203034e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.49743433433287315,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -5.4316153880627695e-06,
-          "ed": -5.461697976770212e-06,
-          "stderr": 5.038891467141987e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.5970080701997181,
-          "pass_uncertainty": true
-        },
-        "S_SF_K": {
-          "dqmc": 1.3581794581980585e-06,
-          "ed": 1.3654284403219222e-06,
-          "stderr": 1.28535964578654e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.5639652798830366,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 3.0196867807654517e-07,
-          "ed": 3.0343946750764685e-07,
-          "stderr": 2.9568194742404927e-09,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.49742280308792913,
-          "pass_uncertainty": true
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.0
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p05_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p05_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p05_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.05,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 1.765601291695084e-05,
+          "ed": 1.7649156878075068e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.6727519753590275e-09,
+          "z_score": 2.565160904932072
+        },
+        "S_SF_K": {
+          "dqmc": 2.5179725001462474e-05,
+          "ed": 2.515738708289613e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.214958093660019e-08,
+          "z_score": 1.8385752301176437
+        },
+        "density_total": {
+          "dqmc": 8.752478619378062e-05,
+          "ed": 8.747653309019295e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.4668139510150184e-08,
+          "z_score": 1.9560901043152576
+        },
+        "energy_density": {
+          "dqmc": -0.0007310607055275991,
+          "ed": -0.0007309146077024878,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 4.642432490010213e-08,
+          "z_score": -3.147010224180844
+        }
+      },
       "parameters": {
         "Delta": 0.05,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p05_mum5_b4",
@@ -1048,65 +1055,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p05_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 8.752478619378062e-05,
-          "ed": 8.747653309019295e-05,
-          "stderr": 2.4668139510150184e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.9560901043152576,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.0007310607055275991,
-          "ed": -0.0007309146077024878,
-          "stderr": 4.642432490010213e-08,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": -3.147010224180844,
-          "pass_uncertainty": false
-        },
-        "S_SF_K": {
-          "dqmc": 2.5179725001462474e-05,
-          "ed": 2.515738708289613e-05,
-          "stderr": 1.214958093660019e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.8385752301176437,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 1.765601291695084e-05,
-          "ed": 1.7649156878075068e-05,
-          "stderr": 2.6727519753590275e-09,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 2.565160904932072,
-          "pass_uncertainty": true
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p05_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p05_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p05_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p05_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.05
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p1_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p1_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p1_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.1,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 6.972771979658283e-05,
+          "ed": 6.9738244410733e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.1723296064662004e-08,
+          "z_score": -0.897752141728805
+        },
+        "S_SF_K": {
+          "dqmc": 9.656103216822953e-05,
+          "ed": 9.662085812329044e-05,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 4.175629133732101e-08,
+          "z_score": -1.4327411066660736
+        },
+        "density_total": {
+          "dqmc": 0.00034183019149517643,
+          "ed": 0.00034193014194432235,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 7.892702299822582e-08,
+          "z_score": -1.2663653758759015
+        },
+        "energy_density": {
+          "dqmc": -0.0029082532004718496,
+          "ed": -0.002908566169767887,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.943398717617773e-07,
+          "z_score": 1.063292221213373
+        }
+      },
       "parameters": {
         "Delta": 0.1,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p1_mum5_b4",
@@ -1115,65 +1121,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p1_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.00034183019149517643,
-          "ed": 0.00034193014194432235,
-          "stderr": 7.892702299822582e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1.2663653758759015,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.0029082532004718496,
-          "ed": -0.002908566169767887,
-          "stderr": 2.943398717617773e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 1.063292221213373,
-          "pass_uncertainty": true
-        },
-        "S_SF_K": {
-          "dqmc": 9.656103216822953e-05,
-          "ed": 9.662085812329044e-05,
-          "stderr": 4.175629133732101e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -1.4327411066660736,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 6.972771979658283e-05,
-          "ed": 6.9738244410733e-05,
-          "stderr": 1.1723296064662004e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.897752141728805,
-          "pass_uncertainty": true
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p1_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p1_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p1_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p1_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.1
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p15_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p15_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p15_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.15,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 0.00015673750480165902,
+          "ed": 0.00015672280778688839,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.8076907929755247e-08,
+          "z_score": 0.8130270302725178
+        },
+        "S_SF_K": {
+          "dqmc": 0.0002160089094959774,
+          "ed": 0.00021601238052863472,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 6.540550226213103e-08,
+          "z_score": -0.05306942898175539
+        },
+        "density_total": {
+          "dqmc": 0.000766758978527948,
+          "ed": 0.0007667241710262395,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.1557748385667095e-07,
+          "z_score": 0.3011616151089621
+        },
+        "energy_density": {
+          "dqmc": -0.006542451891321964,
+          "ed": -0.006542194690962441,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 4.7150187605592353e-07,
+          "z_score": -0.5454916991505355
+        }
+      },
       "parameters": {
         "Delta": 0.15,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p15_mum5_b4",
@@ -1182,65 +1187,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p15_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.000766758978527948,
-          "ed": 0.0007667241710262395,
-          "stderr": 1.1557748385667095e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.3011616151089621,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.006542451891321964,
-          "ed": -0.006542194690962441,
-          "stderr": 4.7150187605592353e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.5454916991505355,
-          "pass_uncertainty": true
-        },
-        "S_SF_K": {
-          "dqmc": 0.0002160089094959774,
-          "ed": 0.00021601238052863472,
-          "stderr": 6.540550226213103e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": -0.05306942898175539,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 0.00015673750480165902,
-          "ed": 0.00015672280778688839,
-          "stderr": 1.8076907929755247e-08,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 0.8130270302725178,
-          "pass_uncertainty": true
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p15_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p15_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p15_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p15_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.15
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p2_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p2_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p2_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.2,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 0.00027896209653896205,
+          "ed": 0.00027884411689470956,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 3.585268516603232e-08,
+          "z_score": 3.2906780539904363
+        },
+        "S_SF_K": {
+          "dqmc": 0.0003839990928143912,
+          "ed": 0.00038373885437488774,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 1.2349463160489375e-07,
+          "z_score": 2.1072854432739114
+        },
+        "density_total": {
+          "dqmc": 0.001363447517074514,
+          "ed": 0.0013628538793617672,
+          "pass_uncertainty": true,
+          "reason": "ok",
+          "reliable": true,
+          "stderr": 2.2703969937226716e-07,
+          "z_score": 2.6146868340117955
+        },
+        "energy_density": {
+          "dqmc": -0.01164067384483165,
+          "ed": -0.011637766008566822,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 9.673486584535651e-07,
+          "z_score": -3.005985731635468
+        }
+      },
       "parameters": {
         "Delta": 0.2,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p2_mum5_b4",
@@ -1249,65 +1253,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p2_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.001363447517074514,
-          "ed": 0.0013628538793617672,
-          "stderr": 2.2703969937226716e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 2.6146868340117955,
-          "pass_uncertainty": true
-        },
-        "energy_density": {
-          "dqmc": -0.01164067384483165,
-          "ed": -0.011637766008566822,
-          "stderr": 9.673486584535651e-07,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": -3.005985731635468,
-          "pass_uncertainty": false
-        },
-        "S_SF_K": {
-          "dqmc": 0.0003839990928143912,
-          "ed": 0.00038373885437488774,
-          "stderr": 1.2349463160489375e-07,
-          "reason": "ok",
-          "reliable": true,
-          "z_score": 2.1072854432739114,
-          "pass_uncertainty": true
-        },
-        "S_DW_K": {
-          "dqmc": 0.00027896209653896205,
-          "ed": 0.00027884411689470956,
-          "stderr": 3.585268516603232e-08,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 3.2906780539904363,
-          "pass_uncertainty": false
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p2_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p2_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p2_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p2_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.2
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p25_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p25_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p25_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.25,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 0.0004367224766309593,
+          "ed": 0.0004364145812202878,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 4.141664123571499e-08,
+          "z_score": 7.434098987389609
+        },
+        "S_SF_K": {
+          "dqmc": 0.0006009589008366127,
+          "ed": 0.0006003271000139248,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 1.4018262959951087e-07,
+          "z_score": 4.506983671892594
+        },
+        "density_total": {
+          "dqmc": 0.0021330915294591793,
+          "ed": 0.002131590860746706,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 2.6050463764946545e-07,
+          "z_score": 5.760621868438589
+        },
+        "energy_density": {
+          "dqmc": -0.018210987993276702,
+          "ed": -0.018202945809151133,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 1.0618076781686937e-06,
+          "z_score": -7.5740496993195
+        }
+      },
       "parameters": {
         "Delta": 0.25,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p25_mum5_b4",
@@ -1316,65 +1319,64 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p25_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.0021330915294591793,
-          "ed": 0.002131590860746706,
-          "stderr": 2.6050463764946545e-07,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 5.760621868438589,
-          "pass_uncertainty": false
-        },
-        "energy_density": {
-          "dqmc": -0.018210987993276702,
-          "ed": -0.018202945809151133,
-          "stderr": 1.0618076781686937e-06,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": -7.5740496993195,
-          "pass_uncertainty": false
-        },
-        "S_SF_K": {
-          "dqmc": 0.0006009589008366127,
-          "ed": 0.0006003271000139248,
-          "stderr": 1.4018262959951087e-07,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 4.506983671892594,
-          "pass_uncertainty": false
-        },
-        "S_DW_K": {
-          "dqmc": 0.0004367224766309593,
-          "ed": 0.0004364145812202878,
-          "stderr": 4.141664123571499e-08,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 7.434098987389609,
-          "pass_uncertainty": false
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p25_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p25_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p25_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p25_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.25
     },
     {
+      "block_size": 10000,
+      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p3_mum5_b4.json",
+      "ed_status": "fixed_cutoff_dense_trace",
       "id": "triangle_pairing_delta_3x3_D0p3_mum5_b4",
+      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p3_mum5_b4",
       "model": "pairing",
-      "row": 0,
-      "x": 0.3,
+      "observables": {
+        "S_DW_K": {
+          "dqmc": 0.000630440174197054,
+          "ed": 0.0006297932016594432,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 6.491806092717675e-08,
+          "z_score": 9.965986789664246
+        },
+        "S_SF_K": {
+          "dqmc": 0.0008675041772233524,
+          "ed": 0.0008663823848027475,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 2.2694589786370814e-07,
+          "z_score": 4.942994921541188
+        },
+        "density_total": {
+          "dqmc": 0.003077404171798794,
+          "ed": 0.0030743654472706614,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 4.0239201145488034e-07,
+          "z_score": 7.551652223775427
+        },
+        "energy_density": {
+          "dqmc": -0.026262835515544414,
+          "ed": -0.026246435925704144,
+          "pass_uncertainty": false,
+          "reason": "outside_dqmc_uncertainty",
+          "reliable": false,
+          "stderr": 1.6751742671171578e-06,
+          "z_score": -9.789781375100183
+        }
+      },
       "parameters": {
         "Delta": 0.3,
         "Lx": 3,
         "Ly": 3,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "basis_cap": 200000,
         "beta": 4.0,
         "case": "triangle_pairing_delta_3x3_D0p3_mum5_b4",
@@ -1383,53 +1385,25 @@
         "nmax": 3,
         "t": 1.0
       },
-      "block_size": 10000,
+      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p3_mum5_b4.tar.gz",
+      "reference_kind": "finite_cutoff_ed",
+      "row": 0,
       "samples": 100000,
       "skip_samples": 0,
-      "observables": {
-        "density_total": {
-          "dqmc": 0.003077404171798794,
-          "ed": 0.0030743654472706614,
-          "stderr": 4.0239201145488034e-07,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 7.551652223775427,
-          "pass_uncertainty": false
-        },
-        "energy_density": {
-          "dqmc": -0.026262835515544414,
-          "ed": -0.026246435925704144,
-          "stderr": 1.6751742671171578e-06,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": -9.789781375100183,
-          "pass_uncertainty": false
-        },
-        "S_SF_K": {
-          "dqmc": 0.0008675041772233524,
-          "ed": 0.0008663823848027475,
-          "stderr": 2.2694589786370814e-07,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 4.942994921541188,
-          "pass_uncertainty": false
-        },
-        "S_DW_K": {
-          "dqmc": 0.000630440174197054,
-          "ed": 0.0006297932016594432,
-          "stderr": 6.491806092717675e-08,
-          "reason": "outside_dqmc_uncertainty",
-          "reliable": false,
-          "z_score": 9.965986789664246,
-          "pass_uncertainty": false
-        }
-      },
-      "input_dir": "pairing/inputs/triangle_pairing_delta_3x3_D0p3_mum5_b4",
-      "ed_file": "pairing/ed/triangle_pairing_delta_3x3_D0p3_mum5_b4.json",
-      "raw_archive": "pairing/raw/triangle_pairing_delta_3x3_D0p3_mum5_b4.tar.gz",
-      "original_run_dir": "data/20260605_pairing_delta_mu_m5_production/inputs/triangle_pairing_delta_3x3_D0p3_mum5_b4",
-      "ed_status": "fixed_cutoff_dense_trace",
-      "reference_kind": "finite_cutoff_ed"
+      "x": 0.3
     }
-  ]
+  ],
+  "schema_version": 1,
+  "sources": {
+    "number_conserving": {
+      "campaign": "integrated_number_conserving_bafqmc_ed_3x3",
+      "repository": "BAFQMC",
+      "description": "Current paper-notation BAFQMC and ED benchmark records."
+    },
+    "pairing": {
+      "campaign": "integrated_pairing_bafqmc_ed_3x3",
+      "repository": "BAFQMC",
+      "description": "Current paper-notation paired BAFQMC and ED benchmark records."
+    }
+  }
 }

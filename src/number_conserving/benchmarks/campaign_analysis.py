@@ -48,8 +48,8 @@ ED_REFERENCE_OBSERVABLES = {
     "num_do",
 }
 
-NEGATIVE_U1_TRUSTED_LOW_DENSITY_MAX_TOTAL = 5.0e-2
-NEGATIVE_U1_TRUSTED_LOW_DENSITY_MIN_SHELLS = 6
+NEGATIVE_U2_TRUSTED_LOW_DENSITY_MAX_TOTAL = 5.0e-2
+NEGATIVE_U2_TRUSTED_LOW_DENSITY_MIN_SHELLS = 6
 IMAGINARY_ROUNDOFF_ATOL = 1.0e-14
 
 
@@ -339,7 +339,7 @@ def free_boson_reference_observables(parameters: dict[str, Any]) -> dict[str, fl
     u1 = float(parameters.get("U1", 0.0))
     u2 = float(parameters.get("U2", 0.0))
     if not math.isclose(u1, 0.0, rel_tol=0.0, abs_tol=1.0e-14):
-        raise ValueError("free-boson reference requires U1=0")
+        raise ValueError("free-boson reference requires U1=U2=0")
     if not math.isclose(u2, 0.0, rel_tol=0.0, abs_tol=1.0e-14):
         raise ValueError("free-boson reference requires U2=0")
     if beta <= 0.0:
@@ -691,12 +691,12 @@ def compare_dqmc_ed_case(
         )
         for name in sorted(TARGET_OBSERVABLES):
             result["observables"][name] = compare_observable(
-                _placeholder_observable(
+                _unavailable_observable(
                     None if dqmc_summary is None else dqmc_summary["observables"].get(name),
                     reliable=False,
                     reason=dqmc_error or "dqmc_unavailable",
                 ),
-                _placeholder_observable(
+                _unavailable_observable(
                     None if ed_targets is None else ed_targets.get(name),
                     reliable=False,
                     reason=ed_target_error or ed_error or "ed_unavailable",
@@ -845,15 +845,15 @@ def ed_reference_reliable(result: dict[str, Any]) -> ReliabilityDecision:
     if tail_check is not None:
         return ReliabilityDecision(False, "unreliable", tail_check)
     try:
-        u1 = float(parameters.get("U1"))
+        u2 = float(parameters.get("U2"))
     except (TypeError, ValueError):
         return ReliabilityDecision(
             reliable=False,
             kind="unreliable",
-            reason="missing_or_invalid_u1",
+            reason="missing_or_invalid_u2",
         )
 
-    if status == "converged" and u1 >= 0.0:
+    if status == "converged" and u2 >= 0.0:
         try:
             tolerance = float(policy["tail_tolerance"])
             min_completed_shells = int(policy.get("min_completed_shells", 0))
@@ -879,9 +879,9 @@ def ed_reference_reliable(result: dict[str, Any]) -> ReliabilityDecision:
         return ReliabilityDecision(
             reliable=True,
             kind="tail_converged",
-            reason="converged_nonnegative_u1",
+            reason="converged_nonnegative_u2",
         )
-    if status == "low_density_cutoff_accepted" and u1 < 0.0:
+    if status == "low_density_cutoff_accepted" and u2 < 0.0:
         try:
             max_density_total = float(policy["max_density_total"])
             min_completed_shells = int(policy["min_completed_shells"])
@@ -904,13 +904,13 @@ def ed_reference_reliable(result: dict[str, Any]) -> ReliabilityDecision:
                 kind="unreliable",
                 reason="insufficient_completed_shells",
             )
-        if completed_shells < NEGATIVE_U1_TRUSTED_LOW_DENSITY_MIN_SHELLS:
+        if completed_shells < NEGATIVE_U2_TRUSTED_LOW_DENSITY_MIN_SHELLS:
             return ReliabilityDecision(
                 reliable=False,
                 kind="unreliable",
                 reason="insufficient_low_density_window_shells",
             )
-        if density_total > NEGATIVE_U1_TRUSTED_LOW_DENSITY_MAX_TOTAL:
+        if density_total > NEGATIVE_U2_TRUSTED_LOW_DENSITY_MAX_TOTAL:
             return ReliabilityDecision(
                 reliable=False,
                 kind="unreliable",
@@ -919,12 +919,12 @@ def ed_reference_reliable(result: dict[str, Any]) -> ReliabilityDecision:
         return ReliabilityDecision(
             reliable=True,
             kind="finite_window",
-            reason="negative_u1_low_density_cutoff_accepted",
+            reason="negative_u2_low_density_cutoff_accepted",
         )
     return ReliabilityDecision(
         reliable=False,
         kind="unreliable",
-        reason=f"unsupported_ed_status: status={status}, U1={u1}",
+        reason=f"unsupported_ed_status: status={status}, U2={u2}",
     )
 
 
@@ -1015,7 +1015,7 @@ def _numbers_match(actual: Any, expected: Any, abs_tol: float) -> bool:
     )
 
 
-def _placeholder_observable(
+def _unavailable_observable(
     observable: dict[str, Any] | None,
     *,
     reliable: bool,

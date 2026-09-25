@@ -2,6 +2,13 @@ module OperatorHubbard_mod
     use MyLattice
     implicit none
     public
+
+    ! The public Hamiltonian convention is
+    !   U1 (n_b-n_c)^2 + U2 (n_b+n_c)^2,
+    ! with U1 >= 0 and U2 <= 0.  Keep the channel identifiers explicit:
+    ! the sign of a coupling no longer determines which operator it is.
+    integer, parameter :: CHANNEL_RELATIVE = 1
+    integer, parameter :: CHANNEL_TOTAL    = 2
     
     type :: AccCounter
         real(kind=8), private :: NC_eff_up, ACC_eff_up
@@ -32,7 +39,7 @@ module OperatorHubbard_mod
     
     type :: OperatorHubbard
         integer, private :: IUflag
-        real(kind=8), private :: RU
+        real(kind=8), private :: Uvalue
         complex(kind=8), private :: alpha ! = sqrt(-2UΔτ)
         complex(kind=8), private :: gaussian
         complex(kind=8), private :: expalpha
@@ -52,20 +59,30 @@ module OperatorHubbard_mod
     end type OperatorHubbard
     
 contains
-    subroutine opU_set(this, RU)
+    subroutine opU_set(this, Uvalue, channel)
         class(OperatorHubbard), intent(inout) :: this
-        real(kind=8), intent(in) :: RU
-        this%RU    = 0.0d0
+        real(kind=8), intent(in) :: Uvalue
+        integer, intent(in) :: channel
+        this%IUflag = 0
+        this%Uvalue = 0.0d0
         this%alpha = dcmplx( 0.d0, 0.d0 )
-        if ( RU < -Zero ) then
-            this%IUflag = 1 ! U1 term
-            this%RU     = RU
-            this%alpha  = dcmplx( sqrt(-2.d0 * RU * Dtau), 0.d0 )
+        if (channel /= CHANNEL_RELATIVE .and. channel /= CHANNEL_TOTAL) then
+            error stop "invalid pairing HS channel"
         endif
-        if ( RU >  Zero ) then
-            this%IUflag = 2 ! U2 term
-            this%RU     = RU
-            this%alpha = dcmplx( 0.d0, sqrt( 2.d0 * RU * Dtau) )
+        if (channel == CHANNEL_RELATIVE .and. Uvalue < -Zero) then
+            error stop "paper U1 (relative-density coupling) must be non-negative"
+        endif
+        if (channel == CHANNEL_TOTAL .and. Uvalue > Zero) then
+            error stop "paper U2 (total-density coupling) must be non-positive"
+        endif
+        if (abs(Uvalue) > Zero) then
+            this%IUflag = channel
+            this%Uvalue = Uvalue
+            if (channel == CHANNEL_TOTAL) then
+                this%alpha = dcmplx( sqrt(-2.d0 * Uvalue * Dtau), 0.d0 )
+            else
+                this%alpha = dcmplx( 0.d0, sqrt(2.d0 * Uvalue * Dtau) )
+            endif
         endif
         return
     end subroutine opU_set
@@ -95,7 +112,7 @@ contains
         expalpha_new = this%expalpha
         this%ratio_gaussian = gaussian_new / gaussian_old
         this%ratio_constant = dcmplx(1.d0, 0.d0)
-        if (this%IUflag == 1) then
+        if (this%IUflag == CHANNEL_TOTAL) then
             this%ratio_constant = expalpha_old / expalpha_new ! Nambu normal-ordering constant
         endif
         ! calculate the Delta matrix for ratio_det
@@ -104,13 +121,13 @@ contains
         call this%get_exp(delta_phi, 1)
         expdelta_p = this%expalpha        ! exp(   alpha * (phi'-phi) )
         expdelta_m = this%expalpha_minus  ! exp( - alpha * (phi'-phi) )
-        if (this%IUflag == 1) then ! U1 term
+        if (this%IUflag == CHANNEL_TOTAL) then ! U2 total-density term
             this%Delta(1,1) = expdelta_p - dcmplx(1.d0, 0.d0)
             this%Delta(2,2) = expdelta_p - dcmplx(1.d0, 0.d0)
             this%Delta(3,3) = expdelta_m - dcmplx(1.d0, 0.d0)
             this%Delta(4,4) = expdelta_m - dcmplx(1.d0, 0.d0)
         endif
-        if (this%IUflag == 2) then ! U2 term
+        if (this%IUflag == CHANNEL_RELATIVE) then ! U1 relative-density term
             this%Delta(1,1) = expdelta_p - dcmplx(1.d0, 0.d0)
             this%Delta(2,2) = expdelta_m - dcmplx(1.d0, 0.d0)
             this%Delta(3,3) = expdelta_m - dcmplx(1.d0, 0.d0)
@@ -135,13 +152,13 @@ contains
         i4 = Latt%inv_dim_list(i_site, 4)
 
         call this%get_exp(phi, nflag)
-        if (this%IUflag == 1) then ! U1 term
+        if (this%IUflag == CHANNEL_TOTAL) then ! U2 total-density term
             Mat(i1,1:Ndim) = this%expalpha * Mat(i1,1:Ndim)
             Mat(i2,1:Ndim) = this%expalpha * Mat(i2,1:Ndim)
             Mat(i3,1:Ndim) = this%expalpha_minus * Mat(i3,1:Ndim)
             Mat(i4,1:Ndim) = this%expalpha_minus * Mat(i4,1:Ndim)
         endif
-        if (this%IUflag == 2) then ! U2 term
+        if (this%IUflag == CHANNEL_RELATIVE) then ! U1 relative-density term
             Mat(i1,1:Ndim) = this%expalpha * Mat(i1,1:Ndim)
             Mat(i2,1:Ndim) = this%expalpha_minus * Mat(i2,1:Ndim)
             Mat(i3,1:Ndim) = this%expalpha_minus * Mat(i3,1:Ndim)
@@ -166,13 +183,13 @@ contains
         j4 = Latt%inv_dim_list(j_site, 4)
 
         call this%get_exp(phi, nflag)
-        if (this%IUflag == 1) then ! U1 term
+        if (this%IUflag == CHANNEL_TOTAL) then ! U2 total-density term
             Mat(1:Ndim,j1) = Mat(1:Ndim,j1) * this%expalpha
             Mat(1:Ndim,j2) = Mat(1:Ndim,j2) * this%expalpha
             Mat(1:Ndim,j3) = Mat(1:Ndim,j3) * this%expalpha_minus
             Mat(1:Ndim,j4) = Mat(1:Ndim,j4) * this%expalpha_minus
         endif
-        if (this%IUflag == 2) then ! U2 term
+        if (this%IUflag == CHANNEL_RELATIVE) then ! U1 relative-density term
             Mat(1:Ndim,j1) = Mat(1:Ndim,j1) * this%expalpha
             Mat(1:Ndim,j2) = Mat(1:Ndim,j2) * this%expalpha_minus
             Mat(1:Ndim,j3) = Mat(1:Ndim,j3) * this%expalpha_minus

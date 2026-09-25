@@ -1,6 +1,6 @@
 """Compare actual Fortran measurements with an independent Gaussian solution.
 
-Run with BAFQMC_RUN_MPI_TESTS=1. No QuSpin installation or archived data is
+Run with BAFQMC_RUN_MPI_TESTS=1. No QuSpin installation or stored benchmark data is
 needed: these are four-bin, zero-interaction calculations in fresh directories.
 The HS fields decouple, so every bin has the same exact expectation value.
 

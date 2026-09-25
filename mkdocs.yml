@@ -76,7 +76,6 @@ nav:
       - Scientific testing: docs/testing.md
       - Contributing: CONTRIBUTING.md
       - Releases: docs/releases.md
-      - Changelog: CHANGELOG.md
       - Community: CODE_OF_CONDUCT.md
       - Security: SECURITY.md
 not_in_nav: |

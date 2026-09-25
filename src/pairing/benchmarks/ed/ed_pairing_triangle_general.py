@@ -241,7 +241,8 @@ def build_hamiltonian(params: dict[str, Any], basis):
     hop_c = [[coef, i + nsite, j + nsite] for coef, i, j in hop_b]
     chem = [[-mu, i] for i in range(2 * nsite)]
     self_int = [[u1 + u2, i, i] for i in range(2 * nsite)]
-    cross_int = [[2.0 * (u1 - u2), i, i + nsite] for i in range(nsite)]
+    # Paper convention: U1 multiplies relative density and U2 total density.
+    cross_int = [[2.0 * (u2 - u1), i, i + nsite] for i in range(nsite)]
     pair_create = [[delta, i, i + nsite] for i in range(nsite)]
     pair_annihilate = [[delta, i, i + nsite] for i in range(nsite)]
     static = [
@@ -477,7 +478,7 @@ def observable_values(params: dict[str, Any], basis, evals: np.ndarray, evecs: n
     delta = float(params["Delta"])
     interaction_energy_total = (
         (u1 + u2) * (onsite_n2_up + onsite_n2_do)
-        + 2.0 * (u1 - u2) * float(nsite) * double_occ
+        + 2.0 * (u2 - u1) * float(nsite) * double_occ
     )
     pairing_total = delta * float(nsite) * pair_equal
     chemical_energy_total = -mu * total_ne

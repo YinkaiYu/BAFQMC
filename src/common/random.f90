@@ -1,5 +1,4 @@
-! Original BAFQMC uniform RNG recurrence, expressed without integer overflow.
-! This produces the same seed sequence as the historical 32-bit ranf routine:
+! BAFQMC uniform RNG recurrence, evaluated without integer overflow:
 ! seed <- (48828125 * seed) mod 2^31; u = seed / 2^31.
 function ranf(iq) result(value)
     use, intrinsic :: iso_fortran_env, only: int64, real64

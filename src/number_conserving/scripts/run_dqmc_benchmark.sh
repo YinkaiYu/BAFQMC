@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-input_dir="${1:-../../examples/number_conserving/benchmarks/triangle_3x2_beta3_mu-2.5_u1_0_u2_1}"
-reference="${2:-benchmarks/dqmc_references/triangle_3x2_beta3_mu-2.5_u1_0_u2_1.json}"
+input_dir="${1:-../../examples/number_conserving/benchmarks/triangle_3x2_beta3_mu-2.5_u1_1_u2_0}"
+reference="${2:-benchmarks/dqmc_references/triangle_3x2_beta3_mu-2.5_u1_1_u2_0.json}"
 np="${3:-${MPI_NP:-1}}"
 python="${PYTHON:-python3}"
 

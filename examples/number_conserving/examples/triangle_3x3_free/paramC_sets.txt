@@ -6,7 +6,7 @@
 .false.     0           1.0         1.0
 2           0.1         0.0         0.0
 
-RU1         RU2         mu
+U1_relative  U2_total    mu
 Nlx         Nly         Ltrot       Beta
 NlxTherm    NlyTherm    LtrotTherm
 Nwrap       Nbin        Nsweep      shiftLoc

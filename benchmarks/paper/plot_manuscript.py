@@ -1,7 +1,7 @@
-"""Main-text U/Delta benchmark and the supplemental U1 scan.
+"""Main-text U1/Delta benchmark and the supplemental U2 scan.
 
-All points and error bars come from the archived or freshly processed records.
-The original model parameters remain unchanged; the main-text U denotes U2.
+All points and error bars come from the stored or freshly processed records.
+All records and labels use the paper convention: repulsive relative-density U1 and attractive total-density U2.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ def plot_figures(cases: list[dict], output: Path) -> None:
         records.append(record)
 
     rows = []
-    for benchmark in ("repulsive_u", "pairing_delta", "attractive_u1"):
+    for benchmark in ("repulsive_u", "pairing_delta", "attractive_u2"):
         row = [c for c in records if c["manuscript"]["benchmark"] == benchmark]
         if row:
             rows.append((row[0]["manuscript"], row))
@@ -61,12 +61,12 @@ def _draw(plt, output: Path, rows: list[tuple[dict, list[dict]]], stem: str) -> 
             top=0.970, wspace=0.24, hspace=0.18,
         )
         for row_index, (description, records) in enumerate(rows):
-            xlabel = {"U": r"$U$", "Delta": r"$\Delta$", "U1": r"$U_1$"}[description["scan_parameter"]]
+            xlabel = {"U1": r"$U_1$", "U2": r"$U_2$", "Delta": r"$\Delta$"}[description["scan_parameter"]]
             for column, observable in enumerate(OBSERVABLES):
                 ax = axes[row_index, column]
                 plot_number._plot_observable_axis(ax, records, observable, plot_checkpoints=False)
                 if records[0]["model"] == "pairing":
-                    # Retain the linear axes of the original paired benchmark.
+                    # Retain the linear axes of the paired benchmark.
                     x = [float(record["x"]) for record in records]
                     ed = [record["observables"][observable]["ed"] for record in records]
                     dqmc = [record["observables"][observable]["dqmc"] for record in records]

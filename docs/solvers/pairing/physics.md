@@ -29,15 +29,15 @@ Z=\mathrm{Tr}e^{-\beta\hat H_\mu},\qquad
 \hat N_b=\sum_i\hat n_{b,i},\quad \hat N_c=\sum_i\hat n_{c,i}.
 ```
 
-The code retains two density-interaction channels,
+The code retains the two paper-labeled density-interaction channels,
 
 ```math
 \hat H_U=\sum_i\left[
-U_1(\hat n_{b,i}+\hat n_{c,i})^2
-+U_2(\hat n_{b,i}-\hat n_{c,i})^2\right].
+ U_1(\hat n_{b,i}-\hat n_{c,i})^2
++U_2(\hat n_{b,i}+\hat n_{c,i})^2\right].
 ```
 
-The main-text benchmark sets $`U_1=0`$ and $`U_2=U`$. The paired scan has $`U=1`$,
+The main-text benchmark sets $`U_1=U`$ and $`U_2=0`$. The paired scan has $`U=1`$,
 $`\mu=-5`$, $`\beta=4`$, and $`\Delta=0,0.05,\ldots,0.30`$; its four observables
 form panels (e–h) of the combined benchmark figure. The code reads $`U_1`$,
 $`U_2`$, $`\mu`$, and a real $`\Delta`$ from `paramC_sets.txt`; $`t`$ is `RT=1` in
@@ -46,7 +46,7 @@ The interaction is equivalently
 
 ```math
 (U_1+U_2)(\hat n_{b,i}^2+\hat n_{c,i}^2)
-+2(U_1-U_2)\hat n_{b,i}\hat n_{c,i}
++2(U_2-U_1)\hat n_{b,i}\hat n_{c,i}.
 ```
 
 on each site, as used in the ED construction and energy estimator.
@@ -91,7 +91,7 @@ e_\Delta=-\Delta P_{\rm paper}=\Delta\,\texttt{pair\_equal}.
 The total pair energy is $`E_\Delta=N_s e_\Delta`$. The physical energy excludes
 $`-\mu(\hat N_b+\hat N_c)`$ throughout both implementations.
 
-For this $`U_1=0`$ model, the condition $`\mu<-3t-|\Delta|`$ guarantees a finite
+For this $`U_2=0`$ model, the condition $`\mu<-3t-|\Delta|`$ guarantees a finite
 trace for every real auxiliary-field configuration, as proved in the SM
 subsection "Convergence throughout the auxiliary-field domain". All seven
 paired benchmark points satisfy it. Only the relative-density HS field is
@@ -150,27 +150,31 @@ current hopping sign convention.
 
 ## Continuous Hubbard-Stratonovich Fields
 
-The Trotter step uses two continuous Gaussian fields $`\phi_{1,i,\tau}`$ and $`\phi_{2,i,\tau}`$. For the intended signs $`U_1\le0`$ and $`U_2\ge0`$,
+The Trotter step uses two continuous Gaussian fields $`\varphi_{i,\tau}`$ and
+$`\phi_{i,\tau}`$. For the intended signs $`U_1\ge0`$ and $`U_2\le0`$,
 
 ```math
-e^{-\Delta\tau U_1(n_b+n_c)^2}
-\propto \int d\phi_1\, e^{-\phi_1^2/2}
-e^{\alpha_1\phi_1(n_b+n_c)},
+e^{-\Delta\tau U_2(n_b+n_c)^2}
+\propto \int d\phi\, e^{-\phi^2/2}
+e^{\alpha_2\phi(n_b+n_c)},
 \qquad
-\alpha_1=\sqrt{-2U_1\Delta\tau},
+\alpha_2=\sqrt{-2U_2\Delta\tau},
 ```
 
 ```math
-e^{-\Delta\tau U_2(n_b-n_c)^2}
-\propto \int d\phi_2\, e^{-\phi_2^2/2}
-e^{i\alpha_2\phi_2(n_b-n_c)},
+e^{-\Delta\tau U_1(n_b-n_c)^2}
+\propto \int d\varphi\, e^{-\varphi^2/2}
+e^{i\alpha_1\varphi(n_b-n_c)},
 \qquad
-\alpha_2=\sqrt{2U_2\Delta\tau}.
+\alpha_1=\sqrt{2U_1\Delta\tau}.
 ```
 
 The auxiliary fields live on spatial sites, not Nambu sectors:
-`Conf%phi_list(ns, i_site, ntau)`, where `ns=1` is the $`U_1`$ channel and `ns=2` is the $`U_2`$ channel.
-The paper defines $`\alpha_2`$ as real; `OperatorHubbard%alpha` stores the complex coefficient $`i\alpha_2`$ for this channel. At zero coupling the corresponding coefficient vanishes.
+`Conf%phi_list(ns, i_site, ntau)`, where `ns=1` is the relative-density
+$`U_1`$ channel and `ns=2` is the total-density $`U_2`$ channel. The paper
+defines both $`\alpha_1`$ and $`\alpha_2`$ as real; the relative channel stores
+the complex coefficient $`i\alpha_1`$ in `OperatorHubbard%alpha`. At zero
+coupling the corresponding coefficient and channel flag are cleared.
 
 ## Nambu Basis Convention
 
@@ -244,45 +248,47 @@ $`\exp(\mp\Delta\tau A)`$.
 ## HS Constant In The Nambu Convention
 
 Let $`\lambda_1`$ and $`\lambda_2`$ denote the actual complex coefficients
-that multiply the normal-ordered density channels on one space-time site:
+that multiply the normal-ordered relative- and total-density channels on one
+space-time site:
 
 ```math
-\lambda_1=\alpha_1\phi_1,\qquad
-\lambda_2=i\alpha_2\phi_2,\qquad
-\alpha_2=\sqrt{2U_2\Delta\tau}.
+\lambda_1=i\alpha_1\varphi,\qquad
+\lambda_2=\alpha_2\phi,\qquad
+\alpha_2=\sqrt{-2U_2\Delta\tau}.
 ```
 
-In the Fortran code, `OperatorHubbard%alpha` stores $`i\alpha_2`$, so its
-product with the real field is $`\lambda_2`$. The HS density term satisfies
+In the Fortran code, `OperatorHubbard%alpha` stores $`i\alpha_1`$ for the
+relative channel and $`\alpha_2`$ for the total channel. The HS density term
+satisfies
 
 ```math
-\lambda_1(b^+ b+c^+ c)
-+\lambda_2(b^+ b-c^+ c)
+\lambda_2(b^+ b+c^+ c)
++\lambda_1(b^+ b-c^+ c)
 =
 -\frac12\chi^T\Omega
 \begin{pmatrix}
-\lambda_1+\lambda_2&0&0&0\\
-0&\lambda_1-\lambda_2&0&0\\
-0&0&-(\lambda_1+\lambda_2)&0\\
-0&0&0&-(\lambda_1-\lambda_2)
+\lambda_2+\lambda_1&0&0&0\\
+0&\lambda_2-\lambda_1&0&0\\
+0&0&-(\lambda_2+\lambda_1)&0\\
+0&0&0&-(\lambda_2-\lambda_1)
 \end{pmatrix}
 \chi
--\lambda_1 .
+-\lambda_2 .
 ```
 
-The final $`-\lambda_1`$ is the bosonic commutator c-number. It does not appear
+The final $`-\lambda_2`$ is the bosonic commutator c-number. It does not appear
 as a matrix element in the Nambu propagator, but it must appear in the sampling
-weight. Therefore a local $`U_1`$ update contributes
+weight. Therefore a local total-density $`U_2`$ update contributes
 
 ```math
-\frac{e^{-\alpha_1\phi_1'}}{e^{-\alpha_1\phi_1}}
+\frac{e^{-\alpha_2\phi'}}{e^{-\alpha_2\phi}}
 =
-\exp[-\alpha_1(\phi_1'-\phi_1)]
+\exp[-\alpha_2(\phi'-\phi)]
 ```
 
 to `ratio_constant`. In `src/operator_Hubbard.f90` this is implemented as
-`expalpha_old / expalpha_new` for `IUflag == 1`. The $`U_2`$ channel has no
-scalar c-number because its two flavor coefficients sum to zero.
+`expalpha_old / expalpha_new` for `CHANNEL_TOTAL`. The relative-density $`U_1`$
+channel has no scalar c-number because its two flavor coefficients sum to zero.
 
 ## Green Matrix And Local Determinant Factor
 
@@ -301,7 +307,7 @@ Fortran code is instead
 \tilde G\equiv G\Omega^{-1}=M^{-1}.
 ```
 
-Despite the historical variable name, `Prop%Gr` stores $`\tilde G`$, not the
+`Prop%Gr` stores $`\tilde G`$, not the
 physical $`G`$. The local Metropolis probability is
 
 ```math
@@ -581,7 +587,7 @@ e_\mu=-\mu\rho,\qquad e_{\rm grand}=e+e_\mu=e-\mu\rho.
 | `numsquare_up` | $`\sum_{i,j}\mathrm{Re}\,D_{bb}(i,j)`$ | total | $`N_b^2`$ | `mean` | yes | yes |
 | `numsquare_do` | $`\sum_{i,j}\mathrm{Re}\,D_{cc}(i,j)`$ | total | $`N_c^2`$ | `mean` | yes | yes |
 | `pair_equal` | $`N_s^{-1}\sum_i\mathrm{Re}\langle b_i c_i+b_i^+ c_i^+\rangle`$ | per site | $`N_s^{-1}\partial F/\partial\Delta`$ | `mean` | zero check | yes |
-| `interaction_energy_density` | $`(U_1+U_2)(M_b^{(2)}+M_c^{(2)})/N_s+2(U_1-U_2)\texttt{doubleOcc}`$ | per site | `interaction_energy_density` | `mean` | no | yes |
+| `interaction_energy_density` | $`(U_1+U_2)(M_b^{(2)}+M_c^{(2)})/N_s+2(U_2-U_1)\texttt{doubleOcc}`$ | per site | `interaction_energy_density` | `mean` | no | yes |
 | `pairing_energy_density` | $`\Delta\,\texttt{pair\_equal}`$ | per site | `pairing_energy_density` | `mean` | zero check | yes |
 | `energy_density` | $`e=E/N_s=e_t+e_U+e_\Delta`$, excluding $`-\mu N`$; paper plots use $`-E=-N_s e`$ | per site storage | `energy_density` | `mean` | no | yes |
 | `chemical_energy_density` | $`-\mu\rho`$ | per site | `chemical_energy_density` | `mean` | diagnostic | diagnostic |
@@ -601,7 +607,7 @@ For $`K`$-point observables the pairing code uses the same $`K`$ index and
 phase convention as the number-conserving solver when both lattice dimensions are
 multiples of three. ED entrypoints reject incompatible $`K`$ labels, and
 campaign analysis must mark `sf_K` and `dw_K` unavailable rather than treating
-placeholders or zeros as physics data.
+missing entries as physics data.
 At compatible sizes `sf_K` and `dw_K` are standard Hermitian structure-factor
 channels:
 

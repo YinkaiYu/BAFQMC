@@ -59,7 +59,7 @@ class EDQuSpinSchemaTests(unittest.TestCase):
         policy = {"tail_tolerance": 0.05}
 
         status = self.ed.classify_status(
-            {"U1": 0.0}, relative_tail, policy, completed_shells=1
+            {"U2": 0.0}, relative_tail, policy, completed_shells=1
         )
 
         self.assertEqual(status, "converged")
@@ -69,12 +69,12 @@ class EDQuSpinSchemaTests(unittest.TestCase):
         policy = {"tail_tolerance": 0.05, "min_completed_shells": 2}
 
         status = self.ed.classify_status(
-            {"U1": 0.0}, relative_tail, policy, completed_shells=0
+            {"U2": 0.0}, relative_tail, policy, completed_shells=0
         )
 
         self.assertEqual(status, "incomplete")
 
-    def test_classify_status_accepts_negative_u1_low_density_cutoff(self) -> None:
+    def test_classify_status_accepts_negative_u2_low_density_cutoff(self) -> None:
         relative_tail = {name: 1.0 for name in self.ed.ED_OBSERVABLES}
         policy = {
             "tail_tolerance": 0.05,
@@ -85,7 +85,7 @@ class EDQuSpinSchemaTests(unittest.TestCase):
         observables["density_total"] = 0.1
 
         status = self.ed.classify_status(
-            {"U1": -0.1},
+            {"U2": -0.1},
             relative_tail,
             policy,
             completed_shells=3,
@@ -104,10 +104,10 @@ class EDQuSpinSchemaTests(unittest.TestCase):
         }
 
         positive_status = self.ed.classify_status(
-            {"U1": 0.0}, relative_tail, policy, completed_shells=4
+            {"U2": 0.0}, relative_tail, policy, completed_shells=4
         )
         negative_status = self.ed.classify_status(
-            {"U1": -0.1},
+            {"U2": -0.1},
             relative_tail,
             policy,
             completed_shells=2,

@@ -48,8 +48,7 @@ def prepare_smoke_data(data):
             "model": model, "id": case_id, "parameters": params,
             "reference_kind": kind, "samples": 8, "block_size": 2,
             "skip_samples": 0, "observables": {}, "row": 0, "x": params.get("Delta", 0),
-            "raw_archive": "smoke_has_no_archived_chain",
-            "original_run_dir": "smoke", "ed_status": "not_run",
+            "raw_archive": "smoke_has_no_raw_chain", "ed_status": "not_run",
             "ed_file": "smoke", "input_dir": "smoke",
         })
     index = {"schema_version": 1, "cases": cases}
@@ -97,7 +96,7 @@ class ProductionIntegrationTests(unittest.TestCase):
                 self.assertEqual(len(records), 2)
                 self.assertEqual(len(blocks), 32)
                 for record in records:
-                    self.assertIn("archived_source", record)
+                    self.assertIn("stored_data", record)
                     for values in record["observables"].values():
                         self.assertTrue(all(math.isfinite(values[key]) for key in ("dqmc", "stderr", "ed")))
                 nc_result = stage_path(output / "runs", "number_conserving", index["cases"][0]["id"], "ed") / "results.json"

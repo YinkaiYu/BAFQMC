@@ -78,12 +78,12 @@ def classify_status(
     completed_shells: int = 0,
     observables: dict[str, float] | None = None,
 ) -> str:
-    """Classify ED convergence/cutoff status with explicit U1<0 semantics."""
+    """Classify ED convergence/cutoff status with explicit U2<0 semantics."""
 
     if bool(parameters.get("dry_run", False)):
         return "dry_run"
 
-    u1 = float(parameters.get("U1", 0.0))
+    u2 = float(parameters.get("U2", 0.0))
     tolerance = float(policy.get("tail_tolerance", 0.0))
     max_relative_tail = max(
         (float(relative_last_shell.get(name, math.inf)) for name in ED_OBSERVABLES),
@@ -92,13 +92,13 @@ def classify_status(
     min_completed_shells = int(policy.get("min_completed_shells", 0))
 
     if (
-        u1 >= 0.0
+        u2 >= 0.0
         and completed_shells >= min_completed_shells
         and max_relative_tail <= tolerance
     ):
         return "converged"
 
-    if u1 < 0.0:
+    if u2 < 0.0:
         density_total = math.inf
         if observables is not None:
             density_total = float(observables.get("density_total", math.inf))
@@ -494,9 +494,10 @@ def _grand_momentum_block(
         diagonal = op.matrix_ele(V, V, diagonal=True)
         weighted[name] = _real_scalar(np.sum(weights * diagonal))
 
+    # Paper convention: U1*(n_b-n_c)^2 + U2*(n_b+n_c)^2.
     weighted["interaction_energy_density"] = (
         (u1 + u2) * (weighted["onsite_n2_up"] + weighted["onsite_n2_do"]) / lq
-        + 2.0 * (u1 - u2) * weighted["doubleOcc"]
+        + 2.0 * (u2 - u1) * weighted["doubleOcc"]
     )
     weighted["energy_density"] = (
         weighted["total_kinetic"] / lq + weighted["interaction_energy_density"]
@@ -628,9 +629,11 @@ def _hamiltonian_static(
     lx: int, ly: int, t: float, u1: float, u2: float
 ) -> list[list[Any]]:
     lq = lx * ly
+    # The cross-flavor coefficient is 2*(U2-U1) after expanding the two
+    # paper-convention density squares.
     return [
         ["+-", _hopping_two_species(lx, ly, t)],
-        ["nn", [[2.0 * (u1 - u2), i, i + lq] for i in range(lq)]],
+        ["nn", [[2.0 * (u2 - u1), i, i + lq] for i in range(lq)]],
         ["nn", [[u1 + u2, i, i] for i in range(2 * lq)]],
     ]
 

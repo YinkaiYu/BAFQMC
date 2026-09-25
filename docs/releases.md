@@ -6,9 +6,8 @@ GitHub release so researchers can return to the same code.
 
 ## Prepare the version
 
-Update [CHANGELOG.md](../CHANGELOG.md) with the release date and concrete
-changes. Keep the installation guide, agent instructions, and numerical
-resource estimates consistent with the code. Check that the source package
+Keep the installation guide, agent instructions, and numerical resource
+estimates consistent with the code. Check that the source package
 contains the MIT license, solver source, ED code, curated inputs, processed
 data, and reproduction scripts. Raw chains and generated build files remain
 outside the release.
@@ -58,7 +57,7 @@ git push origin "$release_tag"
 ```
 
 The Source release workflow reruns the computational CI for that tag, then
-publishes a source archive and SHA-256 checksum as a GitHub release. Include
+publishes a source archive as a GitHub release. Include
 the changelog entry, relevant validation, and any changes to input or output
 formats in the release notes. Keep the tag fixed once published; a correction
 receives a new version.

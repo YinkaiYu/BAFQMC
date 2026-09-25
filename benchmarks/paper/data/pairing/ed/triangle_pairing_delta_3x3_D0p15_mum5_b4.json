@@ -1,142 +1,5 @@
 {
-  "case": "triangle_pairing_delta_3x3_D0p15_mum5_b4",
-  "parameters": {
-    "Lx": 3,
-    "Ly": 3,
-    "t": 1.0,
-    "U1": 0.0,
-    "U2": 1.0,
-    "mu": -5.0,
-    "Delta": 0.15,
-    "beta": 4.0
-  },
-  "cutoffs": {
-    "nmax": 3,
-    "ncut": 4,
-    "basis_cap": 200000
-  },
   "basis_size": 7297,
-  "diagonalization_method": "dense_H_eigh",
-  "energy_shift": -0.024452241886391043,
-  "free_energy": -0.024458508399946132,
-  "observables": {
-    "num_up": {
-      "value": 0.003450258769618078,
-      "normalization": "total"
-    },
-    "num_do": {
-      "value": 0.003450258769618078,
-      "normalization": "total"
-    },
-    "total_NE": {
-      "value": 0.006900517539236156,
-      "normalization": "total"
-    },
-    "total_density": {
-      "value": 0.0007667241710262395,
-      "normalization": "per_site"
-    },
-    "density_total": {
-      "value": 0.0007667241710262395,
-      "normalization": "per_site"
-    },
-    "kinetic_total": {
-      "value": -0.010941999223601959,
-      "normalization": "total"
-    },
-    "doubleOcc": {
-      "value": 0.0003285561018336317,
-      "normalization": "per_site"
-    },
-    "local_numsquare": {
-      "value": 0.0007673047449036099,
-      "normalization": "per_site"
-    },
-    "numsquare_up": {
-      "value": 0.0034643771358085704,
-      "normalization": "total"
-    },
-    "numsquare_do": {
-      "value": 0.003464377135808571,
-      "normalization": "total"
-    },
-    "pair_equal": {
-      "value": -0.036244063604583064,
-      "normalization": "per_site"
-    },
-    "onsite_n2_up": {
-      "value": 0.0034528713520662444,
-      "normalization": "total"
-    },
-    "onsite_n2_do": {
-      "value": 0.003452871352066245,
-      "normalization": "total"
-    },
-    "interaction_energy_total": {
-      "value": 0.0009917328711271187,
-      "normalization": "total"
-    },
-    "interaction_energy_density": {
-      "value": 0.00011019254123634653,
-      "normalization": "per_site"
-    },
-    "pairing_total": {
-      "value": -0.04892948586618713,
-      "normalization": "total"
-    },
-    "pairing_energy_density": {
-      "value": -0.005436609540687459,
-      "normalization": "per_site"
-    },
-    "chemical_energy_total": {
-      "value": 0.03450258769618078,
-      "normalization": "total"
-    },
-    "chemical_energy_density": {
-      "value": 0.003833620855131198,
-      "normalization": "per_site"
-    },
-    "energy_total": {
-      "value": -0.05887975221866197,
-      "normalization": "total"
-    },
-    "energy_density": {
-      "value": -0.006542194690962441,
-      "normalization": "per_site"
-    },
-    "grand_energy_total": {
-      "value": -0.02437716452248119,
-      "normalization": "total"
-    },
-    "grand_energy_density": {
-      "value": -0.0027085738358312433,
-      "normalization": "per_site"
-    },
-    "S_SF_K": {
-      "value": 0.00021601238052863472,
-      "normalization": "per_site_squared"
-    },
-    "S_DW_K": {
-      "value": 0.00015672280778688839,
-      "normalization": "per_site_squared"
-    },
-    "S_PSF_Gamma": {
-      "value": 0.00032843857957252687,
-      "normalization": "per_site_squared"
-    },
-    "same_flavor_pair": {
-      "value": 2.902869386851849e-07,
-      "normalization": "per_site"
-    }
-  },
-  "cutoff_diagnostics": {
-    "max_total_particles_in_basis": 4,
-    "total_cutoff_boundary_weight": 7.003553937553954e-06,
-    "local_nmax_boundary_weight": 8.627140240138785e-15,
-    "dense_eigh_memory_estimate_gib": 3.1737213730812073,
-    "dense_eigh_memory_cap_gib": 12.0,
-    "dense_eigh_memory_model": "4 complex128 dense matrices"
-  },
   "bond_list": [
     [
       0,
@@ -246,5 +109,142 @@
       8,
       1
     ]
-  ]
+  ],
+  "case": "triangle_pairing_delta_3x3_D0p15_mum5_b4",
+  "cutoff_diagnostics": {
+    "dense_eigh_memory_cap_gib": 12.0,
+    "dense_eigh_memory_estimate_gib": 3.1737213730812073,
+    "dense_eigh_memory_model": "4 complex128 dense matrices",
+    "local_nmax_boundary_weight": 8.627140240138785e-15,
+    "max_total_particles_in_basis": 4,
+    "total_cutoff_boundary_weight": 7.003553937553954e-06
+  },
+  "cutoffs": {
+    "basis_cap": 200000,
+    "ncut": 4,
+    "nmax": 3
+  },
+  "diagonalization_method": "dense_H_eigh",
+  "energy_shift": -0.024452241886391043,
+  "free_energy": -0.024458508399946132,
+  "observables": {
+    "S_DW_K": {
+      "normalization": "per_site_squared",
+      "value": 0.00015672280778688839
+    },
+    "S_PSF_Gamma": {
+      "normalization": "per_site_squared",
+      "value": 0.00032843857957252687
+    },
+    "S_SF_K": {
+      "normalization": "per_site_squared",
+      "value": 0.00021601238052863472
+    },
+    "chemical_energy_density": {
+      "normalization": "per_site",
+      "value": 0.003833620855131198
+    },
+    "chemical_energy_total": {
+      "normalization": "total",
+      "value": 0.03450258769618078
+    },
+    "density_total": {
+      "normalization": "per_site",
+      "value": 0.0007667241710262395
+    },
+    "doubleOcc": {
+      "normalization": "per_site",
+      "value": 0.0003285561018336317
+    },
+    "energy_density": {
+      "normalization": "per_site",
+      "value": -0.006542194690962441
+    },
+    "energy_total": {
+      "normalization": "total",
+      "value": -0.05887975221866197
+    },
+    "grand_energy_density": {
+      "normalization": "per_site",
+      "value": -0.0027085738358312433
+    },
+    "grand_energy_total": {
+      "normalization": "total",
+      "value": -0.02437716452248119
+    },
+    "interaction_energy_density": {
+      "normalization": "per_site",
+      "value": 0.00011019254123634653
+    },
+    "interaction_energy_total": {
+      "normalization": "total",
+      "value": 0.0009917328711271187
+    },
+    "kinetic_total": {
+      "normalization": "total",
+      "value": -0.010941999223601959
+    },
+    "local_numsquare": {
+      "normalization": "per_site",
+      "value": 0.0007673047449036099
+    },
+    "num_do": {
+      "normalization": "total",
+      "value": 0.003450258769618078
+    },
+    "num_up": {
+      "normalization": "total",
+      "value": 0.003450258769618078
+    },
+    "numsquare_do": {
+      "normalization": "total",
+      "value": 0.003464377135808571
+    },
+    "numsquare_up": {
+      "normalization": "total",
+      "value": 0.0034643771358085704
+    },
+    "onsite_n2_do": {
+      "normalization": "total",
+      "value": 0.003452871352066245
+    },
+    "onsite_n2_up": {
+      "normalization": "total",
+      "value": 0.0034528713520662444
+    },
+    "pair_equal": {
+      "normalization": "per_site",
+      "value": -0.036244063604583064
+    },
+    "pairing_energy_density": {
+      "normalization": "per_site",
+      "value": -0.005436609540687459
+    },
+    "pairing_total": {
+      "normalization": "total",
+      "value": -0.04892948586618713
+    },
+    "same_flavor_pair": {
+      "normalization": "per_site",
+      "value": 2.902869386851849e-07
+    },
+    "total_NE": {
+      "normalization": "total",
+      "value": 0.006900517539236156
+    },
+    "total_density": {
+      "normalization": "per_site",
+      "value": 0.0007667241710262395
+    }
+  },
+  "parameters": {
+    "Delta": 0.15,
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 1.0,
+    "U2": 0.0,
+    "beta": 4.0,
+    "mu": -5.0,
+    "t": 1.0
+  }
 }

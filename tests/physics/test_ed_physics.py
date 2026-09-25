@@ -19,8 +19,8 @@ PARAMETERS = {
     "Lx": 2,
     "Ly": 1,
     "t": 1.0,
-    "U1": -0.1,
-    "U2": 1.0,
+    "U1": 1.0,
+    "U2": -0.1,
     "mu": -5.0,
     "Delta": 0.2,
     "beta": 1.0,
@@ -63,8 +63,8 @@ def finite_fock_operators(parameters):
         total_local = numbers[b] + numbers[c]
         relative_local = numbers[b] - numbers[c]
         interaction += (
-            parameters["U1"] * (total_local @ total_local)
-            + parameters["U2"] * (relative_local @ relative_local)
+            parameters["U1"] * (relative_local @ relative_local)
+            + parameters["U2"] * (total_local @ total_local)
         )
         pair_annihilator += annihilators[b] @ annihilators[c]
         double_occupation += numbers[b] @ numbers[c] / 2.0

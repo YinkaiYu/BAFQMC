@@ -1,0 +1,22 @@
+{
+  "convergence_policy": {
+    "max_density_total": 1.0,
+    "min_completed_shells": 2,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "tail_tolerance": 0.0001
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 2.0,
+    "U2": 0.0,
+    "beta": 4.0,
+    "max_total_particles": 10,
+    "mu": -3.5,
+    "t": 1.0
+  }
+}

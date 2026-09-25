@@ -75,8 +75,8 @@ Q_\phi=\frac1{N_s}\sum_i\mathrm{Re}\left[
 ```
 
 ```math
-\hat H_U=U_1\sum_i(\hat n_{b,i}+\hat n_{c,i})^2+
-U_2\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
+\hat H_U=U_1\sum_i(\hat n_{b,i}-\hat n_{c,i})^2+
+U_2\sum_i(\hat n_{b,i}+\hat n_{c,i})^2,
 ```
 
 ```math
@@ -85,7 +85,7 @@ U_2\sum_i(\hat n_{b,i}-\hat n_{c,i})^2,
 ```
 
 配对求解器接受实数 $`\Delta`$；粒子数守恒求解器取 $`\Delta=0`$。
-论文主模型取 $`U_1=0`$，$`U_2=U`$。
+论文主模型取 $`U_1=U`$，$`U_2=0`$。
 $`\hat H_t`$ 中每条最近邻键只计一次，显式写出两个跃迁方向。
 定义 $`e_t=\langle\hat H_t\rangle/N_s`$，
 $`e_U=\langle\hat H_U\rangle/N_s`$，
@@ -115,7 +115,7 @@ e_\Delta&=\Delta P_{\mathrm{code}}=-\Delta P_{\mathrm{paper}}.
 | 输出文件 | 定义 |
 | --- | --- |
 | `kinetic` | $`e_t`$，含 $`t`$ 和两种组分 |
-| `interaction_energy_density` | $`e_U=(U_1+U_2)(M_b+M_c)/N_s+2(U_1-U_2)D`$ |
+| `interaction_energy_density` | $`e_U=(U_1+U_2)(M_b+M_c)/N_s+2(U_2-U_1)D`$ |
 | `pair_equal`（**仅配对求解器**） | $`P_{\mathrm{code}}`$；取负号得论文的配对振幅 |
 | `pairing_energy_density`（**仅配对求解器**） | $`e_\Delta=\Delta P_{\mathrm{code}}`$ |
 | `energy_density` | $`e=\langle\hat H\rangle/N_s=e_t+e_U+e_\Delta`$ |

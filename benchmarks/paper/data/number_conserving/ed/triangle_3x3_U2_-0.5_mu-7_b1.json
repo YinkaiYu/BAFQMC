@@ -1,0 +1,75 @@
+{
+  "completed_shells": 6,
+  "convergence_policy": {
+    "max_density_total": 0.05,
+    "min_completed_shells": 6,
+    "statuses": [
+      "converged",
+      "low_density_cutoff_accepted",
+      "incomplete"
+    ],
+    "stop_when_reliable": true,
+    "tail_tolerance": 1e-05
+  },
+  "last_shell_contribution": {
+    "S_DW_K": 1.1457725505788212e-08,
+    "S_PSF_Gamma": 4.592072653918748e-09,
+    "S_SF_K": 7.649626838398395e-09,
+    "density_total": 2.550250817033324e-08,
+    "doubleOcc": 2.480526152032315e-08,
+    "energy_density": -8.876067572724667e-08,
+    "interaction_energy_density": -4.5447032337378113e-08,
+    "num_do": 1.1476128676649959e-07,
+    "num_up": 1.1476128676649959e-07,
+    "numsquare_do": 3.555178099077682e-07,
+    "numsquare_up": 3.555178099077682e-07,
+    "onsite_n2_do": 2.6071877001232185e-07,
+    "onsite_n2_up": 2.6071877001232195e-07,
+    "total_kinetic": -3.8982279050881713e-07
+  },
+  "observables": {
+    "S_DW_K": 0.0006598743181688734,
+    "S_PSF_Gamma": 1.6777749612573815e-05,
+    "S_SF_K": 0.0025344437319338928,
+    "density_total": 0.005839430490698387,
+    "doubleOcc": 5.110650962616183e-05,
+    "energy_density": -0.012421882027009857,
+    "interaction_energy_density": 0.0027782099113544414,
+    "num_do": 0.02627743720814275,
+    "num_up": 0.02627743720814275,
+    "numsquare_do": 0.027125789826416256,
+    "numsquare_up": 0.027125789826416256,
+    "onsite_n2_do": 0.026383764962096344,
+    "onsite_n2_up": 0.026383764962096344,
+    "total_kinetic": -0.1368008274452787
+  },
+  "parameters": {
+    "Lx": 3,
+    "Ly": 3,
+    "U1": 1.0,
+    "U2": -0.5,
+    "beta": 1.0,
+    "max_total_particles": 8,
+    "mu": -7.0,
+    "t": 1.0
+  },
+  "relative_last_shell": {
+    "S_DW_K": 1.7363496639152397e-05,
+    "S_PSF_Gamma": 0.000273700154070561,
+    "S_SF_K": 3.0182665892374697e-06,
+    "density_total": 4.367293730262928e-06,
+    "doubleOcc": 0.00048536403095751895,
+    "energy_density": 7.145509475476219e-06,
+    "interaction_energy_density": 1.6358386798505675e-05,
+    "num_do": 4.367293730262927e-06,
+    "num_up": 4.367293730262927e-06,
+    "numsquare_do": 1.3106265741303863e-05,
+    "numsquare_up": 1.3106265741303863e-05,
+    "onsite_n2_do": 9.881787924766527e-06,
+    "onsite_n2_up": 9.881787924766532e-06,
+    "total_kinetic": 2.8495645661554862e-06
+  },
+  "schema_version": 1,
+  "status": "low_density_cutoff_accepted",
+  "timestamp_utc": "2026-06-04T10:43:19Z"
+}

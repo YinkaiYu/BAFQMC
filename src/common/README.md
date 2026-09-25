@@ -4,18 +4,17 @@ Both Fortran implementations compile `mymats.f90` and `random.f90` from this
 folder. They require MPI and a BLAS/LAPACK implementation. No NAG, EISPACK,
 LINPACK, or other third-party library source is bundled here.
 
-The original solver used `MyMats` from `Lib_90_new/Modules/mat_mod.f90` for a
-small set of matrix operations and the `ranf` interface from
-`Lib_90_new/Ran/ran_imada.f`. These two files are newly written implementations
-of the required interfaces, under the software distribution's MIT license.
+The portable build provides the small matrix-operation and random-number
+interfaces required by both solvers. The bundled implementations use standard
+BLAS/LAPACK kernels and are released under the MIT license.
 
-| Interface | Bundled implementation | Historical backend |
-| --- | --- | --- |
-| `mmult(C,A,B)` | BLAS `ZGEMM` | BLAS `ZGEMM` |
-| `diag(A,U,W)` | LAPACK `ZHEEV`, complex Hermitian | EISPACK `CH` |
-| `inv(A,Ainv,det)` | LAPACK `ZGETRF`, `ZGETRI` | LINPACK `ZGEFA`, `ZGEDI` |
-| `udv(A,U,D,V,ncon)` | LAPACK QR, `A = U diag(D) V` | NAG QR |
-| `ranf(seed)` | Explicit 64-bit modular arithmetic | Implicit 32-bit overflow |
+| Interface | Bundled implementation |
+| --- | --- |
+| `mmult(C,A,B)` | BLAS `ZGEMM` |
+| `diag(A,U,W)` | LAPACK `ZHEEV`, complex Hermitian |
+| `inv(A,Ainv,det)` | LAPACK `ZGETRF`, `ZGETRI` |
+| `udv(A,U,D,V,ncon)` | LAPACK QR, `A = U diag(D) V` |
+| `ranf(seed)` | Explicit 64-bit modular arithmetic |
 
 The uniform random recurrence remains
 
@@ -24,14 +23,12 @@ seed_next = (48828125 * seed) mod 2147483648
 u = seed_next / 2147483648
 ```
 
-The archived initial seeds and recurrence are retained verbatim. Do not use
-a zero seed for new runs. Changes in eigensolver roundoff and compiler or
+Do not use a zero seed for new runs. Changes in eigensolver roundoff and compiler or
 BLAS behavior can still change an interacting Monte Carlo trajectory.
 Recomputed error bars and means should be assessed statistically.
 
-The active stabilized propagation and local-update Fortran sources are
-unchanged. The `udv` adapter supports the retained alternative stabilization
-routine; the production path uses its own pivoted LAPACK QR code.
+The active stabilized propagation and local-update Fortran sources use the same
+interfaces described above. The production path uses pivoted LAPACK QR code.
 
 ## Build and check
 

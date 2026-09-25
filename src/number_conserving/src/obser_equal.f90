@@ -181,8 +181,10 @@ contains
             enddo
         enddo
 
-        interaction_energy_sample = (RU1 + RU2) * (onsite_n2_up_sample + onsite_n2_do_sample) / dble(Lq) &
-            + 2.d0 * (RU1 - RU2) * doubleOcc_sample
+        ! U1 multiplies (n_b-n_c)^2 and U2 multiplies (n_b+n_c)^2.
+        ! Expanding the two squares gives the normal-ordered estimator below.
+        interaction_energy_sample = (U1 + U2) * (onsite_n2_up_sample + onsite_n2_do_sample) / dble(Lq) &
+            + 2.d0 * (U2 - U1) * doubleOcc_sample
         this%kinetic = this%kinetic + kinetic_sample
         this%onsite_n2_up = this%onsite_n2_up + onsite_n2_up_sample
         this%onsite_n2_do = this%onsite_n2_do + onsite_n2_do_sample

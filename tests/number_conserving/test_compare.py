@@ -19,11 +19,11 @@ DQMC_REFERENCES = REPO_ROOT / "benchmarks" / "dqmc_references"
 DQMC_SUITE = REPO_ROOT / "benchmarks" / "dqmc_suite.json"
 
 EXPECTED_CASES = {
-    "triangle_3x2_beta3_mu-2.5_u1_0_u2_1": {
+    "triangle_3x2_beta3_mu-2.5_u1_1_u2_0": {
         "beta": 3.0,
         "mu": -2.5,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "total_NE": 0.08999902580923487,
         "total_kinetic": -0.17786109516236884,
         "doubleOcc": 0.0013749579825925882,
@@ -31,11 +31,11 @@ EXPECTED_CASES = {
         "numsquare_up": 0.047057574907035285,
         "numsquare_do": 0.04705757490703528,
     },
-    "triangle_3x2_beta6_mu-2.5_u1_0_u2_1": {
+    "triangle_3x2_beta6_mu-2.5_u1_1_u2_0": {
         "beta": 6.0,
         "mu": -2.5,
-        "U1": 0.0,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": 0.0,
         "total_NE": 0.0008330248173669302,
         "total_kinetic": -0.001659465125418983,
         "doubleOcc": 5.0104309962475375e-06,
@@ -43,11 +43,11 @@ EXPECTED_CASES = {
         "numsquare_up": 0.00041666206338322737,
         "numsquare_do": 0.00041666206338322737,
     },
-    "triangle_3x2_beta1_mu-5_u1_-0.1_u2_1": {
+    "triangle_3x2_beta1_mu-5_u1_1_u2_-0.1": {
         "beta": 1.0,
         "mu": -5.0,
-        "U1": -0.1,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.1,
         "total_NE": 0.13997061039816858,
         "total_kinetic": -0.2558942387788746,
         "doubleOcc": 0.0006443360186882365,
@@ -55,11 +55,11 @@ EXPECTED_CASES = {
         "numsquare_up": 0.07470426129050677,
         "numsquare_do": 0.07470426129050675,
     },
-    "triangle_3x2_beta1.4_mu-5_u1_-0.1_u2_1": {
+    "triangle_3x2_beta1.4_mu-5_u1_1_u2_-0.1": {
         "beta": 1.4,
         "mu": -5.0,
-        "U1": -0.1,
-        "U2": 1.0,
+        "U1": 1.0,
+        "U2": -0.1,
         "total_NE": 0.027122698028982088,
         "total_kinetic": -0.052062742470074974,
         "doubleOcc": 4.100795667581261e-05,

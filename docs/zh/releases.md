@@ -5,7 +5,6 @@
 
 ## 准备版本
 
-在 [CHANGELOG.md](./changelog.md) 中更新发布日期和具体变更内容。
 保持安装指南、Agent 指令和数值资源估计与代码的一致性。
 检查源代码包是否包含 MIT 协议、求解器源码、ED 代码、精选输入、
 处理后数据以及复现脚本。原始链数据和生成的编译文件不纳入 Release。
@@ -52,7 +51,7 @@ git push origin "$release_tag"
 ```
 
 Source Release 工作流会对该标签重新运行计算 CI，
-然后以 GitHub Release 的形式发布源代码存档和 SHA-256 校验和。
+然后以 GitHub Release 的形式发布源代码存档。
 在 Release 说明中包含 changelog 条目、相关验证结果，
 以及对输入/输出格式的任何变更说明。标签一经发布应保持不变；
 如需修正，发布新版本。

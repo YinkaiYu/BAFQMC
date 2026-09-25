@@ -1,9 +1,7 @@
 {
   "case": "triangle_pairing_delta0_nopairing",
   "reference_kind": "nopairing_dqmc_json",
-  "source_reference_repo": "code_bosonDQMC (upstream repository)",
-  "source_reference_commit": "a0c1b4414da7899f3ded4cc360201a5a34ff812c",
-  "reference_fixture_source": "committed no-pairing DQMC benchmark output",
+  "reference_fixture_source": "no-pairing DQMC benchmark output",
   "reference_run_dir": "benchmarks/fixtures/nopairing_triangle_3x2_beta1_real_outputs",
   "dqmc_live_input_dir": "../../examples/pairing/benchmarks/triangle_pairing_delta0_nopairing_3x2",
   "parameters": {

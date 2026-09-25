@@ -14,8 +14,8 @@ EXPECTED_DELTAS = [0.0, 0.1, 0.2, 0.3, 0.4]
 EXPECTED_SHARED_PARAMS = {
     "Lx": 3,
     "Ly": 3,
-    "U1": 0.0,
-    "U2": 1.0,
+    "U1": 1.0,
+    "U2": 0.0,
     "beta": 4.0,
     "mu": -3.5,
 }
@@ -108,7 +108,7 @@ class PairingCampaignTests(unittest.TestCase):
         raise AssertionError(f"default_manifest did not expose cases: {manifest!r}")
 
 
-    def test_write_dqmc_case_paramc_first_data_row_has_ru1_ru2_mu_rdelta(self) -> None:
+    def test_write_dqmc_case_paramc_first_data_row_has_u1_u2_mu_rdelta(self) -> None:
         case = self._default_cases()[0]
 
         with tempfile.TemporaryDirectory() as tmpdir:

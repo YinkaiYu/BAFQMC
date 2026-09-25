@@ -2,7 +2,6 @@
   "case": "triangle_pairing_delta0_nopairing_fixture",
   "reference_kind": "nopairing_dqmc_json",
   "source_reference_repo": "code_bosonDQMC (upstream repository)",
-  "source_reference_commit": "a0c1b4414da7899f3ded4cc360201a5a34ff812c",
   "reference_fixture_source": "synthetic",
   "reference_fixture_note": "Synthetic parser fixture values; not real no-pairing benchmark output.",
   "reference_run_dir": "benchmarks/fixtures/nopairing_synthetic_fixture_outputs",

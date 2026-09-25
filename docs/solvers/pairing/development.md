@@ -23,7 +23,7 @@ The executable reads fixed filenames from the current working directory:
 `paramC_sets.txt` currently reads these rows:
 
 ```text
-RU1 RU2 mu RDelta
+U1 U2 mu RDelta
 Nlx Nly Ltrot Beta
 NlxTherm NlyTherm LtrotTherm
 Nwrap Nbin Nsweep shiftLoc
