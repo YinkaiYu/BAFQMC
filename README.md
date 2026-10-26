@@ -10,7 +10,7 @@
 
 [![Benchmarks](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml/badge.svg)](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-417A69.svg)](LICENSE)
-[![arXiv: 2609.XXXXX](https://img.shields.io/badge/arXiv-2609.XXXXX-B31B1B.svg)](#paper)
+[![arXiv: 2610.31541](https://img.shields.io/badge/arXiv-2610.31541-B31B1B.svg)](https://arxiv.org/abs/2610.31541)
 [![Fortran + Python](https://img.shields.io/badge/Fortran%20%2B%20Python-535B86.svg)](docs/development.md)
 [![Agent ready](https://img.shields.io/badge/Agent-ready-927043.svg)](AGENTS.md)
 
@@ -166,4 +166,20 @@ Large simulation outputs are generated locally and excluded from Git.
 
 ## Paper
 
-arXiv: **2609.XXXXX** (forthcoming).
+Yin-Kai Yu, Zhong-Chao Wei, and Zi-Xiang Li,
+**[Sign-problem-free Bosonic Auxiliary Field Quantum Monte Carlo](https://arxiv.org/abs/2610.31541)**,
+arXiv:2610.31541 (2026).
+
+If you use BAFQMC in your research, please cite:
+
+```bibtex
+@misc{yu2026signproblemfree,
+  title         = {Sign-problem-free Bosonic Auxiliary Field Quantum Monte Carlo},
+  author        = {Yin-Kai Yu and Zhong-Chao Wei and Zi-Xiang Li},
+  year          = {2026},
+  eprint        = {2610.31541},
+  archivePrefix = {arXiv},
+  primaryClass  = {cond-mat.str-el},
+  url           = {https://arxiv.org/abs/2610.31541}
+}
+```

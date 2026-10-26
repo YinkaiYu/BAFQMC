@@ -213,5 +213,6 @@ Continuation restarts an interrupted stage from its initial inputs.
 - Preserve unrelated work, inspect the final diff, and run checks proportionate
   to the changes. Commit only task-owned work when the user's workflow calls
   for a commit. Publication or remote communication requires user authorization.
-- Contributions are under MIT. The paper is not yet assigned a public
-  identifier; do not invent an arXiv link, DOI, or citation entry.
+- Contributions are under MIT. The paper is available at
+  [arXiv:2610.31541](https://arxiv.org/abs/2610.31541); use the verified
+  citation in the README when referencing it.
