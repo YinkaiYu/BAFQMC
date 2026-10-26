@@ -11,7 +11,6 @@
 [![Benchmarks](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml/badge.svg)](https://github.com/YinkaiYu/BAFQMC/actions/workflows/reproduce-benchmarks.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-417A69.svg)](LICENSE)
 [![arXiv: 2610.31541](https://img.shields.io/badge/arXiv-2610.31541-B31B1B.svg)](https://arxiv.org/abs/2610.31541)
-[![Fortran + Python](https://img.shields.io/badge/Fortran%20%2B%20Python-535B86.svg)](docs/development.md)
 [![Agent ready](https://img.shields.io/badge/Agent-ready-927043.svg)](AGENTS.md)
 
 [在线文档](https://www.yykspace.com/BAFQMC/zh/) · [开始使用](docs/getting-started.md) · [算法与约定](docs/algorithm.md) · [复现结果](benchmarks/paper/README.md) · [Agent 指南](AGENTS.md)
